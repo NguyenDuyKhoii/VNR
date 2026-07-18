@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Lexend:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
     <!-- Background Glow Elements -->
@@ -41,119 +41,278 @@
         </div>
     </header>
 
+    <nav class="page-dots" aria-label="Vị trí trang">
+        <span class="dot active" data-target="home" title="Mở đầu"></span>
+        <span class="dot" data-target="intro-context" title="Bối cảnh"></span>
+        <span class="dot" data-target="intro-video" title="Video"></span>
+        <span class="dot" data-target="daihoi-viii" title="Đại hội"></span>
+        <span class="dot" data-target="timeline" title="Timeline"></span>
+    </nav>
+
+    <aside class="micro-nav" aria-label="Liên kết nhanh">
+        <a href="#intro-context" title="Bối cảnh lịch sử">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </a>
+        <a href="#intro-video" title="Tư liệu video">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </a>
+        <a href="#timeline" title="Tiến trình lịch sử">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </a>
+    </aside>
+
     <!-- Main Container -->
     <main>
-        <!-- Hero Section: Bento Grid -->
-        <section id="home" class="section hero-section active-section">
-            <div class="container hero-container bento-grid-layout">
-                
-                <!-- LEFT COLUMN: Main Text & Speech Bubble -->
-                <div class="bento-col-left">
-                    <!-- Hero Content Card -->
-                    <div class="hero-intro-card">
-                        <span class="section-tag">⏱️ Đại hội VIII (1996) • Bước Ngoặt Lịch Sử</span>
-                        <h1 class="hero-title">Tiếp Tục Công Cuộc <span class="highlight-text">Đổi Mới</span>, Đẩy Mạnh CNH-HĐH & Hội Nhập Quốc Tế</h1>
-                        <p class="hero-subtitle">Giai đoạn từ năm 1996 đến nay - Kỷ nguyên vươn mình của dân tộc Việt Nam với những thành tựu vượt bậc trong phát triển kinh tế và vị thế ngoại giao.</p>
+        <!-- ============================================ -->
+        <!-- HERO: Layered overlay layout with depth -->
+        <!-- ============================================ -->
+        <section id="home" class="hero-immersive">
+            <div class="hero-bg" style="background-image: url('img/VN_buoc_chuyen_minh.jpg');" aria-hidden="true"></div>
+            <div class="hero-bg-overlay" aria-hidden="true"></div>
+
+            <div class="hero-patterns" aria-hidden="true">
+                <svg class="hero-pattern-map" viewBox="0 0 200 320" fill="none">
+                    <path d="M100 20 C130 40 150 80 145 120 C140 160 120 200 100 240 C80 200 60 160 55 120 C50 80 70 40 100 20 Z" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M95 260 L100 300 L108 270" stroke="currentColor" stroke-width="1"/>
+                </svg>
+                <svg class="hero-pattern-drum" viewBox="0 0 120 120" fill="none">
+                    <circle cx="60" cy="60" r="48" stroke="currentColor" stroke-width="1"/>
+                    <circle cx="60" cy="60" r="32" stroke="currentColor" stroke-width="0.8"/>
+                    <path d="M60 12 L60 108 M12 60 L108 60 M28 28 L92 92 M92 28 L28 92" stroke="currentColor" stroke-width="0.6"/>
+                </svg>
+                <svg class="hero-pattern-chart" viewBox="0 0 240 80" fill="none">
+                    <polyline points="0,70 40,55 80,58 120,35 160,40 200,18 240,10" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+            </div>
+
+            <div class="container hero-stage">
+                <div class="hero-copy">
+                    <div class="hero-copy-panel">
+                        <span class="hero-eyebrow">Giai đoạn 1996 – Nay</span>
+                        <h1 class="hero-title">Tiếp Tục Công Cuộc <span class="text-accent">Đổi Mới</span>, Đẩy Mạnh CNH-HĐH & Hội Nhập Quốc Tế</h1>
+                        <p class="hero-lead">Kỷ nguyên vươn mình của dân tộc Việt Nam với những thành tựu vượt bậc trong phát triển kinh tế và vị thế ngoại giao.</p>
                         
-                        <div class="hero-cta-group">
-                            <a href="#timeline" class="btn btn-primary">
+                        <div class="hero-stats">
+                            <div class="stat-card">
+                                <span class="stat-value">6.5%</span>
+                                <span class="stat-label">GDP tăng trưởng <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/><line x1="12" y1="9" x2="12" y2="21"/></svg></span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-value">200+</span>
+                                <span class="stat-label">Đối tác thương mại</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-value">400+</span>
+                                <span class="stat-label">Khu công nghiệp</span>
+                            </div>
+                        </div>
+
+                        <div class="hero-actions">
+                            <a href="#intro-context" class="btn btn-primary">
                                 <span>Khám Phá Tiến Trình</span>
                                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
                             </a>
-                            <a href="#agenda" class="btn btn-secondary">Xem Lộ Trình Thuyết Trình</a>
+                            <a href="#agenda" class="btn btn-secondary">Xem Lộ Trình</a>
                         </div>
                     </div>
-
-                    <!-- Distilled Intro Speech Card -->
-                    <div class="intro-card glass-card">
-                        <div class="card-badge-box">
-                            <span class="card-badge"><span class="badge-icon">📢</span> Đặt vấn đề</span>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-feature-card">
+                        <img src="img/modau.jpg" alt="Mở đầu - Tiến trình Đổi mới">
+                        <div class="hero-feature-caption">
+                            <span>Chủ đề chính</span>
+                            <h3>Hành Trình Kiến Tạo Thịnh Vượng</h3>
                         </div>
-                        <div class="intro-card-body">
-                            <div class="intro-distilled" style="margin-top: 0; text-align: left; position: relative; z-index: 2;">
-                                <div class="distilled-topic" style="margin-bottom: var(--space-md);">
-                                    <span class="topic-label">Chủ đề thuyết trình</span>
-                                    <h3 class="topic-title">Tiếp tục đổi mới, đẩy mạnh CNH - HĐH và hội nhập quốc tế (1996 - nay)</h3>
-                                </div>
-                                <div class="distilled-milestone" style="margin-bottom: var(--space-md);">
-                                    <span class="milestone-label">Bước ngoặt Đại hội VIII (1996)</span>
-                                    <blockquote class="milestone-quote">
-                                        "Những tiền đề chuẩn bị cho công nghiệp hóa cơ bản đã hoàn thành."
-                                    </blockquote>
-                                </div>
-                                <div class="distilled-meaning-box" style="background: rgba(198, 138, 0, 0.04); border: 1px solid rgba(198, 138, 0, 0.1); border-radius: var(--radius-md); padding: var(--space-md); display: flex; align-items: start; gap: var(--space-md); margin-bottom: var(--space-md);">
-                                    <span class="meaning-icon">💡</span>
-                                    <p class="distilled-result" style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">
-                                        <strong>Ý nghĩa:</strong> Đưa đất nước thoát khỏi khủng hoảng KT-XH, chính thức bước vào thời kỳ <strong>đẩy mạnh công nghiệp hóa, hiện đại hóa đất nước</strong>.
-                                    </p>
-                                </div>
+                        <div class="hero-bubbles" aria-hidden="true">
+                            <span class="hero-bubble" title="ASEAN">ASEAN</span>
+                            <span class="hero-bubble" title="WTO">WTO</span>
+                            <span class="hero-bubble hero-bubble--globe" title="Hội nhập quốc tế">🌐</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#intro-context" class="hero-scroll-hint" aria-label="Cuộn xuống phần Bối Cảnh">
+                <span>Cuộn để khám phá</span>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </a>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- BỐI CẢNH & BƯỚC NGOẶT LỊCH SỬ -->
+        <!-- ============================================ -->
+        <section id="intro-context" class="section intro-context">
+            <div class="flow-connector" aria-hidden="true">
+                <div class="flow-line"></div>
+                <div class="flow-node"></div>
+            </div>
+            <div class="container">
+                <div class="intro-panel reveal-group">
+                    <div class="intro-panel-header reveal-item">
+                        <span class="section-tag section-tag-light">Mục 1</span>
+                        <h2 class="intro-heading">Bối Cảnh & Bước Ngoặt Lịch Sử</h2>
+                        <p class="intro-subtitle">Nhìn lại chặng đường 10 năm bản lề đưa Việt Nam thoát khỏi khủng hoảng, chính thức bước vào thời kỳ Đẩy mạnh Công nghiệp hóa - Hiện đại hóa.</p>
+                    </div>
+
+                    <div class="context-timeline">
+                        <div class="context-timeline-track" aria-hidden="true"></div>
+
+                        <article class="context-milestone context-milestone--1986 reveal-item">
+                            <div class="context-milestone-marker">
+                                <span class="context-milestone-dot"></span>
+                                <span class="context-milestone-year">1986</span>
                             </div>
-                            <div class="author-info" style="margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid var(--glass-border);">
-                                <span class="speaker-avatar">🎙️</span>
+                            <div class="context-milestone-card">
+                                <div class="card-image-wrapper">
+                                    <img src="img/tong-bi-thu-nguyen-van-linh-hay-tra-ve-cho-san-xu-56-1-1752508948.jpg" alt="Tổng Bí thư Nguyễn Văn Linh phát biểu tại Đại hội VI">
+                                </div>
+                                <h3 class="context-milestone-title">Đại hội VI · Khởi động Đổi mới</h3>
+                                <p class="context-milestone-text"><strong>Quyết sách lịch sử:</strong> Nhìn thẳng vào sự thật, đề ra đường lối Đổi mới toàn diện về cả tư duy kinh tế lẫn chính trị.</p>
+                                <p class="context-milestone-text"><strong>Thành tựu cốt lõi:</strong> Từng bước xóa bỏ cơ chế bao cấp, khơi thông nguồn lực sản xuất và đưa đất nước thoát khỏi khủng hoảng kinh tế - xã hội kéo dài.</p>
+                                <span class="mini-stat mini-stat--warn">Áp lực lịch sử: Lạm phát đỉnh điểm ~774,7% (1986)</span>
+                            </div>
+                        </article>
+
+                        <article class="context-milestone context-milestone--1996 reveal-item">
+                            <div class="context-milestone-marker">
+                                <span class="context-milestone-dot"></span>
+                                <span class="context-milestone-year">1996</span>
+                            </div>
+                            <div class="context-milestone-card">
+                                <div class="card-image-wrapper">
+                                    <img src="img/dhVIII.jpg" alt="Toàn cảnh Đại hội VIII (1996)">
+                                </div>
+                                <h3 class="context-milestone-title">Đại hội VIII · Bước ngoặt CNH - HĐH</h3>
+                                <p class="context-milestone-text"><strong>Nhận định lịch sử:</strong> “Những tiền đề chuẩn bị cho công nghiệp hóa cơ bản đã hoàn thành.”</p>
+                                <p class="context-milestone-text"><strong>Chuyển dịch chiến lược:</strong> Đưa nước ta chính thức chuyển sang thời kỳ mới — Đẩy mạnh công nghiệp hóa, hiện đại hóa đất nước với mục tiêu hướng tới năm 2020.</p>
+                                <span class="mini-stat mini-stat--growth">Tăng trưởng trực quan: GDP tăng trưởng kỷ lục ~9,34% (1995)</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- VIDEO SECTION                                -->
+        <!-- ============================================ -->
+        <section id="intro-video" class="section video-section">
+            <div class="video-bg" style="background-image: url('img/VN_buoc_chuyen_minh.jpg');"></div>
+            <div class="video-bg-overlay"></div>
+            <div class="flow-connector flow-connector--short" aria-hidden="true">
+                <div class="flow-line"></div>
+                <div class="flow-node"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Tư Liệu Video</span>
+                    <h2 class="section-title">Việt Nam Trong Bước Chuyển Mình Lịch Sử</h2>
+                    <p class="section-desc">Hình ảnh thu nhỏ của Việt Nam trên hành trình đổi mới và hội nhập quốc tế.</p>
+                </div>
+                <div class="video-wrapper">
+                    <video controls preload="metadata" poster="img/bachothamgangthepthainguyen.jpg">
+                        <source src="video/snaptik.vn_7609173447083691272.mp4" type="video/mp4">
+                        Trình duyệt không hỗ trợ phát video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ĐẠI HỘI VIII (1996): Content + Images       -->
+        <!-- ============================================ -->
+        <section id="daihoi-viii" class="section congress-section">
+            <div class="flow-connector flow-connector--short" aria-hidden="true">
+                <div class="flow-line"></div>
+                <div class="flow-node"></div>
+            </div>
+            <div class="container">
+                <div class="congress-row reveal-group">
+                    <div class="congress-content reveal-item">
+                        <span class="congress-tag highlight-tag">Đại hội VIII · 1996</span>
+                        <h2 class="congress-heading">Đặt Nền Móng Mục Tiêu Chiến Lược</h2>
+                        <p class="congress-body"><strong>Bối cảnh:</strong> Đất nước cơ bản thoát khỏi khủng hoảng kinh tế - xã hội.</p>
+                        <p class="congress-body"><strong>Mục tiêu chiến lược:</strong> Phấn đấu đưa Việt Nam cơ bản trở thành <strong>một nước công nghiệp vào năm 2020</strong>.</p>
+                        <h4 class="congress-sub-label">Động lực cốt lõi</h4>
+                        <div class="congress-points">
+                            <div class="congress-point">
+                                <span class="point-icon">🔬</span>
                                 <div>
-                                    <div class="speaker-role" style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Mục 1: Khởi động</div>
-                                    <div class="speaker-name" style="font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem; color: var(--text-primary);">Mở Đầu Tương Tác (1.5 - 2 phút)</div>
+                                    <strong>Khoa học - Công nghệ</strong>
+                                    <p>Là <em>động lực chính</em> của CNH - HĐH.</p>
+                                </div>
+                            </div>
+                            <div class="congress-point">
+                                <span class="point-icon">👥</span>
+                                <div>
+                                    <strong>Con người</strong>
+                                    <p>Phát huy nguồn lực con người làm <em>yếu tố cơ bản</em> để phát triển nhanh, bền vững.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="congress-media reveal-item">
+                        <figure class="congress-photo congress-photo--primary">
+                            <img src="img/daiHoiVIII.jpg" alt="Đại hội VIII - 1996">
+                            <figcaption>Đại hội đại biểu toàn quốc lần thứ VIII</figcaption>
+                        </figure>
+                        <figure class="congress-photo congress-photo--secondary">
+                            <img src="img/daiHoiVIII_2.png" alt="Tư liệu Đại hội VIII">
+                            <figcaption>Tư liệu lịch sử Đại hội VIII</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ĐẠI HỘI IX (2001): Content + Images         -->
+        <!-- ============================================ -->
+        <section id="daihoi-ix" class="section congress-section congress-section--reverse">
+            <div class="flow-connector flow-connector--short" aria-hidden="true">
+                <div class="flow-line"></div>
+                <div class="flow-node"></div>
+            </div>
+            <div class="container">
+                <div class="congress-row reveal-group">
+                    <div class="congress-media reveal-item">
+                        <figure class="congress-photo congress-photo--primary">
+                            <img src="img/daiHoiIX.jpg" alt="Đại hội IX - 2001">
+                            <figcaption>Đại hội đại biểu toàn quốc lần thứ IX</figcaption>
+                        </figure>
+                        <figure class="congress-photo congress-photo--secondary">
+                            <img src="img/daiHoiIX_2.png" alt="Tư liệu Đại hội IX">
+                            <figcaption>Tư liệu lịch sử Đại hội IX</figcaption>
+                        </figure>
+                    </div>
+                    <div class="congress-content reveal-item">
+                        <span class="congress-tag">Đại hội IX · 2001</span>
+                        <h2 class="congress-heading">Bước Đột Phá Về Lý Luận Và Tư Duy</h2>
+                        <p class="congress-body"><strong>Mô hình kinh tế (Đột phá lớn):</strong> Lần đầu tiên chính thức xác định mô hình tổng quát là <em>Kinh tế thị trường định hướng xã hội chủ nghĩa</em>.</p>
+                        <p class="congress-body"><strong>Xu hướng quốc tế:</strong> Chủ trương chủ động và tích cực hội nhập kinh tế quốc tế.</p>
+                        <h4 class="congress-sub-label">Tư duy thời đại mới</h4>
+                        <div class="congress-points">
+                            <div class="congress-point">
+                                <span class="point-icon">🧠</span>
+                                <div>
+                                    <strong>Kinh tế tri thức</strong>
+                                    <p>Đưa ra khái niệm <em>Kinh tế tri thức</em> trong văn kiện Đảng.</p>
+                                </div>
+                            </div>
+                            <div class="congress-point">
+                                <span class="point-icon">⚡</span>
+                                <div>
+                                    <strong>Công nghiệp hóa rút ngắn</strong>
+                                    <p>Đi tắt, đón đầu bằng công nghệ và trí tuệ thay vì đi theo lối mòn tuần tự.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- RIGHT COLUMN: Bento Media & Stats -->
-                <div class="bento-col-right">
-                    
-                    <!-- Port image card -->
-                    <div class="bento-card media-card port-card glass-card">
-                        <img src="img/port_sunset.png" alt="Hành Trình Kiến Tạo Thịnh Vượng" class="port-img">
-                        <div class="media-overlay">
-                            <span class="overlay-tag">Chủ đề chính</span>
-                            <h4 class="overlay-title">Hành Trình Kiến Tạo Thịnh Vượng</h4>
-                        </div>
-                    </div>
-
-                    <!-- GDP Stats card -->
-                    <div class="bento-card gdp-card">
-                        <div class="gdp-chart-bg">
-                            <!-- SVG Faint line chart -->
-                            <svg viewBox="0 0 100 50" class="gdp-svg-line" style="width: 100%; height: 100%;">
-                                <path d="M0,45 Q20,38 40,30 T80,15 T100,5" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" />
-                            </svg>
-                        </div>
-                        <span class="gdp-label">Tăng trưởng GDP</span>
-                        <h2 class="gdp-value">~7.0%</h2>
-                        <span class="gdp-desc">TRUNG BÌNH GIAI ĐOẠN 1996 - 2000</span>
-                    </div>
-
-                    <!-- International integration card -->
-                    <div class="bento-card integration-card glass-card">
-                        <div class="card-icon-box">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" class="integration-icon">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                            </svg>
-                        </div>
-                        <h4 class="integration-title">Hội Nhập Quốc Tế</h4>
-                        <p class="integration-desc">Việt Nam mở rộng quan hệ ngoại giao, gia nhập các tổ chức kinh tế lớn như ASEAN (1995), WTO (2007).</p>
-                        <a href="#timeline" class="integration-link">
-                            <span>Tìm hiểu thêm</span>
-                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 2px;">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
-                            </svg>
-                        </a>
-                    </div>
-
-                    <!-- B&W Historical photo card -->
-                    <div class="bento-card media-card history-card glass-card">
-                        <img src="img/HCM-713623-03.jpg" alt="Đại hội VIII - 1996: Dấu ấn Lịch sử" class="history-img">
-                        <div class="media-caption">
-                            <span>Đại hội VIII - 1996: Dấu ấn Lịch sử</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 

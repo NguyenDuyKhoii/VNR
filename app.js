@@ -10,15 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('.section');
+    const sections = document.querySelectorAll('#home, .section');
     const navLogo = document.getElementById('navLogo');
 
     // Navbar scroll effect
+    function updateNavbarState() {
+        navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
+    }
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('navbar-scrolled');
-        } else {
-            navbar.classList.remove('navbar-scrolled');
+        updateNavbarState();
+
+        // Update active nav link based on scroll position
+        let currentSection = '';
+        sections.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top <= 120 && rect.bottom > 120) {
+                currentSection = sec.id;
+            }
+        });
+        if (currentSection) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-sec') === currentSection) {
+                    link.classList.add('active');
+                }
+            });
         }
     });
 
@@ -28,33 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.classList.toggle('open');
     });
 
-    // SPA Link Switcher
-    function switchSection(targetId) {
-        // Deactivate all sections and nav links
-        sections.forEach(sec => {
-            sec.classList.remove('active-section');
-        });
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-
-        // Activate target section
+    // Smooth Scroll to Section
+    function scrollToSection(targetId) {
         const targetSection = document.getElementById(targetId);
         if (targetSection) {
-            targetSection.classList.add('active-section');
-            // Scroll to top of the section container
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            const navHeight = navbar.offsetHeight;
+            const targetPos = targetSection.offsetTop - navHeight - 10;
+            window.scrollTo({ top: targetPos, behavior: 'smooth' });
         }
-
-        // Activate corresponding nav link
-        const matchingLink = document.querySelector(`.nav-link[data-sec="${targetId}"]`);
-        if (matchingLink) {
-            matchingLink.classList.add('active');
-        }
-
         // Close mobile menu if open
         menuToggle.classList.remove('open');
         navMenu.classList.remove('open');
@@ -65,27 +63,26 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetSec = link.getAttribute('data-sec');
-            switchSection(targetSec);
-            // Update URL hash without jumping
+            scrollToSection(targetSec);
             history.pushState(null, null, `#${targetSec}`);
         });
     });
 
-    // Logo Click listener (Go to home)
+    // Logo Click listener (Go to top)
     navLogo.addEventListener('click', (e) => {
         e.preventDefault();
-        switchSection('home');
-        history.pushState(null, null, '#home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        history.pushState(null, null, '#');
     });
 
-    // CTA buttons in hero section
-    document.querySelectorAll('.hero-cta-group .btn').forEach(btn => {
+    // CTA buttons - smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const href = btn.getAttribute('href');
-            if (href.startsWith('#')) {
+            if (href.startsWith('#') && href.length > 1) {
                 e.preventDefault();
                 const targetId = href.substring(1);
-                switchSection(targetId);
+                scrollToSection(targetId);
                 history.pushState(null, null, href);
             }
         });
@@ -94,10 +91,58 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle initial load with Hash
     if (window.location.hash) {
         const hash = window.location.hash.substring(1);
-        const validSections = ['home', 'timeline', 'agenda', 'quiz'];
-        if (validSections.includes(hash)) {
-            switchSection(hash);
+        setTimeout(() => scrollToSection(hash), 300);
+    }
+
+    updateNavbarState();
+
+    // ----------------------------------------------------
+    // SCROLL REVEAL ANIMATIONS
+    // ----------------------------------------------------
+    const revealItems = document.querySelectorAll('.reveal-item');
+
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealItems.forEach(item => revealObserver.observe(item));
+    } else {
+        revealItems.forEach(item => item.classList.add('is-visible'));
+    }
+
+    // Page dots — sync with scroll position
+    const pageDots = document.querySelectorAll('.page-dots .dot');
+
+    if (pageDots.length) {
+        const dotTargets = Array.from(pageDots).map(dot => dot.dataset.target);
+
+        function updatePageDots() {
+            let activeIdx = 0;
+            dotTargets.forEach((id, idx) => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 200) activeIdx = idx;
+            });
+            pageDots.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIdx));
         }
+
+        window.addEventListener('scroll', updatePageDots, { passive: true });
+        updatePageDots();
+
+        pageDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const targetId = dot.dataset.target;
+                if (targetId) scrollToSection(targetId);
+            });
+        });
     }
 
     // ----------------------------------------------------
