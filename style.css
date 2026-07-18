@@ -570,16 +570,41 @@ svg {
 }
 
 .hero-stage.container {
-    max-width: 1540px;
-    padding-left: clamp(1.5rem, 5vw, 4rem);
-    padding-right: clamp(1.5rem, 5vw, 4rem);
+    max-width: min(1680px, 100%);
+    width: 100%;
+    padding-left: clamp(1.25rem, 4vw, 3.5rem);
+    padding-right: clamp(1.25rem, 4vw, 3.5rem);
 }
 
 @media (min-width: 900px) {
     .hero-stage {
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: clamp(2rem, 4vw, 4rem);
-        align-items: center;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(2.5rem, 5vw, 5rem);
+        align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-visual {
+        display: flex;
+        flex-direction: column;
+        min-height: 520px;
+    }
+
+    .hero-copy-panel {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .hero-feature-card {
+        flex: 1;
+        min-height: 520px;
+        height: auto;
+    }
+
+    .hero-feature-card img {
+        min-height: 0;
+        height: 100%;
+        flex: 1;
     }
 }
 
@@ -1208,94 +1233,105 @@ svg {
 
 /* 
 ========================================================================
-   CONGRESS SECTIONS — Side-by-side image + content
+   CONGRESS SLIDES — Unified layout system (VIII → XII)
 ========================================================================
 */
 .congress-section {
     position: relative;
     background: #ffffff;
-    /* solid pure white */
-    padding-top: calc(var(--space-3xl) + 20px);
-    padding-bottom: 120px;
-    /* increased padding-bottom to prevent scroll cut-off */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
-.congress-section .container {
-    max-width: 1540px;
-    /* expanded to prevent edge spaces */
-    padding-left: clamp(1.5rem, 5vw, 4rem);
-    padding-right: clamp(1.5rem, 5vw, 4rem);
-}
-
-.congress-section--reverse {
+.slide-container {
+    width: 1280px;
+    max-width: 100%;
+    min-height: 720px;
+    overflow: hidden;
+    position: relative;
+    padding: 24px 36px;
+    box-sizing: border-box;
+    margin: 0 auto;
     background: #ffffff;
-    /* solid pure white */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
+/* --- 1. Bố cục 2 cột: VIII, IX, X --- */
 .congress-row {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
+    grid-template-columns: 55% 45%;
+    gap: 28px;
     align-items: stretch;
+    height: 530px;
+    width: 100%;
 }
 
-@media (min-width: 1024px) {
-    .congress-row {
-        grid-template-columns: 5.5fr 4.5fr;
-        /* Split Layout: Left 55% - Right 45% */
-        gap: clamp(2.5rem, 5vw, 5rem);
-        /* wider gap between content and media */
-        align-items: stretch;
-    }
+.congress-row--reverse {
+    grid-template-columns: 45% 55%;
+    gap: 28px;
+    align-items: stretch;
+    height: 530px;
+    width: 100%;
 }
 
 .congress-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: var(--space-md);
+    height: 100%;
+    min-height: 0;
+    gap: 0;
+    overflow: hidden;
 }
 
 .congress-heading {
-    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    font-size: 28px;
     font-weight: 800;
     color: var(--text-primary);
-    margin-bottom: var(--space-xs);
+    margin: 0 0 14px;
     letter-spacing: -0.01em;
+    line-height: 1.2;
 }
 
-/* Bullet Points styling */
 .congress-bullets {
     list-style-type: none;
     padding-left: 0;
-    margin: 0;
+    margin: 0 0 10px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: 0;
 }
 
 .congress-bullets li {
     position: relative;
     padding-left: var(--space-lg);
-    font-size: 1.1rem;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--color-charcoal-800);
+    margin-bottom: 8px;
+}
+
+.congress-bullets li:last-child {
+    margin-bottom: 0;
 }
 
 .congress-bullets li::before {
     content: "•";
     position: absolute;
     left: 4px;
-    top: -2px;
+    top: -1px;
     color: var(--color-gold-500);
     font-weight: 900;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
 }
 
 .bullet-title {
     color: var(--color-gold-600);
     font-weight: 700;
-    font-size: 1.15rem;
 }
 
 .keyword {
@@ -1303,16 +1339,16 @@ svg {
     font-weight: 700;
 }
 
-/* Analysis details (No Cards, text runs free on white background) */
 .congress-analysis-group {
-    margin-top: 40px;
-    /* 40px separation as requested */
-    padding-top: 32px;
-    /* padding above text inside group */
+    margin-top: 12px;
+    padding-top: 12px;
     border-top: 1px solid #E5E5E5;
-    /* extremely fine light gray divider line */
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .analysis-title {
@@ -1321,88 +1357,337 @@ svg {
     letter-spacing: 1px;
     color: var(--color-gold-600);
     font-weight: 700;
-    margin: 0 0 20px 0;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .analysis-block {
+    padding: 12px 16px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px; /* 20px spacing between blocks as requested */
-    background: #F8F9FA; /* Subtle Background Block */
-    padding: 14px 18px; /* inner spacing */
-    border-left: 3px solid var(--color-gold-500); /* Vertical Border Indicator */
-    border-radius: 0 var(--radius-md) var(--radius-md) 0; /* clean look: flat left, rounded right */
+    gap: 10px;
+    max-height: 130px;
+    overflow-y: auto;
+    background: #F8F9FA;
+    border-left: 3px solid var(--color-gold-500);
+    border-radius: 0 8px 8px 0;
+    flex-shrink: 0;
 }
 
-.analysis-block:last-child {
-    margin-bottom: 0;
+.analysis-block::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
 }
 
 .analysis-subtitle {
     display: block;
-    font-size: 1.2rem;
+    font-size: 16px;
     font-weight: 700;
-    color: var(--color-gold-600); /* system gold color */
+    color: var(--color-gold-600);
+    line-height: 1.3;
 }
 
 .analysis-text {
-    font-size: 1.12rem;
-    line-height: 1.7; /* contrast line-height */
-    color: #333333; /* high-contrast dark gray text for readability */
+    font-size: 15px;
+    line-height: 1.5;
+    color: #333333;
     margin: 0;
-    padding-left: 8px; /* indent 8px */
 }
 
-.congress-media {
-    display: grid;
-    gap: var(--space-md);
+.image-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    min-height: 0;
 }
 
 .congress-photo {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
     margin: 0;
     border-radius: 12px;
-    /* bo góc nhẹ 12px */
     overflow: hidden;
-    /* đảm bảo ảnh và chú thích bo tròn theo */
+    position: relative;
     background: var(--color-white);
     border: 1px solid rgba(198, 138, 0, 0.08);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-    /* bóng đổ mờ mịn */
-    transition: transform var(--transition-slow), box-shadow var(--transition-slow);
-}
-
-.congress-photo:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 48px rgba(180, 160, 130, 0.14);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
 }
 
 .congress-photo img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    flex: 1;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center;
     display: block;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-}
-
-.congress-photo--primary img {
-    aspect-ratio: 16 / 9;
-}
-
-.congress-photo--secondary img {
-    aspect-ratio: 16 / 11;
-    max-height: 320px;
-    /* increased from 220px */
-    object-fit: cover;
 }
 
 .congress-photo figcaption {
-    padding: var(--space-sm) var(--space-md);
-    font-size: 0.82rem;
+    flex-shrink: 0;
+    padding: 6px 10px;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--color-charcoal-600);
-    background: hsla(45, 100%, 98%, 0.95);
+    background: hsla(45, 100%, 98%, 0.96);
     border-top: 1px solid hsla(42, 30%, 60%, 0.12);
+}
+
+/* --- 2. Bố cục 3 cột ngang: XI --- */
+.congress-tiered-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    height: 530px;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-bottom: 0;
+}
+
+.tiered-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.congress-bullets--horizontal {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+}
+
+.congress-bullets--horizontal li {
+    position: relative;
+    padding-left: var(--space-lg);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-charcoal-800);
+    margin-bottom: 0;
+}
+
+.congress-bullets--horizontal li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    top: -1px;
+    color: var(--color-gold-500);
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+.tiered-divider {
+    width: 100%;
+    height: 1px;
+    background: #E5E5E5;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.breakthrough-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+.breakthrough-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #F8F9FA;
+    padding: 12px 16px;
+    border-radius: 8px;
+    height: 170px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.breakthrough-num {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-gold-500);
+    line-height: 1;
+}
+
+.breakthrough-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-gold-600);
+    line-height: 1.3;
+}
+
+.breakthrough-desc {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333333;
+    margin: 0;
+}
+
+.analysis-result-bar {
+    width: 100%;
+    background: #F8F9FA;
+    padding: 10px 16px;
+    border-left: 3px solid var(--color-gold-500);
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333333;
+    flex-shrink: 0;
+}
+
+.breakthrough-footer-images {
+    width: 100%;
+    height: 190px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 20px;
+    flex-shrink: 0;
+}
+
+.breakthrough-footer-images .congress-photo {
+    height: 100%;
+    flex: none;
+    min-height: 0;
+    border-radius: 8px;
+}
+
+.breakthrough-footer-images .congress-photo img {
+    border-radius: 8px 8px 0 0;
+}
+
+/* --- 3. Bố cục tạp chí 3 cột dọc: XII --- */
+.congress-editorial-grid {
+    display: grid;
+    grid-template-columns: 3fr 4fr 3fr;
+    gap: 28px;
+    align-items: stretch;
+    width: 100%;
+    height: 530px;
+    box-sizing: border-box;
+    padding-bottom: 40px;
+    overflow: hidden;
+}
+
+.editorial-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+}
+
+#daihoi-xii .editorial-col:first-child .editorial-card {
+    margin-top: auto;
+}
+
+.editorial-col--center {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    min-height: 0;
+}
+
+.editorial-col--center .congress-photo {
+    flex: none;
+    height: 250px;
+    min-height: 250px;
+    border-radius: 12px;
+}
+
+.editorial-card {
+    box-sizing: border-box;
+    padding: 14px;
+    background: #F8F9FA;
+    border-radius: 8px;
+    border-top: 3px solid #C49A45;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.editorial-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-gold-600);
+    line-height: 1.3;
+}
+
+.editorial-card-desc {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333333;
+    margin: 0;
+}
+
+.editorial-result {
+    background: #F8F9FA;
+    padding: 14px;
+    border-left: 3px solid #C49A45;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333333;
+    margin-top: auto;
+}
+
+#daihoi-xii .congress-bullets li,
+#daihoi-xii .bullet-title,
+#daihoi-xii .editorial-card-desc,
+#daihoi-xii .editorial-result {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+#daihoi-xii .congress-heading {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1024px) {
+    .congress-row,
+    .congress-row--reverse,
+    .congress-tiered-layout,
+    .congress-editorial-grid {
+        height: auto;
+        min-height: 0;
+    }
+
+    .slide-container {
+        padding: 20px 24px;
+    }
+
+    .breakthrough-grid-3,
+    .congress-bullets--horizontal,
+    .congress-editorial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .breakthrough-footer-images {
+        height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .breakthrough-footer-images .congress-photo {
+        height: 220px;
+    }
+
+    .editorial-col--center .congress-photo {
+        height: 220px;
+        min-height: 220px;
+    }
 }
 
 
