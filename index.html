@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Lexend:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=22">
+    <link rel="stylesheet" href="style.css?v=33">
 </head>
 <body>
     <!-- Background Glow Elements -->
@@ -497,54 +497,83 @@
                 <div class="flow-line"></div>
                 <div class="flow-node"></div>
             </div>
-            <div class="slide-container">
+            <div class="slide-container" style="min-height: 800px; height: auto;">
+                <!-- Unified main heading -->
+                <div class="section-title-wrapper" style="text-align: center; margin-bottom: 24px;">
+                    <h2 class="congress-heading" style="margin: 0; font-size: 28px; text-align: center; width: 100%;">GDP, ngoại giao và các FTA thế hệ mới</h2>
+                </div>
+
                 <div class="macro-fta-grid reveal-group">
-                    <!-- Cột trái (50%) - Vị thế Kinh tế Vĩ mô -->
-                    <div class="macro-col reveal-item">
-                        <h2 class="congress-heading">Cập Nhật Thực Tiễn: Vị Thế &amp; Sức Mạnh Kinh Tế Việt Nam</h2>
-                        <div class="dashboard-grid-4">
-                            <div class="dashboard-card">
-                                <span class="dashboard-value">8,02%</span>
-                                <strong class="dashboard-label">Tăng trưởng GDP</strong>
-                                <p class="dashboard-desc">Cao nhất giai đoạn 2011 – 2025</p>
-                            </div>
-                            <div class="dashboard-card">
-                                <span class="dashboard-value">$2.030 <small>tỷ</small></span>
-                                <strong class="dashboard-label">Quy mô GDP (PPP)</strong>
-                                <p class="dashboard-desc">Top 2 ASEAN, Top 23 thế giới</p>
-                            </div>
-                            <div class="dashboard-card">
-                                <span class="dashboard-value">$5.026<small>/ng</small></span>
-                                <strong class="dashboard-label">Thu nhập bình quân</strong>
-                                <p class="dashboard-desc">Nhóm Thu nhập trung bình cao</p>
-                            </div>
-                            <div class="dashboard-card">
-                                <span class="dashboard-value">Top 20</span>
-                                <strong class="dashboard-label">Sức hút quốc tế</strong>
-                                <p class="dashboard-desc">Thương mại &amp; Top 15 Thu hút FDI</p>
-                            </div>
+                    <!-- Cột trái 1 (Biểu đồ GDP) -->
+                    <div class="macro-chart-col reveal-item">
+                        <div class="gdp-chart-block">
+                            <h3 class="gdp-chart-subtitle-text" style="font-family: var(--font-heading); font-size: 19px; font-weight: 800; color: var(--text-primary); margin: 0 0 14px; width: 100%; text-align: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">Số liệu thống kê GDP:</h3>
+                            <img src="img/GDP.png" alt="Biểu đồ vị thế GDP Việt Nam" class="gdp-chart-media">
                         </div>
                     </div>
 
-                    <!-- Cột phải (50%) - Đòn bẩy FTA -->
+                    <!-- Cột trái 2 (Các thẻ số liệu) -->
+                    <div class="macro-cards-col reveal-item">
+                        <div class="dashboard-card new-card">
+                            <span class="dashboard-value">8,02%</span>
+                            <strong class="dashboard-label">Tăng trưởng GDP</strong>
+                            <p class="dashboard-desc">Đạt mức cao nhất giai đoạn 2011–2025. Công nghiệp &amp; xây dựng tăng 8,95% (đóng góp 43,22%), dịch vụ tăng 8,62% (đóng góp 51,08%).</p>
+                            <a class="evidence-link-source" href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/01/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iv-va-nam-2025/" target="_blank" rel="noopener">Nguồn: Tổng cục Thống kê 🔗</a>
+                        </div>
+                        <div class="dashboard-card new-card">
+                            <span class="dashboard-value">$514<small>B</small></span>
+                            <strong class="dashboard-label">Quy mô GDP</strong>
+                            <p class="dashboard-desc">Đạt khoảng 12.847,6 nghìn tỷ đồng, đưa Việt Nam xếp thứ 32 trên toàn thế giới về quy mô nền kinh tế.</p>
+                        </div>
+                        <div class="dashboard-card new-card">
+                            <span class="dashboard-value">Top 20 &amp; Top 15</span>
+                            <strong class="dashboard-label">Thương mại &amp; Thu hút đầu tư</strong>
+                            <p class="dashboard-desc">Top 20 nền kinh tế hàng đầu về thương mại quốc tế &amp; Top 15 toàn cầu về năng lực thu hút dòng vốn FDI.
+                                <a class="evidence-link" href="https://dantri.com.vn/kinh-doanh/imf-nang-du-bao-tang-trong-gdp-viet-nam-len-75-cao-nhat-asean-20260712202724515.htm" target="_blank" rel="noopener">Minh chứng 🔗</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Cột phải (7 phần) - Đòn bẩy FTA -->
                     <div class="fta-col reveal-item">
-                        <h3 class="fta-col-heading">17 FTA với 65 Đối Tác Toàn Cầu</h3>
-                        <div class="fta-stack">
-                            <div class="fta-card">
-                                <div class="fta-badge">CPTPP</div>
-                                <p class="fta-desc">Mở rộng không gian sang Châu Mỹ; đón nhận Vương quốc Anh gia nhập.</p>
+                        
+                        <div class="fta-summary-card">
+                            <div class="fta-summary-icon">🌐</div>
+                            <div class="fta-summary-text">
+                                <strong>Hội nhập toàn cầu sâu rộng</strong>
+                                <p>Thiết lập quan hệ ngoại giao với 193 quốc gia, thành viên gần 70 tổ chức quốc tế và thực thi 17 FTA với 65 đối tác.
+                                    <a class="evidence-link" href="https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tu-van-phap-luat/56461/hiep-dinh-fta-la-gi-tong-hop-cac-hiep-dinh-fta-ma-viet-nam-dang-tham-gia-moi-nhat" target="_blank" rel="noopener">Chi tiết 🔗</a>
+                                </p>
                             </div>
-                            <div class="fta-card">
-                                <div class="fta-badge fta-badge--blue">EVFTA</div>
-                                <p class="fta-desc">Cửa ngõ vào 27 nước EU, lộ trình xóa bỏ 99% thuế quan.</p>
-                            </div>
-                            <div class="fta-card">
-                                <div class="fta-badge fta-badge--teal">UKVFTA</div>
-                                <p class="fta-desc">Giữ vững mạch máu thương mại song phương với Anh hậu Brexit.</p>
-                            </div>
-                            <div class="fta-card">
-                                <div class="fta-badge fta-badge--purple">RCEP</div>
-                                <p class="fta-desc">Đồng nhất quy tắc xuất xứ, tối ưu chuỗi cung ứng Á - Thái Bình Dương.</p>
+                        </div>
+
+                        <div class="fta-stack-container">
+                            <h3 class="fta-stack-title">Tứ trụ FTA thế hệ mới</h3>
+                            <div class="fta-cards-stack">
+                                <div class="fta-card-modern">
+                                    <div class="fta-badge-modern fta-badge-modern--amber">CPTPP</div>
+                                    <p class="fta-desc">Mở rộng xuất khẩu sang Châu Mỹ (Canada, Mexico, Peru). Vương quốc Anh đã chính thức gia nhập tạo mắt xích lớn.
+                                        <a class="evidence-link" href="https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tu-van-phap-luat/56461/hiep-dinh-fta-la-gi-tong-hop-cac-hiep-dinh-fta-ma-viet-nam-dang-tham-gia-moi-nhat" target="_blank" rel="noopener">Chi tiết 🔗</a>
+                                    </p>
+                                </div>
+                                <div class="fta-card-modern">
+                                    <div class="fta-badge-modern fta-badge-modern--blue">EVFTA</div>
+                                    <p class="fta-desc">Cửa ngõ vào 27 nước EU, lộ trình xóa bỏ 99% thuế quan, thu hút dòng vốn FDI chất lượng cao từ EU.
+                                        <a class="evidence-link" href="https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tu-van-phap-luat/56461/hiep-dinh-fta-la-gi-tong-hop-cac-hiep-dinh-fta-ma-viet-nam-dang-tham-gia-moi-nhat" target="_blank" rel="noopener">Chi tiết 🔗</a>
+                                    </p>
+                                </div>
+                                <div class="fta-card-modern">
+                                    <div class="fta-badge-modern fta-badge-modern--teal">UKVFTA</div>
+                                    <p class="fta-desc">Kế thừa ưu đãi EVFTA, đảm bảo mạch máu thương mại song phương thông suốt hậu Brexit với Vương quốc Anh.
+                                        <a class="evidence-link" href="https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tu-van-phap-luat/56461/hiep-dinh-fta-la-gi-tong-hop-cac-hiep-dinh-fta-ma-viet-nam-dang-tham-gia-moi-nhat" target="_blank" rel="noopener">Chi tiết 🔗</a>
+                                    </p>
+                                </div>
+                                <div class="fta-card-modern">
+                                    <div class="fta-badge-modern fta-badge-modern--purple">RCEP</div>
+                                    <p class="fta-desc">ASEAN &amp; 5 nước đối tác. Quy tắc xuất xứ đồng nhất giúp tối ưu hóa chuỗi cung ứng Á - Thái Bình Dương.
+                                        <a class="evidence-link" href="https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/tu-van-phap-luat/56461/hiep-dinh-fta-la-gi-tong-hop-cac-hiep-dinh-fta-ma-viet-nam-dang-tham-gia-moi-nhat" target="_blank" rel="noopener">Chi tiết 🔗</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
