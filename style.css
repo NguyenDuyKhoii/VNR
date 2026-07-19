@@ -1239,11 +1239,16 @@ svg {
 .congress-section {
     position: relative;
     background: #ffffff;
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    padding: 20px 0;
+}
+
+/* Kéo Đại hội VIII sát lại gần video section */
+#daihoi-viii {
+    margin-top: -60px;
 }
 
 .slide-container {
@@ -1264,18 +1269,18 @@ svg {
 /* --- 1. Bố cục 2 cột: VIII, IX, X --- */
 .congress-row {
     display: grid;
-    grid-template-columns: 55% 45%;
+    grid-template-columns: 52% 48%;
     gap: 28px;
     align-items: stretch;
-    height: 530px;
+    height: 620px;
     width: 100%;
 }
 
 .congress-row--reverse {
-    grid-template-columns: 45% 55%;
+    grid-template-columns: 48% 52%;
     gap: 28px;
     align-items: stretch;
-    height: 530px;
+    height: 620px;
     width: 100%;
 }
 
@@ -1289,10 +1294,10 @@ svg {
 }
 
 .congress-heading {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 800;
     color: var(--text-primary);
-    margin: 0 0 14px;
+    margin: 0 0 12px;
     letter-spacing: -0.01em;
     line-height: 1.2;
 }
@@ -1306,10 +1311,15 @@ svg {
     gap: 0;
 }
 
+/* Gap giữa Bullet points và Khối hộp */
+.congress-content .congress-analysis-group {
+    margin-top: 10px;
+}
+
 .congress-bullets li {
     position: relative;
     padding-left: var(--space-lg);
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.5;
     color: var(--color-charcoal-800);
     margin-bottom: 8px;
@@ -1340,7 +1350,7 @@ svg {
 }
 
 .congress-analysis-group {
-    margin-top: 12px;
+    margin-top: 15px;
     padding-top: 12px;
     border-top: 1px solid #E5E5E5;
     display: flex;
@@ -1352,7 +1362,7 @@ svg {
 }
 
 .analysis-title {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--color-gold-600);
@@ -1365,8 +1375,8 @@ svg {
     padding: 12px 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: 130px;
+    gap: 8px;
+    max-height: 150px;
     overflow-y: auto;
     background: #F8F9FA;
     border-left: 3px solid var(--color-gold-500);
@@ -1381,15 +1391,15 @@ svg {
 
 .analysis-subtitle {
     display: block;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--color-gold-600);
-    line-height: 1.3;
+    line-height: 1.25;
 }
 
 .analysis-text {
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: 17px;
+    line-height: 1.45;
     color: #333333;
     margin: 0;
 }
@@ -1397,7 +1407,7 @@ svg {
 .image-column {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 18px;
     height: 100%;
     min-height: 0;
 }
@@ -1429,8 +1439,8 @@ svg {
 
 .congress-photo figcaption {
     flex-shrink: 0;
-    padding: 6px 10px;
-    font-size: 0.75rem;
+    padding: 8px 12px;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--color-charcoal-600);
     background: hsla(45, 100%, 98%, 0.96);
@@ -1443,7 +1453,7 @@ svg {
     flex-direction: column;
     gap: 12px;
     width: 100%;
-    height: 530px;
+    height: 580px;
     justify-content: space-between;
     box-sizing: border-box;
     padding-bottom: 0;
@@ -1462,13 +1472,13 @@ svg {
     margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px 20px;
+    gap: 10px 20px;
 }
 
 .congress-bullets--horizontal li {
     position: relative;
     padding-left: var(--space-lg);
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.5;
     color: var(--color-charcoal-800);
     margin-bottom: 0;
@@ -1519,15 +1529,15 @@ svg {
 }
 
 .breakthrough-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--color-gold-600);
     line-height: 1.3;
 }
 
 .breakthrough-desc {
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 17px;
+    line-height: 1.45;
     color: #333333;
     margin: 0;
 }
@@ -1535,22 +1545,22 @@ svg {
 .analysis-result-bar {
     width: 100%;
     background: #F8F9FA;
-    padding: 10px 16px;
+    padding: 8px 14px;
     border-left: 3px solid var(--color-gold-500);
     border-radius: 0 8px 8px 0;
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 17px;
+    line-height: 1.45;
     color: #333333;
     flex-shrink: 0;
 }
 
 .breakthrough-footer-images {
     width: 100%;
-    height: 190px;
+    height: 230px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
-    margin-top: 20px;
+    margin-top: 12px;
     flex-shrink: 0;
 }
 
@@ -1572,7 +1582,7 @@ svg {
     gap: 28px;
     align-items: stretch;
     width: 100%;
-    height: 530px;
+    height: 580px;
     box-sizing: border-box;
     padding-bottom: 40px;
     overflow: hidden;
@@ -1585,6 +1595,18 @@ svg {
     height: 100%;
     min-height: 0;
     overflow: hidden;
+}
+
+/* Override XII font sizes for larger, clearer text */
+#daihoi-xii .editorial-card-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#daihoi-xii .editorial-card-desc,
+#daihoi-xii .editorial-result {
+    font-size: 17px;
+    line-height: 1.45;
 }
 
 #daihoi-xii .editorial-col:first-child .editorial-card {
@@ -1609,7 +1631,7 @@ svg {
 
 .editorial-card {
     box-sizing: border-box;
-    padding: 14px;
+    padding: 10px 12px;
     background: #F8F9FA;
     border-radius: 8px;
     border-top: 3px solid #C49A45;
@@ -1619,15 +1641,15 @@ svg {
 }
 
 .editorial-card-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--color-gold-600);
     line-height: 1.3;
 }
 
 .editorial-card-desc {
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 17px;
+    line-height: 1.45;
     color: #333333;
     margin: 0;
 }
@@ -1637,22 +1659,20 @@ svg {
     padding: 14px;
     border-left: 3px solid #C49A45;
     border-radius: 0 8px 8px 0;
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 16px;
+    line-height: 1.45;
     color: #333333;
     margin-top: auto;
 }
 
 #daihoi-xii .congress-bullets li,
-#daihoi-xii .bullet-title,
-#daihoi-xii .editorial-card-desc,
-#daihoi-xii .editorial-result {
-    font-size: 14px;
-    line-height: 1.4;
+#daihoi-xii .bullet-title {
+    font-size: 17px;
+    line-height: 1.45;
 }
 
 #daihoi-xii .congress-heading {
-    font-size: 26px;
+    font-size: 30px;
     margin-bottom: 10px;
 }
 
@@ -1687,6 +1707,333 @@ svg {
     .editorial-col--center .congress-photo {
         height: 220px;
         min-height: 220px;
+    }
+}
+
+
+/* --- 4. Mục 4 Slide 1: Bức tranh Kinh tế Vĩ mô & FTA --- */
+.macro-fta-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 20px;
+    align-items: stretch;
+    height: 570px;
+    width: 100%;
+}
+
+.macro-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: 100%;
+    min-height: 0;
+}
+
+.macro-col .congress-heading {
+    font-size: 26px;
+    line-height: 1.3;
+    font-weight: 800;
+}
+
+.dashboard-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
+}
+
+.dashboard-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 14px;
+    background: #F8F9FA;
+    border-radius: 10px;
+    border-left: 4px solid var(--color-gold-500);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(180, 160, 130, 0.12);
+}
+
+.dashboard-value {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--color-gold-600);
+    line-height: 1.1;
+}
+
+.dashboard-value small {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.dashboard-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-top: 4px;
+}
+
+.dashboard-desc {
+    font-size: 14px;
+    line-height: 1.3;
+    color: #555;
+    margin: 0;
+    margin-top: 4px;
+}
+
+.fta-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    min-height: 0;
+}
+
+.fta-col-heading {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-gold-400);
+}
+
+.fta-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    min-height: 0;
+}
+
+.fta-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #F8F9FA;
+    border-radius: 8px;
+    border-left: 3px solid var(--color-gold-500);
+    flex: 1;
+    min-height: 0;
+    transition: transform var(--transition-fast);
+}
+
+.fta-card:hover {
+    transform: translateX(4px);
+}
+
+.fta-badge {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-gold-500), var(--color-gold-600));
+    white-space: nowrap;
+}
+
+.fta-badge--blue {
+    background: linear-gradient(135deg, hsl(210, 65%, 50%), hsl(210, 70%, 40%));
+}
+
+.fta-badge--teal {
+    background: linear-gradient(135deg, hsl(175, 55%, 40%), hsl(175, 60%, 32%));
+}
+
+.fta-badge--purple {
+    background: linear-gradient(135deg, hsl(270, 50%, 55%), hsl(270, 55%, 45%));
+}
+
+.fta-desc {
+    font-size: 14.5px;
+    line-height: 1.4;
+    color: #222;
+    margin: 0;
+}
+
+/* --- 5. Mục 4 Slide 2: Hệ thống CNH-HĐH Lăng kính CNTT --- */
+.sys-arch-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: flex-start;
+    height: 570px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sys-tier {
+    padding: 12px 16px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sys-tier--top {
+    background: linear-gradient(135deg, hsla(354, 70%, 50%, 0.06) 0%, hsla(42, 95%, 45%, 0.08) 100%);
+    border: 1px solid hsla(42, 60%, 55%, 0.2);
+    border-left: 4px solid var(--color-red-400);
+}
+
+.sys-tier-label {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-charcoal-400);
+    opacity: 0.7;
+}
+
+.sys-tier-heading {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.25;
+}
+
+.sys-tier-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-charcoal-400);
+    font-style: italic;
+}
+
+.sys-tier-text {
+    font-size: 15px;
+    line-height: 1.45;
+    color: #333333;
+    margin: 0;
+}
+
+.sys-tier-text .keyword {
+    color: var(--color-gold-600);
+    font-weight: 600;
+}
+
+.sys-tier-subtitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-gold-600);
+    line-height: 1.3;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.sys-tier-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.sys-tier--mid {
+    background: #F8F9FA;
+    border-left: 3px solid var(--color-gold-500);
+}
+
+.sys-tier--mid .sys-tier-label {
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.sys-tier--mid .sys-tier-text {
+    font-size: 14.5px;
+    line-height: 1.4;
+}
+
+.sys-tier--loop {
+    border-left-color: hsl(210, 65%, 50%);
+}
+
+.sys-tier--core {
+    background: linear-gradient(135deg, hsl(220, 18%, 96%) 0%, hsl(220, 12%, 93%) 100%);
+    border: 1px solid hsl(220, 15%, 88%);
+    border-left: 4px solid hsl(220, 50%, 55%);
+    position: relative;
+    padding: 10px 14px;
+}
+
+.sys-tier--core .sys-tier-label {
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.sys-tier--core .sys-tier-text {
+    font-size: 14.5px;
+    line-height: 1.4;
+}
+
+.sys-tier--core::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    border: 2px solid hsla(220, 40%, 55%, 0.15);
+    background: hsla(220, 40%, 55%, 0.04);
+}
+
+.sys-tier--algo {
+    border-left-color: hsl(280, 50%, 55%);
+}
+
+.sys-tier--algo::before {
+    border-color: hsla(280, 40%, 55%, 0.15);
+    background: hsla(280, 40%, 55%, 0.04);
+}
+
+.sys-footer-bar {
+    width: 100%;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-gold-600) 100%);
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-white);
+    flex-shrink: 0;
+    margin-top: auto;
+    text-align: center;
+}
+
+.sys-footer-bar strong {
+    color: var(--color-white);
+}
+
+@media (max-width: 1024px) {
+    .macro-fta-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .sys-arch-layout {
+        height: auto;
+    }
+
+    .sys-tier-row {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid-4 {
+        grid-template-columns: 1fr;
     }
 }
 
