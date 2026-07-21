@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Lexend:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=33">
+    <link rel="stylesheet" href="style.css?v=36">
 </head>
 <body>
     <!-- Background Glow Elements -->
@@ -589,46 +589,177 @@
                 <div class="flow-line"></div>
                 <div class="flow-node"></div>
             </div>
-            <div class="slide-container">
-                <div class="sys-arch-layout reveal-group">
-                    <!-- TẦNG 1: Kiến trúc thượng tầng -->
-                    <div class="sys-tier sys-tier--top reveal-item">
-                        <div class="sys-tier-label">TẦNG 1</div>
-                        <h2 class="sys-tier-heading">Kiến Trúc Thượng Tầng <span class="sys-tier-tag">High-level Architecture</span></h2>
-                        <p class="sys-tier-text"><strong class="keyword">Đường lối CNH - HĐH:</strong> Chuyển dịch hệ điều hành quốc gia từ <em>"Tài nguyên thô &amp; Lao động giá rẻ"</em> sang <strong class="keyword">"Dữ liệu số &amp; Tri thức số"</strong>.</p>
+            <div class="slide-container" style="min-height: 800px; height: auto;">
+                <!-- Section Title -->
+                <div class="section-title-wrapper" style="text-align: center; margin-bottom: 32px;">
+                    <h2 class="congress-heading" style="margin: 0; font-size: 28px; text-align: center; width: 100%;">Tầm Nhìn Kiến Trúc &amp; Hệ Sinh Thái Công Nghệ Lõi</h2>
+                </div>
+
+                <div class="tech-arch-wrapper reveal-group">
+                    <!-- KHU VỰC 1: Tầm nhìn kiến trúc & "Hệ điều hành" quốc gia (Full-width banner) -->
+                    <div class="arch-vision-banner reveal-item">
+                        <div class="vision-banner-header">
+                            <span class="tech-badge tech-badge--navy">High-Level Architecture</span>
+                            <span class="tech-badge tech-badge--purple">Middleware</span>
+                            <h3 class="vision-banner-title">Tầm nhìn kiến trúc &amp; "Hệ điều hành" quốc gia</h3>
+                        </div>
+                        <div class="vision-banner-grid">
+                            <div class="vision-block">
+                                <div class="vision-block-title">
+                                    <span class="vision-icon">🏛️</span>
+                                    <h4>Kiến trúc thượng tầng</h4>
+                                </div>
+                                <p>Đường lối CNH - HĐH đóng vai trò định hình toàn bộ "hệ điều hành" phát triển. Dịch chuyển mô hình: Từ dựa vào tài nguyên thô &amp; lao động giá rẻ sang <strong>tăng trưởng bằng dữ liệu và tri thức số</strong>.</p>
+                            </div>
+                            <div class="vision-divider" aria-hidden="true">
+                                <div class="vision-arrow">→</div>
+                            </div>
+                            <div class="vision-block">
+                                <div class="vision-block-title">
+                                    <span class="vision-icon">🔌</span>
+                                    <h4>Nền tảng trung gian (Middleware)</h4>
+                                </div>
+                                <p>Chuyển đổi số đóng vai trò kết nối, đồng bộ hóa hạ tầng và vận hành dữ liệu liên thông mượt mà giữa 3 trụ cột chính: <strong>Chính phủ số</strong> — <strong>Kinh tế số</strong> — <strong>Xã hội số</strong>.</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- TẦNG 2: Middleware & Feedback Loop -->
-                    <div class="sys-tier-row reveal-item">
-                        <div class="sys-tier sys-tier--mid">
-                            <div class="sys-tier-label">TẦNG 2A</div>
-                            <strong class="sys-tier-subtitle">Middleware — Chuyển đổi số quốc gia</strong>
-                            <p class="sys-tier-text">Đồng bộ hóa 3 trụ cột: <strong class="keyword">Chính phủ số</strong> – <strong class="keyword">Kinh tế số</strong> – <strong class="keyword">Xã hội số</strong>.</p>
+                    <!-- KHU VỰC 2: Công nghệ lõi – Thiết lập hệ sinh thái Full-stack (Unified Stack + Evidence Side Box) -->
+                    <div class="arch-fullstack-row reveal-item">
+                        <!-- Left: Stacked Layers (Unified Stack Card) -->
+                        <div class="fullstack-layers-col">
+                            <div class="fullstack-header">
+                                <span class="tech-badge tech-badge--indigo">Full-stack Ecosystem</span>
+                                <h4 class="fullstack-title">Mô hình phân lớp hệ sinh thái công nghệ</h4>
+                            </div>
+                            <div class="layers-stack-tower">
+                                <!-- Top Layer: Application -->
+                                <div class="stack-layer-item layer-top">
+                                    <div class="layer-item-meta">
+                                        <span class="layer-item-label">Tầng ứng dụng</span>
+                                        <span class="layer-item-badge badge-indigo">Application Layer</span>
+                                    </div>
+                                    <p class="layer-item-desc">Quá trình Chuyển đổi số toàn diện và phát triển các ứng dụng phần mềm lớp trên phục vụ kinh tế - xã hội.</p>
+                                </div>
+                                <!-- Middle Layer: Algorithm -->
+                                <div class="stack-layer-item layer-mid">
+                                    <div class="layer-item-meta">
+                                        <span class="layer-item-label">Lõi thuật toán</span>
+                                        <span class="layer-item-badge badge-purple">Core Algorithm</span>
+                                    </div>
+                                    <p class="layer-item-desc">Trí tuệ nhân tạo (AI) đóng vai trò là bộ não tối ưu hóa hiệu năng, xử lý dữ liệu thông minh cho toàn hệ thống.</p>
+                                </div>
+                                <!-- Base Layer: Hardware -->
+                                <div class="stack-layer-item layer-base">
+                                    <div class="layer-item-meta">
+                                        <span class="layer-item-label">Tầng phần cứng</span>
+                                        <span class="layer-item-badge badge-amber">Hardware/Silicon Layer</span>
+                                    </div>
+                                    <p class="layer-item-desc">Hạ tầng chip bán dẫn đóng vai trò làm nền tảng vật lý cực kỳ vững chắc bên dưới toàn bộ hệ thống.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="sys-tier sys-tier--mid sys-tier--loop">
-                            <div class="sys-tier-label">TẦNG 2B</div>
-                            <strong class="sys-tier-subtitle">Feedback Loop — Vòng lặp phản hồi</strong>
-                            <p class="sys-tier-text">Chính sách mở đường → AI &amp; Bán dẫn tối ưu năng suất → Chuyển đổi số làm <strong class="keyword">Deployment Environment</strong>.</p>
+
+                        <!-- Right: Highlight Side Box (Minh chứng) - Softened Background -->
+                        <div class="chip-evidence-card">
+                            <div class="evidence-card-header">
+                                <span class="tech-badge tech-badge--amber">Minh chứng thực tế</span>
+                                <h4 class="evidence-card-title">Làm chủ Công nghiệp Công nghệ số</h4>
+                            </div>
+                            <div class="evidence-card-body">
+                                <div class="evidence-intro-row">
+                                    <span class="evidence-large-icon">🏭</span>
+                                    <p class="evidence-intro-text">Đưa <strong>"Chip bán dẫn"</strong> và <strong>"AI"</strong> thành danh mục chiến lược quốc gia qua việc luật hóa.</p>
+                                </div>
+                                <div class="evidence-list">
+                                    <div class="evidence-bullet-item">
+                                        <span class="bullet-icon">✓</span>
+                                        <p>Khởi công Nhà máy chế tạo chip bán dẫn công nghệ cao đầu tiên tại Việt Nam.</p>
+                                    </div>
+                                    <div class="evidence-bullet-item">
+                                        <span class="bullet-icon">✓</span>
+                                        <p>Ra mắt Trung tâm quốc gia hỗ trợ sản xuất thử chip (làm chủ từ phần cứng đến phần mềm).</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- TẦNG 3: Core Hardware & Algorithm -->
-                    <div class="sys-tier-row reveal-item">
-                        <div class="sys-tier sys-tier--core">
-                            <div class="sys-tier-label">TẦNG 3A</div>
-                            <strong class="sys-tier-subtitle">🔧 Lớp Phần Cứng (Hardware / Silicon Layer)</strong>
-                            <p class="sys-tier-text">Hạ tầng <strong class="keyword">Chip bán dẫn</strong> — Minh chứng: Khởi công Nhà máy chế tạo chip công nghệ cao đầu tiên tại Việt Nam.</p>
+                    <!-- KHU VỰC 3: Vòng lặp & Tương lai (2 Columns) -->
+                    <div class="arch-loop-career-row reveal-item">
+                        <!-- Left: Feedback Loop -->
+                        <div class="loop-col">
+                            <div class="loop-header">
+                                <span class="tech-badge tech-badge--teal">Feedback Loop</span>
+                                <h4 class="loop-title">Vòng lặp tương hỗ</h4>
+                            </div>
+                            <div class="timeline-stepper">
+                                <div class="step-item">
+                                    <div class="step-number-container">
+                                        <div class="step-number">1</div>
+                                        <div class="step-line"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <h5>Đường lối CNH - HĐH</h5>
+                                        <p>Mở đường bằng các cơ chế, chính sách đặc thù nhằm tạo động lực chuyển dịch mô hình phát triển.</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number-container">
+                                        <div class="step-number">2</div>
+                                        <div class="step-line"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <h5>AI &amp; Bán dẫn</h5>
+                                        <p>Cung cấp công cụ kỹ thuật đắc lực giúp nâng cao năng suất lao động và bứt phá công nghệ lõi.</p>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number-container">
+                                        <div class="step-number">3</div>
+                                    </div>
+                                    <div class="step-content">
+                                        <h5>Chuyển đổi số</h5>
+                                        <p>Đóng vai trò môi trường triển khai (<span class="deployment-text">Deployment Environment</span>) giúp sản phẩm Make in Vietnam tăng tốc.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="sys-tier sys-tier--core sys-tier--algo">
-                            <div class="sys-tier-label">TẦNG 3B</div>
-                            <strong class="sys-tier-subtitle">🧠 Lõi Thuật Toán Tối Ưu (Core Algorithm)</strong>
-                            <p class="sys-tier-text"><strong class="keyword">Trí tuệ nhân tạo (AI)</strong> định hình tương lai — từ sản xuất thông minh đến quản trị dữ liệu quốc gia.</p>
-                        </div>
-                    </div>
 
-                    <!-- Footer: Không gian nghề nghiệp -->
-                    <div class="sys-footer-bar reveal-item">
-                        <strong>🚀 Không gian nghề nghiệp cốt lõi:</strong> Thiết kế vi mạch (IC Design) → Lập trình nhúng (Embedded) → Tối ưu hóa AI biên (Edge AI).
+                        <!-- Right: Career Opportunities -->
+                        <div class="career-col">
+                            <div class="career-header">
+                                <span class="tech-badge tech-badge--indigo">Future Focus</span>
+                                <h4 class="career-title">Định hướng nghề nghiệp tương lai</h4>
+                            </div>
+                            <p class="career-intro-text">Mở ra không gian phát triển chuyên sâu và cốt lõi cho sinh viên công nghệ tập trung vào 3 mũi nhọn:</p>
+                            <div class="career-cards-grid">
+                                <div class="career-mini-card">
+                                    <div class="career-card-top">
+                                        <span class="career-mini-icon">🔌</span>
+                                        <h5>IC Design</h5>
+                                    </div>
+                                    <strong>Thiết kế vi mạch</strong>
+                                    <p>Nghiên cứu, phát triển và chế tạo chip bán dẫn thế hệ mới.</p>
+                                </div>
+                                <div class="career-mini-card">
+                                    <div class="career-card-top">
+                                        <span class="career-mini-icon">⚙️</span>
+                                        <h5>Embedded</h5>
+                                    </div>
+                                    <strong>Lập trình nhúng</strong>
+                                    <p>Tích hợp phần mềm điều khiển tối ưu trực tiếp vào phần cứng vật lý.</p>
+                                </div>
+                                <div class="career-mini-card">
+                                    <div class="career-card-top">
+                                        <span class="career-mini-icon">🧠</span>
+                                        <h5>Edge AI</h5>
+                                    </div>
+                                    <strong>AI biên</strong>
+                                    <p>Tối ưu hóa các mô hình trí tuệ nhân tạo trực tiếp trên thiết bị đầu cuối.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
