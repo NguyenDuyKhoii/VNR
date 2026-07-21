@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chung Sức – VNR Lịch Sử Đảng</title>
+    <meta name="description" content="Game Chung Sức tương tác – Lịch Sử Đảng CNH-HĐH và Hội Nhập Quốc Tế">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Lexend:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+
+<!-- Global floating audio control panel -->
+<div class="global-audio-panel">
+    <button id="globalMuteBtn" class="audio-btn" title="Tắt tiếng">🔊</button>
+    <input type="range" id="globalVolumeSlider" min="0" max="1" step="0.05" value="0.5" class="audio-slider" title="Âm lượng">
+</div>
+
+<!-- ===== SCREEN 1: LOBBY ===== -->
+<div id="screen-lobby" class="game-screen active">
+    <div class="lights-strip lights-strip--top"></div>
+    <div class="lobby-wrapper">
+        <button id="startGameBtn" class="btn-start">🎮 Bắt Đầu Game</button>
+    </div>
+    <div class="lights-strip lights-strip--bottom"></div>
+</div>
+
+
+<!-- ===== SCREEN 2: PLAY ===== -->
+<div id="screen-play" class="game-screen">
+    <div class="lights-strip lights-strip--top"></div>
+
+    <header class="game-header">
+        <div class="game-brand-mini">
+            <span class="brand-vnr">VNR</span>
+            <span class="brand-cs">CHUNG SỨC</span>
+        </div>
+
+        <div class="timer-area">
+            <div class="timer-ring-wrapper">
+                <svg class="timer-svg" viewBox="0 0 60 60">
+                    <circle class="timer-track" cx="30" cy="30" r="26"/>
+                    <circle class="timer-progress" id="timerCircle" cx="30" cy="30" r="26"/>
+                </svg>
+                <span class="timer-number" id="timerNumber">120</span>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="question-progress" id="questionProgress">Câu 1 / 5</div>
+            <div class="score-ticker" id="scoreTicker"></div>
+        </div>
+    </header>
+
+
+    <!-- ========================
+         FAMILY FEUD BOARD
+         ======================== -->
+    <main class="ff-stage">
+        <!-- 4 absolute light strips wrapping the board completely -->
+        <div class="ff-lights-top"></div>
+        <div class="ff-lights-bottom"></div>
+        <div class="ff-lights-left"></div>
+        <div class="ff-lights-right"></div>
+
+        <div class="ff-board">
+            <!-- Question box at the very top of the board -->
+            <div class="ff-question-area">
+                <p class="ff-question-text" id="questionText">Đang tải...</p>
+            </div>
+
+            <!-- 2-column answer grid -->
+            <div class="ff-answer-grid" id="answerBoard"></div>
+        </div>
+    </main>
+
+    <!-- Host control panel at bottom -->
+    <div class="host-panel">
+        <div class="host-panel-content">
+            <div class="host-title">🎤 Bảng Điều Khiển Chủ Trì</div>
+            <div class="host-controls">
+                <div class="host-input-row">
+
+                    <!-- Player name: TEXT INPUT with datalist autocomplete -->
+                    <div class="host-field">
+                        <label class="host-label">Người trả lời</label>
+                        <input
+                            type="text"
+                            id="hostPlayerNameInput"
+                            class="host-input"
+                            list="playerSuggestions"
+                            placeholder="Gõ tên người chơi..."
+                            autocomplete="off"
+                            spellcheck="false"
+                        >
+                        <!-- Datalist populated from registered players -->
+                        <datalist id="playerSuggestions"></datalist>
+                    </div>
+
+                    <div class="host-field host-field--wide">
+                        <label class="host-label">Câu trả lời / Keyword</label>
+                        <input type="text" id="hostAnswerInput" class="host-input" placeholder="Nhập keyword..." autocomplete="off">
+                    </div>
+
+                    <button id="hostConfirmBtn" class="btn-confirm">✅ Xác nhận</button>
+                </div>
+
+                <div class="host-btn-row">
+                    <div class="feedback-display" id="feedbackDisplay">
+                        <span id="feedbackText"></span>
+                    </div>
+                    <div class="host-secondary-btns">
+                        <div class="found-counter" id="foundCounter">0 / 0 từ khóa</div>
+                        <button id="toggleIntenseBtn" class="btn-secondary btn-music" title="Bật/Tắt nhạc nền kịch tính">🎵 Nhạc nền: Bật</button>
+                        <button id="revealAllBtn" class="btn-secondary">👁 Lộ tất cả</button>
+                        <button id="endQuestionBtn" class="btn-secondary btn-end">⏹ Kết thúc</button>
+                        <button id="showScoresBtn" class="btn-secondary btn-scores hidden" title="Hiện bảng điểm câu này">📊 Xem điểm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlays: correct / wrong flash -->
+    <div class="anim-overlay" id="wrongOverlay"><div class="anim-x">❌</div></div>
+    <div class="anim-overlay" id="correctOverlay"><div class="anim-check">✅</div></div>
+
+    <!-- Between-question overlay (shown after each question ends) -->
+    <div class="between-q-overlay hidden" id="betweenQOverlay">
+        <div class="between-q-card">
+            <div class="between-q-icon" id="betweenQIcon">🎉</div>
+            <div class="between-q-title" id="betweenQTitle">Câu kết thúc!</div>
+            <div class="between-q-stats" id="betweenQStats"></div>
+            <div class="between-q-leaders" id="betweenQLeaders"></div>
+            <button class="btn-start" id="nextQuestionBtn">Câu tiếp theo →</button>
+            <button class="btn-secondary" id="closeBQBtn" style="margin-top: 10px; width: 100%; border-color: rgba(255,255,255,0.15);">👁 Xem lại đáp án</button>
+        </div>
+    </div>
+
+    <div class="lights-strip lights-strip--bottom"></div>
+</div>
+
+
+<!-- ===== SCREEN 3: FINAL RESULTS ===== -->
+<div id="screen-results" class="game-screen">
+    <div class="lights-strip lights-strip--top"></div>
+    <div class="results-wrapper">
+        <div class="results-logo-area">
+            <h1 class="results-title">🏆 Kết Quả Chung Cuộc</h1>
+            <p class="results-subtitle">Đã hoàn thành tất cả <span id="totalQCount">5</span> câu hỏi!</p>
+        </div>
+
+        <div class="results-scoreboard" id="resultsScoreboard"></div>
+
+        <div class="results-detail-section">
+            <h3 class="results-section-title">Chi tiết từng câu hỏi</h3>
+            <div class="results-question-tabs" id="resultsQuestionTabs"></div>
+            <div class="results-keywords-grid" id="resultsKeywordsGrid"></div>
+        </div>
+
+        <div class="results-actions">
+            <button id="playAgainBtn" class="btn-start">🔄 Chơi lại từ đầu</button>
+            <button id="backToLobbyBtn" class="btn-secondary">🏠 Về màn hình chủ</button>
+        </div>
+    </div>
+    <div class="lights-strip lights-strip--bottom"></div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

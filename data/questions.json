@@ -1,0 +1,136 @@
+﻿{
+  "gameTitle": "Chung Sức – Lịch Sử Đảng & Tiến Trình Đổi Mới",
+  "subtitle": "Tiến Trình CNH-HĐH & Hội Nhập Quốc Tế (1996 – Nay)",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Kể tên các tỉnh, thành phố tập trung nhiều khu công nghiệp, khu chế xuất lớn nhất nước ta hiện nay?",
+      "keywords": [
+        { "id": 1, "value": "Tỉnh Bình Dương", "aliases": ["binh duong", "tinh binh duong", "bd", "binhduong"], "points": 50 },
+        { "id": 2, "value": "Tỉnh Đồng Nai", "aliases": ["dong nai", "tinh dong nai", "dn", "dongnai"], "points": 38 },
+        { "id": 3, "value": "Thành phố Hồ Chí Minh", "aliases": ["tp hcm", "sai gon", "ho chi minh", "hcm", "tphcm", "tp ho chi minh", "thanh pho ho chi minh"], "points": 25 },
+        { "id": 4, "value": "Tỉnh Bắc Ninh", "aliases": ["bac ninh", "tinh bac ninh", "bn", "bacninh"], "points": 18 },
+        { "id": 5, "value": "Thành phố Hải Phòng", "aliases": ["hai phong", "thanh pho hai phong", "hp", "haiphong"], "points": 12 },
+        { "id": 6, "value": "Thủ đô Hà Nội", "aliases": ["ha noi", "thu do ha noi", "hn", "hanoi"], "points": 8 },
+        { "id": 7, "value": "Tỉnh Long An", "aliases": ["long an", "tinh long an", "la", "longan"], "points": 5 },
+        { "id": 8, "value": "Tỉnh Bà Rịa Vũng Tàu", "aliases": ["ba ria vung tau", "vung tau", "brvt", "ba ria", "baria vungtau", "tinh ba ria vung tau"], "points": 3 }
+      ],
+      "timeLimit": 90,
+      "bonusPoint": 30
+    },
+    {
+      "id": 2,
+      "question": "Kể tên các mặt hàng nông sản và sản phẩm xuất khẩu chủ lực có giá trị kinh tế cao của Việt Nam khi hội nhập?",
+      "keywords": [
+        { "id": 1, "value": "Lúa gạo", "aliases": ["gao", "lua gao", "lua", "rice", "xuat khau gao"], "points": 48 },
+        { "id": 2, "value": "Cà phê", "aliases": ["ca phe", "coffee", "caphe", "xuat khau ca phe"], "points": 36 },
+        { "id": 3, "value": "Hạt điều", "aliases": ["dieu", "hat dieu", "cashew", "xuat khau hat dieu"], "points": 24 },
+        { "id": 4, "value": "Thủy hải sản", "aliases": ["thuy san", "hai san", "tom", "ca", "muc", "seafood", "thuy hai san", "tom ca", "ca tra", "tom dong lanh"], "points": 15 },
+        { "id": 5, "value": "Trái cây nhiệt đới", "aliases": ["hoa qua", "trai cay", "sau rieng", "thanh long", "nhan", "vai", "trai cay nhiet doi", "nong san trai cay"], "points": 8 },
+        { "id": 6, "value": "Hạt tiêu", "aliases": ["tieu", "hat tieu", "pepper"], "points": 4 }
+      ],
+      "timeLimit": 100,
+      "bonusPoint": 30
+    },
+    {
+      "id": 3,
+      "question": "Đại hội VIII (1996) đã xác định những động lực và nguồn lực cốt lõi nào để đẩy mạnh công nghiệp hóa, hiện đại hóa đất nước?",
+      "keywords": [
+        { "id": 1, "value": "Phát huy nguồn lực con người", "aliases": ["nguon luc con nguoi", "con nguoi", "nhan luc", "nhan su", "yeu to con nguoi", "nguon nhan luc", "con nguoi la trung toan", "con nguoi la trung tam", "phat huy con nguoi"], "points": 45 },
+        { "id": 2, "value": "Khoa học và Công nghệ", "aliases": ["khoa hoc cong nghe", "khoa hoc va cong nghe", "khcn", "khoa hoc", "cong nghe", "kh cn", "khoa hoc ky thuat", "khkt", "khoa hoc va cong nghe la dong luc"], "points": 32 },
+        { "id": 3, "value": "Giáo dục và Đào tạo", "aliases": ["giao duc", "dao tao", "giao duc dao tao", "giao duc va dao tao", "gd dt", "gddt", "truong hoc", "hoc tap", "gd va dt"], "points": 18 },
+        { "id": 4, "value": "Xây dựng cơ sở hạ tầng đồng bộ", "aliases": ["ha tang", "co so ha tang", "duong sa", "cau cong", "he thong ha tang", "xay dung ha tang", "ha tang dong bo", "ket cau ha tang"], "points": 8 }
+      ],
+      "timeLimit": 100,
+      "bonusPoint": 30
+    },
+    {
+      "id": 4,
+      "question": "Đại hội IX (2001) đã đưa ra những bước đột phá lý luận và chủ trương chiến lược mới nào cho nền kinh tế nước ta?",
+      "keywords": [
+        { "id": 1, "value": "Kinh tế thị trường định hướng xã hội chủ nghĩa", "aliases": ["kinh te thi truong", "dinh huong xa hoi chu nghia", "kttt", "kinh te thi truong dinh huong xhcn", "kinh te thi truong dinh huong xa hoi chu nghia", "kinh te dinh huong xhcn"], "points": 52 },
+        { "id": 2, "value": "Kinh tế tri thức", "aliases": ["kinh te tri thuc", "tri thuc", "phat trien kinh te tri thuc"], "points": 35 },
+        { "id": 3, "value": "Công nghiệp hóa rút ngắn", "aliases": ["cnh rut ngan", "rut ngan", "cong nghiep hoa rut ngan", "di tat don dau rut ngan"], "points": 22 },
+        { "id": 4, "value": "Chủ động và tích cực hội nhập kinh tế quốc tế", "aliases": ["chu dong va tich cuc hoi nhap", "hoi nhap kinh te", "hoi nhap quoc te", "hoi nhap kinh te quoc te", "chu dong hoi nhap"], "points": 12 },
+        { "id": 5, "value": "Thực hiện đi tắt đón đầu", "aliases": ["di tat don dau", "di tat", "don dau"], "points": 5 }
+      ],
+      "timeLimit": 120,
+      "bonusPoint": 40
+    },
+    {
+      "id": 5,
+      "question": "Đại hội X (2006) đã đề ra những quyết sách lịch sử nào giúp giải phóng nguồn lực kinh tế tư nhân và đưa đất nước thoát nghèo?",
+      "keywords": [
+        { "id": 1, "value": "Cho phép Đảng viên làm kinh tế tư nhân", "aliases": ["dang vien lam kinh te tu nhan", "kinh te tu nhan", "dang vien lam kinh te", "cho phep dang vien lam kinh te", "dang vien lam tu nhan"], "points": 48 },
+        { "id": 2, "value": "Đưa nước ta thoát khỏi nhóm nước nghèo", "aliases": ["thoat khoi nhom nuoc ngheo", "thoat ngheo", "dua nuoc ta thoat ngheo", "ra khoi nuoc ngheo", "thoat khoi kem phat trien"], "points": 35 },
+        { "id": 3, "value": "Gia nhập Tổ chức Thương mại Thế giới", "aliases": ["gia nhap wto", "wto", "to chuc thuong mai the gioi", "vao wto", "thanh vien wto"], "points": 24 },
+        { "id": 4, "value": "Tinh gọn bộ máy hành chính nhà nước", "aliases": ["tinh gon bo may", "bo may hanh chinh", "sap xep bo may", "giam bo may", "tinh gon bo may hanh chinh"], "points": 14 },
+        { "id": 5, "value": "Thu hút mạnh mẽ dòng vốn đầu tư trực tiếp nước ngoài", "aliases": ["fdi", "thu hut fdi", "dau tu nuoc ngoai", "dong von fdi", "thu hut dau tu nuoc ngoai"], "points": 6 }
+      ],
+      "timeLimit": 120,
+      "bonusPoint": 40
+    },
+    {
+      "id": 6,
+      "question": "Ba đột phá chiến lược được xác định tại Đại hội XI (2011) nhằm đưa nước ta vượt qua bẫy thu nhập trung bình là gì?",
+      "keywords": [
+        { "id": 1, "value": "Hoàn thiện thể chế kinh tế thị trường", "aliases": ["the che", "the che kinh te thi truong", "hoan thien the che", "hoan thien the chettt", "the che kinh te"], "points": 55 },
+        { "id": 2, "value": "Phát triển nguồn nhân lực chất lượng cao", "aliases": ["nhan luc", "nguon nhan luc", "nhan luc chat luong cao", "phat trien nhan luc", "nhan luc chat luong"], "points": 38 },
+        { "id": 3, "value": "Xây dựng hệ thống kết cấu hạ tầng đồng bộ", "aliases": ["ha tang", "ket cau ha tang", "ha tang dong bo", "xay dung ha tang", "ha tang giao thong"], "points": 22 }
+      ],
+      "timeLimit": 90,
+      "bonusPoint": 30
+    },
+    {
+      "id": 7,
+      "question": "Theo số liệu cập nhật thực tiễn, Việt Nam hiện đang giữ những vị trí, thứ hạng kinh tế nổi bật nào trên bản đồ thế giới?",
+      "keywords": [
+        { "id": 1, "value": "Xếp thứ ba mươi hai thế giới về quy mô GDP", "aliases": ["xep thu 32", "32 the gioi", "quy mo gdp", "gdp dung thu 32", "gdp xep thu ba muoi hai", "gdp 32"], "points": 48 },
+        { "id": 2, "value": "Top hai mươi nền kinh tế hàng đầu về thương mại quốc tế", "aliases": ["top 20 thuong mai", "top 20", "thuong mai quoc te", "thuong mai dung top 20", "top hai muoi thuong mai"], "points": 35 },
+        { "id": 3, "value": "Top mười lăm toàn cầu về thu hút đầu tư trực tiếp nước ngoài", "aliases": ["top 15 fdi", "top 15", "dau tu truc tiep nuoc ngoai", "thu hut fdi top 15", "top muoi lam fdi"], "points": 22 },
+        { "id": 4, "value": "Tốc độ tăng trưởng GDP đạt tám phẩy không hai phần trăm", "aliases": ["tang truong 8.02%", "8.02%", "tam phay khong hai phan tram", "gdp tang 8.02", "tang truong gdp tam phay khong hai"], "points": 12 },
+        { "id": 5, "value": "Quy mô GDP đạt năm trăm mười bốn tỷ USD", "aliases": ["514 ty usd", "514 ty", "514", "nam tram muoi bon ty usd", "gdp dat nam tram muoi bon ty"], "points": 5 }
+      ],
+      "timeLimit": 120,
+      "bonusPoint": 50
+    },
+    {
+      "id": 8,
+      "question": "Đại hội XII (2016) đã xác định những chủ trương và nhiệm vụ then chốt nào trong công tác xây dựng Đảng và hội nhập toàn diện?",
+      "keywords": [
+        { "id": 1, "value": "Đẩy mạnh phòng chống tham nhũng lãng phí", "aliases": ["phong chong tham nhung", "chong tham nhung", "quan lieu lang phi", "phong va chong tham nhung", "lo thi nong", "lo thi nong len"], "points": 46 },
+        { "id": 2, "value": "Kinh tế tư nhân là một động lực quan trọng", "aliases": ["kinh te tu nhan", "dong luc quan trong", "kinh te tu nhan la dong luc", "phat trien kinh te tu nhan"], "points": 32 },
+        { "id": 3, "value": "Hội nhập quốc tế toàn diện sâu rộng", "aliases": ["hoi nhap toan dien", "hoi nhap quoc te", "hoi nhap toan dien sau rong", "chu dong hoi nhap"], "points": 20 },
+        { "id": 4, "value": "Ngăn chặn tự diễn biến tự chuyển hóa", "aliases": ["tu dien bien", "tu chuyen hoa", "ngan chan tu dien bien tu chuyen hoa", "chong tu dien bien"], "points": 12 },
+        { "id": 5, "value": "Cử lực lượng tham gia hoạt động gìn giữ hòa bình Liên Hợp Quốc", "aliases": ["gin giu hoa binh", "lien hop quoc", "gin giu hoa binh lhq", "tham gia gin giu hoa binh"], "points": 4 }
+      ],
+      "timeLimit": 120,
+      "bonusPoint": 50
+    },
+    {
+      "id": 9,
+      "question": "Ba trụ cột chiến lược cốt lõi tạo nên \"Hệ điều hành\" quốc gia trong tiến trình chuyển đổi số và công nghiệp hóa hiện đại hóa hiện nay?",
+      "keywords": [
+        { "id": 1, "value": "Kinh tế số", "aliases": ["kinh te so", "kinh tes o"], "points": 50 },
+        { "id": 2, "value": "Chính phủ số", "aliases": ["chinh phu so", "chinh phuso"], "points": 35 },
+        { "id": 3, "value": "Xã hội số", "aliases": ["xa hoi so", "xa hoiso"], "points": 22 },
+        { "id": 4, "value": "Dữ liệu số liên thông", "aliases": ["du lieu so", "du lieu", "du lieu lien thong", "du lieu so lien thong"], "points": 10 }
+      ],
+      "timeLimit": 100,
+      "bonusPoint": 30
+    },
+    {
+      "id": 10,
+      "question": "Những lĩnh vực công nghệ số trọng điểm và định hướng nghề nghiệp mũi nhọn được luật hóa làm chiến lược quốc gia của Việt Nam hiện nay?",
+      "keywords": [
+        { "id": 1, "value": "Công nghiệp bán dẫn và thiết kế vi mạch", "aliases": ["ban dan", "thiet ke vi mach", "chip ban dan", "ic design", "vi mach ban dan", "thiet ke chip"], "points": 48 },
+        { "id": 2, "value": "Trí tuệ nhân tạo", "aliases": ["ai", "tri tue nhan tao", "cong nghe ai"], "points": 35 },
+        { "id": 3, "value": "Sản xuất thử nghiệm và làm chủ chip bán dẫn", "aliases": ["san xuat thu chip", "lam chu chip ban dan", "che tao chip", "thu nghiem chip"], "points": 22 },
+        { "id": 4, "value": "Đào tạo kỹ sư thiết kế vi mạch", "aliases": ["dao tao ky su", "dao tao can bo", "dao tao nhan luc ban dan", "dao tao thiet ke vi mach"], "points": 12 },
+        { "id": 5, "value": "Ứng dụng điện toán đám mây và an ninh mạng", "aliases": ["an ninh mang", "dien toan dam may", "cloud", "cloud computing", "cyber security"], "points": 5 }
+      ],
+      "timeLimit": 120,
+      "bonusPoint": 50
+    }
+  ]
+}
