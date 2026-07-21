@@ -29,7 +29,6 @@
             <nav class="nav-menu" id="navMenu">
                 <a href="#home" class="nav-link active" data-sec="home">Mở Đầu</a>
                 <a href="#capnhat" class="nav-link" data-sec="capnhat">Cập Nhật Thực Tiễn</a>
-                <a href="#agenda" class="nav-link" data-sec="agenda">Lộ Trình & Phân Công</a>
                 <a href="#quiz" class="nav-link" data-sec="quiz">Trắc Nghiệm</a>
             </nav>
             <a href="#capnhat" class="btn nav-btn-cta">Khám phá &rarr;</a>
@@ -115,7 +114,7 @@
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
                             </a>
-                            <a href="#agenda" class="btn btn-secondary">Xem Lộ Trình</a>
+                            <a href="#quiz" class="btn btn-secondary">Thử Thách Trắc Nghiệm</a>
                         </div>
                     </div>
                 </div>
@@ -596,273 +595,184 @@
                 </div>
 
                 <div class="tech-arch-wrapper reveal-group">
-                    <!-- KHU VỰC 1: Tầm nhìn kiến trúc & "Hệ điều hành" quốc gia (Full-width banner) -->
-                    <div class="arch-vision-banner reveal-item">
-                        <div class="vision-banner-header">
-                            <span class="tech-badge tech-badge--navy">High-Level Architecture</span>
-                            <span class="tech-badge tech-badge--purple">Middleware</span>
-                            <h3 class="vision-banner-title">Tầm nhìn kiến trúc &amp; "Hệ điều hành" quốc gia</h3>
+
+                    <!-- ── ROW 1: Vision Banner (Full-width) ── -->
+                    <div class="saas-card saas-card--full reveal-item">
+                        <div class="saas-card__badges">
+                            <span class="saas-badge saas-badge--blue">High-Level Architecture</span>
+                            <span class="saas-badge saas-badge--purple">Middleware</span>
                         </div>
-                        <div class="vision-banner-grid">
-                            <div class="vision-block">
-                                <div class="vision-block-title">
-                                    <span class="vision-icon">🏛️</span>
+                        <h3 class="saas-card__title">Tầm nhìn kiến trúc &amp; "Hệ điều hành" quốc gia</h3>
+                        <div class="saas-vision-grid">
+                            <div class="saas-vision-block">
+                                <div class="saas-icon-frame">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+                                </div>
+                                <div class="saas-vision-block__body">
                                     <h4>Kiến trúc thượng tầng</h4>
+                                    <p>Đường lối CNH – HĐH đóng vai trò định hình toàn bộ "hệ điều hành" phát triển. Dịch chuyển mô hình: Từ dựa vào tài nguyên thô &amp; lao động giá rẻ sang <span class="saas-text-accent">tăng trưởng bằng dữ liệu và tri thức số</span>.</p>
                                 </div>
-                                <p>Đường lối CNH - HĐH đóng vai trò định hình toàn bộ "hệ điều hành" phát triển. Dịch chuyển mô hình: Từ dựa vào tài nguyên thô &amp; lao động giá rẻ sang <strong>tăng trưởng bằng dữ liệu và tri thức số</strong>.</p>
                             </div>
-                            <div class="vision-divider" aria-hidden="true">
-                                <div class="vision-arrow">→</div>
+                            <div class="saas-vision-divider" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                             </div>
-                            <div class="vision-block">
-                                <div class="vision-block-title">
-                                    <span class="vision-icon">🔌</span>
+                            <div class="saas-vision-block">
+                                <div class="saas-icon-frame">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 18v4M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M18 12h4M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+                                </div>
+                                <div class="saas-vision-block__body">
                                     <h4>Nền tảng trung gian (Middleware)</h4>
-                                </div>
-                                <p>Chuyển đổi số đóng vai trò kết nối, đồng bộ hóa hạ tầng và vận hành dữ liệu liên thông mượt mà giữa 3 trụ cột chính: <strong>Chính phủ số</strong> — <strong>Kinh tế số</strong> — <strong>Xã hội số</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- KHU VỰC 2: Công nghệ lõi – Thiết lập hệ sinh thái Full-stack (Unified Stack + Evidence Side Box) -->
-                    <div class="arch-fullstack-row reveal-item">
-                        <!-- Left: Stacked Layers (Unified Stack Card) -->
-                        <div class="fullstack-layers-col">
-                            <div class="fullstack-header">
-                                <span class="tech-badge tech-badge--indigo">Full-stack Ecosystem</span>
-                                <h4 class="fullstack-title">Mô hình phân lớp hệ sinh thái công nghệ</h4>
-                            </div>
-                            <div class="layers-stack-tower">
-                                <!-- Top Layer: Application -->
-                                <div class="stack-layer-item layer-top">
-                                    <div class="layer-item-meta">
-                                        <span class="layer-item-label">Tầng ứng dụng</span>
-                                        <span class="layer-item-badge badge-indigo">Application Layer</span>
-                                    </div>
-                                    <p class="layer-item-desc">Quá trình Chuyển đổi số toàn diện và phát triển các ứng dụng phần mềm lớp trên phục vụ kinh tế - xã hội.</p>
-                                </div>
-                                <!-- Middle Layer: Algorithm -->
-                                <div class="stack-layer-item layer-mid">
-                                    <div class="layer-item-meta">
-                                        <span class="layer-item-label">Lõi thuật toán</span>
-                                        <span class="layer-item-badge badge-purple">Core Algorithm</span>
-                                    </div>
-                                    <p class="layer-item-desc">Trí tuệ nhân tạo (AI) đóng vai trò là bộ não tối ưu hóa hiệu năng, xử lý dữ liệu thông minh cho toàn hệ thống.</p>
-                                </div>
-                                <!-- Base Layer: Hardware -->
-                                <div class="stack-layer-item layer-base">
-                                    <div class="layer-item-meta">
-                                        <span class="layer-item-label">Tầng phần cứng</span>
-                                        <span class="layer-item-badge badge-amber">Hardware/Silicon Layer</span>
-                                    </div>
-                                    <p class="layer-item-desc">Hạ tầng chip bán dẫn đóng vai trò làm nền tảng vật lý cực kỳ vững chắc bên dưới toàn bộ hệ thống.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right: Highlight Side Box (Minh chứng) - Softened Background -->
-                        <div class="chip-evidence-card">
-                            <div class="evidence-card-header">
-                                <span class="tech-badge tech-badge--amber">Minh chứng thực tế</span>
-                                <h4 class="evidence-card-title">Làm chủ Công nghiệp Công nghệ số</h4>
-                            </div>
-                            <div class="evidence-card-body">
-                                <div class="evidence-intro-row">
-                                    <span class="evidence-large-icon">🏭</span>
-                                    <p class="evidence-intro-text">Đưa <strong>"Chip bán dẫn"</strong> và <strong>"AI"</strong> thành danh mục chiến lược quốc gia qua việc luật hóa.</p>
-                                </div>
-                                <div class="evidence-list">
-                                    <div class="evidence-bullet-item">
-                                        <span class="bullet-icon">✓</span>
-                                        <p>Khởi công Nhà máy chế tạo chip bán dẫn công nghệ cao đầu tiên tại Việt Nam.</p>
-                                    </div>
-                                    <div class="evidence-bullet-item">
-                                        <span class="bullet-icon">✓</span>
-                                        <p>Ra mắt Trung tâm quốc gia hỗ trợ sản xuất thử chip (làm chủ từ phần cứng đến phần mềm).</p>
-                                    </div>
+                                    <p>Chuyển đổi số đóng vai trò kết nối, đồng bộ hóa hạ tầng và vận hành dữ liệu liên thông mượt mà giữa 3 trụ cột chính: <span class="saas-text-accent">Chính phủ số</span> — <span class="saas-text-accent">Kinh tế số</span> — <span class="saas-text-accent">Xã hội số</span>.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- KHU VỰC 3: Vòng lặp & Tương lai (2 Columns) -->
-                    <div class="arch-loop-career-row reveal-item">
+                    <!-- ── ROW 2: Stack Layers + Evidence (2-col) ── -->
+                    <div class="saas-grid-2col">
+                        <!-- Left: Stacked Layers -->
+                        <div class="saas-card reveal-item">
+                            <div class="saas-card__badges">
+                                <span class="saas-badge saas-badge--indigo">Full-stack Ecosystem</span>
+                            </div>
+                            <h3 class="saas-card__title">Mô hình phân lớp hệ sinh thái công nghệ</h3>
+                            <div class="saas-stack">
+                                <div class="saas-stack__layer">
+                                    <div class="saas-stack__layer-head">
+                                        <span class="saas-stack__label">Tầng ứng dụng</span>
+                                        <span class="saas-badge saas-badge--indigo saas-badge--sm">Application Layer</span>
+                                    </div>
+                                    <p class="saas-stack__desc">Quá trình Chuyển đổi số toàn diện và phát triển các ứng dụng phần mềm lớp trên phục vụ kinh tế – xã hội.</p>
+                                </div>
+                                <div class="saas-stack__layer">
+                                    <div class="saas-stack__layer-head">
+                                        <span class="saas-stack__label">Lõi thuật toán</span>
+                                        <span class="saas-badge saas-badge--purple saas-badge--sm">Core Algorithm</span>
+                                    </div>
+                                    <p class="saas-stack__desc">Trí tuệ nhân tạo (AI) đóng vai trò là bộ não tối ưu hóa hiệu năng, xử lý dữ liệu thông minh cho toàn hệ thống.</p>
+                                </div>
+                                <div class="saas-stack__layer">
+                                    <div class="saas-stack__layer-head">
+                                        <span class="saas-stack__label">Tầng phần cứng</span>
+                                        <span class="saas-badge saas-badge--amber saas-badge--sm">Hardware / Silicon Layer</span>
+                                    </div>
+                                    <p class="saas-stack__desc">Hạ tầng chip bán dẫn đóng vai trò làm nền tảng vật lý vững chắc bên dưới toàn bộ hệ thống.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Evidence -->
+                        <div class="saas-card saas-card--accent reveal-item">
+                            <div class="saas-card__badges">
+                                <span class="saas-badge saas-badge--amber">Minh chứng thực tế</span>
+                            </div>
+                            <h3 class="saas-card__title">Làm chủ Công nghiệp Công nghệ số</h3>
+                            <div class="saas-evidence-intro">
+                                <div class="saas-icon-frame saas-icon-frame--lg">
+                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/><path d="M8 14h8M8 18h5"/></svg>
+                                </div>
+                                <p>Đưa <span class="saas-text-accent">"Chip bán dẫn"</span> và <span class="saas-text-accent">"AI"</span> thành danh mục chiến lược quốc gia qua việc luật hóa.</p>
+                            </div>
+                            <div class="saas-checklist">
+                                <div class="saas-checklist__item">
+                                    <div class="saas-check-icon">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <p>Khởi công Nhà máy chế tạo chip bán dẫn công nghệ cao đầu tiên tại Việt Nam.</p>
+                                </div>
+                                <div class="saas-checklist__item">
+                                    <div class="saas-check-icon">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <p>Ra mắt Trung tâm quốc gia hỗ trợ sản xuất thử chip (làm chủ từ phần cứng đến phần mềm).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── ROW 3: Loop + Career (2-col) ── -->
+                    <div class="saas-grid-2col">
                         <!-- Left: Feedback Loop -->
-                        <div class="loop-col">
-                            <div class="loop-header">
-                                <span class="tech-badge tech-badge--teal">Feedback Loop</span>
-                                <h4 class="loop-title">Vòng lặp tương hỗ</h4>
+                        <div class="saas-card reveal-item">
+                            <div class="saas-card__badges">
+                                <span class="saas-badge saas-badge--teal">Feedback Loop</span>
                             </div>
-                            <div class="timeline-stepper">
-                                <div class="step-item">
-                                    <div class="step-number-container">
-                                        <div class="step-number">1</div>
-                                        <div class="step-line"></div>
+                            <h3 class="saas-card__title">Vòng lặp tương hỗ</h3>
+                            <div class="saas-timeline">
+                                <div class="saas-timeline__step">
+                                    <div class="saas-timeline__marker-col">
+                                        <div class="saas-timeline__number">1</div>
+                                        <div class="saas-timeline__line"></div>
                                     </div>
-                                    <div class="step-content">
-                                        <h5>Đường lối CNH - HĐH</h5>
+                                    <div class="saas-timeline__content">
+                                        <h5>Đường lối CNH – HĐH</h5>
                                         <p>Mở đường bằng các cơ chế, chính sách đặc thù nhằm tạo động lực chuyển dịch mô hình phát triển.</p>
                                     </div>
                                 </div>
-                                <div class="step-item">
-                                    <div class="step-number-container">
-                                        <div class="step-number">2</div>
-                                        <div class="step-line"></div>
+                                <div class="saas-timeline__step">
+                                    <div class="saas-timeline__marker-col">
+                                        <div class="saas-timeline__number">2</div>
+                                        <div class="saas-timeline__line"></div>
                                     </div>
-                                    <div class="step-content">
+                                    <div class="saas-timeline__content">
                                         <h5>AI &amp; Bán dẫn</h5>
                                         <p>Cung cấp công cụ kỹ thuật đắc lực giúp nâng cao năng suất lao động và bứt phá công nghệ lõi.</p>
                                     </div>
                                 </div>
-                                <div class="step-item">
-                                    <div class="step-number-container">
-                                        <div class="step-number">3</div>
+                                <div class="saas-timeline__step">
+                                    <div class="saas-timeline__marker-col">
+                                        <div class="saas-timeline__number">3</div>
                                     </div>
-                                    <div class="step-content">
+                                    <div class="saas-timeline__content">
                                         <h5>Chuyển đổi số</h5>
-                                        <p>Đóng vai trò môi trường triển khai (<span class="deployment-text">Deployment Environment</span>) giúp sản phẩm Make in Vietnam tăng tốc.</p>
+                                        <p>Đóng vai trò môi trường triển khai (<span class="saas-code-tag">Deployment Environment</span>) giúp sản phẩm Make in Vietnam tăng tốc.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Right: Career Opportunities -->
-                        <div class="career-col">
-                            <div class="career-header">
-                                <span class="tech-badge tech-badge--indigo">Future Focus</span>
-                                <h4 class="career-title">Định hướng nghề nghiệp tương lai</h4>
+                        <!-- Right: Career -->
+                        <div class="saas-card reveal-item">
+                            <div class="saas-card__badges">
+                                <span class="saas-badge saas-badge--indigo">Future Focus</span>
                             </div>
-                            <p class="career-intro-text">Mở ra không gian phát triển chuyên sâu và cốt lõi cho sinh viên công nghệ tập trung vào 3 mũi nhọn:</p>
-                            <div class="career-cards-grid">
-                                <div class="career-mini-card">
-                                    <div class="career-card-top">
-                                        <span class="career-mini-icon">🔌</span>
-                                        <h5>IC Design</h5>
+                            <h3 class="saas-card__title">Định hướng nghề nghiệp tương lai</h3>
+                            <p class="saas-card__subtitle">Mở ra không gian phát triển chuyên sâu và cốt lõi cho sinh viên công nghệ tập trung vào 3 mũi nhọn:</p>
+                            <div class="saas-career-grid">
+                                <div class="saas-career-card">
+                                    <div class="saas-icon-frame saas-icon-frame--indigo">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h1M14 9h1M9 14h1M14 14h1"/><path d="M12 4v16M4 12h16"/></svg>
                                     </div>
-                                    <strong>Thiết kế vi mạch</strong>
+                                    <h5>IC Design</h5>
+                                    <span class="saas-career-card__label">Thiết kế vi mạch</span>
                                     <p>Nghiên cứu, phát triển và chế tạo chip bán dẫn thế hệ mới.</p>
                                 </div>
-                                <div class="career-mini-card">
-                                    <div class="career-card-top">
-                                        <span class="career-mini-icon">⚙️</span>
-                                        <h5>Embedded</h5>
+                                <div class="saas-career-card">
+                                    <div class="saas-icon-frame saas-icon-frame--teal">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
                                     </div>
-                                    <strong>Lập trình nhúng</strong>
+                                    <h5>Embedded</h5>
+                                    <span class="saas-career-card__label">Lập trình nhúng</span>
                                     <p>Tích hợp phần mềm điều khiển tối ưu trực tiếp vào phần cứng vật lý.</p>
                                 </div>
-                                <div class="career-mini-card">
-                                    <div class="career-card-top">
-                                        <span class="career-mini-icon">🧠</span>
-                                        <h5>Edge AI</h5>
+                                <div class="saas-career-card">
+                                    <div class="saas-icon-frame saas-icon-frame--purple">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 3-2 5.5-4 7l-1 3h-4l-1-3c-2-1.5-4-4-4-7a7 7 0 0 1 7-7z"/><path d="M9 22h6"/></svg>
                                     </div>
-                                    <strong>AI biên</strong>
+                                    <h5>Edge AI</h5>
+                                    <span class="saas-career-card__label">AI biên</span>
                                     <p>Tối ưu hóa các mô hình trí tuệ nhân tạo trực tiếp trên thiết bị đầu cuối.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
 
-        <!-- Agenda Section: Lộ trình & Phân công thuyết trình -->
-        <section id="agenda" class="section agenda-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Kế Hoạch Buổi Học</span>
-                    <h2 class="section-title">Lộ Trình & Phân Công Thuyết Trình</h2>
-                    <p class="section-desc">Phân chia nội dung chi tiết và thời lượng dự kiến để bài thuyết trình diễn ra nhịp nhàng, tối ưu hóa sự tương tác của cả lớp.</p>
-                </div>
 
-                <div class="agenda-grid">
-                    <!-- Agenda Item 1 -->
-                    <div class="agenda-card glass-card active-card">
-                        <div class="agenda-header">
-                            <span class="part-number">Mục 1</span>
-                            <span class="duration-badge">⏱️ 1.5 - 2 phút</span>
-                        </div>
-                        <h3 class="agenda-title">Đặt vấn đề & Mở đầu tương tác</h3>
-                        <p class="agenda-text">Phân tích bối cảnh lịch sử năm 1996 khi Việt Nam thoát khỏi khủng hoảng, kích hoạt tương tác bằng việc quét mã QR truy cập trang web này.</p>
-                        <div class="presenter-box">
-                            <span class="presenter-avatar">👨‍💼</span>
-                            <div>
-                                <div class="presenter-label">Thuyết trình viên</div>
-                                <div class="presenter-name">Thành viên 1</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Agenda Item 2 -->
-                    <div class="agenda-card glass-card">
-                        <div class="agenda-header">
-                            <span class="part-number">Mục 2</span>
-                            <span class="duration-badge">⏱️ 5 - 7 phút</span>
-                        </div>
-                        <h3 class="agenda-title">Quá trình đẩy mạnh CNH - HĐH</h3>
-                        <p class="agenda-text">Làm rõ các khái niệm, mục tiêu cốt lõi và quan điểm chỉ đạo của Đảng về công nghiệp hóa, hiện đại hóa qua các thời kỳ lịch sử từ năm 1996 đến nay.</p>
-                        <div class="presenter-box">
-                            <span class="presenter-avatar">👩‍💼</span>
-                            <div>
-                                <div class="presenter-label">Thuyết trình viên</div>
-                                <div class="presenter-name">Thành viên 2</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Agenda Item 3 -->
-                    <div class="agenda-card glass-card">
-                        <div class="agenda-header">
-                            <span class="part-number">Mục 3</span>
-                            <span class="duration-badge">⏱️ 5 - 7 phút</span>
-                        </div>
-                        <h3 class="agenda-title">Chủ trương Hội nhập quốc tế</h3>
-                        <p class="agenda-text">Quá trình Việt Nam mở rộng quan hệ đối ngoại, gia nhập các tổ chức đa phương (ASEAN, WTO, APEC) và ký kết các hiệp định thương mại song phương, đa phương sâu rộng.</p>
-                        <div class="presenter-box">
-                            <span class="presenter-avatar">👨‍💼</span>
-                            <div>
-                                <div class="presenter-label">Thuyết trình viên</div>
-                                <div class="presenter-name">Thành viên 3</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Agenda Item 4 -->
-                    <div class="agenda-card glass-card">
-                        <div class="agenda-header">
-                            <span class="part-number">Mục 4</span>
-                            <span class="duration-badge">⏱️ 4 - 5 phút</span>
-                        </div>
-                        <h3 class="agenda-title">Thành tựu, Hạn chế & Bài học</h3>
-                        <p class="agenda-text">Đánh giá khách quan kết quả đạt được về tăng trưởng kinh tế, thay đổi diện mạo đất nước cùng những hạn chế tồn đọng và rút ra bài học kinh nghiệm sâu sắc cho tương lai.</p>
-                        <div class="presenter-box">
-                            <span class="presenter-avatar">👩‍💼</span>
-                            <div>
-                                <div class="presenter-label">Thuyết trình viên</div>
-                                <div class="presenter-name">Thành viên 4</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Agenda Item 5 (Đặc biệt) -->
-                    <div class="agenda-card glass-card highlight-card">
-                        <div class="agenda-header">
-                            <span class="part-number">Mục 5</span>
-                            <span class="duration-badge">⏱️ 3 - 5 phút</span>
-                        </div>
-                        <h3 class="agenda-title">Tổng kết & Mini-game Trắc nghiệm</h3>
-                        <p class="agenda-text">Đúc kết thông điệp cốt lõi của bài thuyết trình và cùng cả lớp chơi mini-game trắc nghiệm nhanh để ghi nhớ kiến thức ngay tại chỗ.</p>
-                        <div class="presenter-box">
-                            <span class="presenter-avatar">👥</span>
-                            <div>
-                                <div class="presenter-label">Phụ trách</div>
-                                <div class="presenter-name">Cả Nhóm & Tập thể lớp</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Quiz Section: Trắc nghiệm tương tác -->
         <section id="quiz" class="section quiz-section">
@@ -920,83 +830,79 @@
         </section>
     </main>
 
-    <!-- Footer: QR Code & Team Info -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-info">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+
+
+    <!-- AI CHAT ASSISTANT FLOATING WIDGET (GEMINI 2.5 + PDF RAG) -->
+    <div id="aiChatContainer" class="ai-chat-container" aria-label="Cửa sổ Trợ lý AI">
+        <div class="ai-chat-header">
+            <div class="ai-chat-title-group">
+                <div class="ai-avatar-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-4 0V4a2 2 0 0 1 2-2z"></path>
+                        <rect x="4" y="8" width="16" height="12" rx="3"></rect>
+                        <circle cx="9" cy="13" r="1.5" fill="currentColor"></circle>
+                        <circle cx="15" cy="13" r="1.5" fill="currentColor"></circle>
+                        <path d="M9 17h6" stroke-linecap="round"></path>
                     </svg>
-                    <span>VNR Presentation Group</span>
                 </div>
-                <p class="footer-copyright">&copy; 2026 Nhóm học tập môn Lịch sử Đảng Cộng sản Việt Nam. Bảo lưu mọi quyền.</p>
-                <div class="team-members">
-                    <strong>Thành viên nhóm thiết kế:</strong>
-                    <span>Nguyễn Văn A (Nhóm trưởng)</span> • 
-                    <span>Trần Thị B</span> • 
-                    <span>Lê Văn C</span> • 
-                    <span>Phạm Thị D</span>
+                <div>
+                    <h3 class="ai-chat-title">
+                        VNR AI Assistant
+                    </h3>
                 </div>
             </div>
-            
-            <div class="qr-container glass-card">
-                <div class="qr-box">
-                    <!-- A beautifully drawn CSS/SVG QR Code representation -->
-                    <svg viewBox="0 0 100 100" class="qr-svg" aria-label="Mã QR trải nghiệm web">
-                        <!-- Corners indicators -->
-                        <rect x="5" y="5" width="25" height="25" fill="currentColor" rx="2" />
-                        <rect x="9" y="9" width="17" height="17" fill="var(--bg-primary)" rx="1" />
-                        <rect x="13" y="13" width="9" height="9" fill="currentColor" />
+            <div class="ai-header-controls">
+                <button id="aiChatClear" class="ai-control-btn" title="Xóa lịch sử chat">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+                <button id="aiChatMinimize" class="ai-control-btn" title="Thu nhỏ">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+                <button id="aiChatClose" class="ai-control-btn" title="Đóng cửa sổ">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+        </div>
 
-                        <rect x="70" y="5" width="25" height="25" fill="currentColor" rx="2" />
-                        <rect x="74" y="9" width="17" height="17" fill="var(--bg-primary)" rx="1" />
-                        <rect x="78" y="13" width="9" height="9" fill="currentColor" />
 
-                        <rect x="5" y="70" width="25" height="25" fill="currentColor" rx="2" />
-                        <rect x="9" y="74" width="17" height="17" fill="var(--bg-primary)" rx="1" />
-                        <rect x="13" y="78" width="9" height="9" fill="currentColor" />
 
-                        <!-- Center Red Star for Vietnam theme -->
-                        <polygon points="50,42 53,49 60,49 55,54 57,61 50,57 43,61 45,54 40,49 47,49" fill="var(--accent-color)" />
 
-                        <!-- Random QR blocks representing data -->
-                        <rect x="35" y="5" width="5" height="10" fill="currentColor" />
-                        <rect x="45" y="10" width="10" height="5" fill="currentColor" />
-                        <rect x="60" y="5" width="5" height="15" fill="currentColor" />
-                        <rect x="40" y="20" width="15" height="5" fill="currentColor" />
-                        
-                        <rect x="5" y="35" width="10" height="5" fill="currentColor" />
-                        <rect x="20" y="40" width="5" height="15" fill="currentColor" />
-                        <rect x="10" y="50" width="10" height="5" fill="currentColor" />
-                        <rect x="30" y="30" width="5" height="10" fill="currentColor" />
 
-                        <rect x="70" y="35" width="10" height="10" fill="currentColor" />
-                        <rect x="85" y="30" width="10" height="5" fill="currentColor" />
-                        <rect x="90" y="40" width="5" height="15" fill="currentColor" />
-                        <rect x="75" y="50" width="15" height="5" fill="currentColor" />
-
-                        <rect x="35" y="70" width="10" height="5" fill="currentColor" />
-                        <rect x="55" y="70" width="5" height="10" fill="currentColor" />
-                        <rect x="45" y="80" width="15" height="5" fill="currentColor" />
-                        <rect x="35" y="90" width="10" height="5" fill="currentColor" />
-                        <rect x="50" y="88" width="5" height="7" fill="currentColor" />
-
-                        <rect x="70" y="70" width="5" height="10" fill="currentColor" />
-                        <rect x="80" y="70" width="15" height="5" fill="currentColor" />
-                        <rect x="75" y="85" width="10" height="10" fill="currentColor" />
-                        <rect x="90" y="80" width="5" height="15" fill="currentColor" />
-                    </svg>
+        <div id="aiChatMessages" class="ai-chat-body">
+            <div class="ai-msg bot-msg shadow-sm">
+                <div class="msg-header">
+                    <span class="bot-name">🇻🇳 Trợ lý VNR AI</span>
+                    <span class="msg-time">Hệ thống</span>
                 </div>
-                <div class="qr-text">
-                    <h4>Quét QR để trải nghiệm</h4>
-                    <p>Chia sẻ trang web này đến lớp học của bạn để cùng tương tác trực tuyến.</p>
+                <div class="msg-content">
+                    Xin chào! Tôi là Trợ lý AI của VNR Group. Hãy đặt câu hỏi về nội dung <strong style="color:#ffd700;">Chương 3 Lịch sử Đảng</strong> và tôi sẽ giải đáp cho bạn!
                 </div>
             </div>
         </div>
-    </footer>
+
+        <div class="ai-chat-footer">
+            <div class="ai-input-box">
+                <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Hỏi AI về nội dung Chương 3 Lịch sử Đảng..." autocomplete="off">
+            </div>
+            <button id="aiChatSend" class="ai-send-btn" title="Gửi câu hỏi">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- AI CHAT TRIGGER FLOATING BUTTON -->
+    <button id="aiChatTrigger" class="ai-chat-trigger" aria-label="Mở Trợ lý AI Lịch Sử Đảng">
+        <div class="ai-trigger-pulse"></div>
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            <path d="M12 7v4m-2-2h4" stroke-linecap="round"></path>
+        </svg>
+        <span class="ai-tooltip">Hỏi đáp AI</span>
+    </button>
 
     <!-- App JavaScript -->
+    <script src="ai-chat.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
+
