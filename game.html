@@ -12,6 +12,17 @@
 </head>
 <body>
 
+<!-- Password Screen Overlay -->
+<div id="passwordOverlay" class="password-overlay">
+    <div class="password-card">
+        <h2>🔒 Quyền Chủ Quản</h2>
+        <p>Vui lòng nhập mật khẩu để tiếp tục</p>
+        <input type="password" id="hostPasswordInput" placeholder="Mật khẩu..." autofocus>
+        <button id="submitPasswordBtn" class="btn-start" style="padding: 10px 20px; font-size: 16px; margin-top: 15px; width: 100%;">Xác nhận</button>
+        <p id="passwordError" class="password-error hidden">❌ Mật khẩu không chính xác!</p>
+    </div>
+</div>
+
 <!-- Global floating audio control panel -->
 <div class="global-audio-panel">
     <button id="globalMuteBtn" class="audio-btn" title="Tắt tiếng">🔊</button>
@@ -20,22 +31,21 @@
 
 <!-- ===== SCREEN 1: LOBBY ===== -->
 <div id="screen-lobby" class="game-screen active">
-    <div class="lights-strip lights-strip--top"></div>
     <div class="lobby-wrapper">
         <button id="startGameBtn" class="btn-start">🎮 Bắt Đầu Game</button>
     </div>
-    <div class="lights-strip lights-strip--bottom"></div>
 </div>
 
 
 <!-- ===== SCREEN 2: PLAY ===== -->
 <div id="screen-play" class="game-screen">
-    <div class="lights-strip lights-strip--top"></div>
 
     <header class="game-header">
-        <div class="game-brand-mini">
-            <span class="brand-vnr">VNR</span>
-            <span class="brand-cs">CHUNG SỨC</span>
+        <div class="header-left">
+            <div class="game-brand-mini">
+                <span class="brand-vnr">VNR</span>
+                <span class="brand-cs">CHUNG SỨC</span>
+            </div>
         </div>
 
         <div class="timer-area">
@@ -50,7 +60,6 @@
 
         <div class="header-right">
             <div class="question-progress" id="questionProgress">Câu 1 / 5</div>
-            <div class="score-ticker" id="scoreTicker"></div>
         </div>
     </header>
 
@@ -65,14 +74,29 @@
         <div class="ff-lights-left"></div>
         <div class="ff-lights-right"></div>
 
-        <div class="ff-board">
-            <!-- Question box at the very top of the board -->
-            <div class="ff-question-area">
-                <p class="ff-question-text" id="questionText">Đang tải...</p>
+        <div class="stage-layout">
+            <!-- Left Panel: Wrong answers -->
+            <div class="side-panel side-panel-left">
+                <h3 class="side-panel-title">❌ MẤT LƯỢT</h3>
+                <div class="lost-list" id="lostTurnTicker"></div>
             </div>
 
-            <!-- 2-column answer grid -->
-            <div class="ff-answer-grid" id="answerBoard"></div>
+            <!-- Center Panel: Board -->
+            <div class="ff-board">
+                <!-- Question box at the very top of the board -->
+                <div class="ff-question-area">
+                    <p class="ff-question-text" id="questionText">Đang tải...</p>
+                </div>
+
+                <!-- 2-column answer grid -->
+                <div class="ff-answer-grid" id="answerBoard"></div>
+            </div>
+
+            <!-- Right Panel: Leaderboard -->
+            <div class="side-panel side-panel-right">
+                <h3 class="side-panel-title">🏆 ĐIỂM SỐ</h3>
+                <div class="score-list" id="scoreTicker"></div>
+            </div>
         </div>
     </main>
 
@@ -139,13 +163,22 @@
         </div>
     </div>
 
-    <div class="lights-strip lights-strip--bottom"></div>
+    <!-- Confirm End Question Modal -->
+    <div class="confirm-modal-overlay hidden" id="confirmModal">
+        <div class="confirm-modal-card">
+            <h3 class="confirm-title" id="confirmTitle">Kết thúc câu hỏi?</h3>
+            <p class="confirm-desc" id="confirmDesc">Bạn có chắc chắn muốn kết thúc câu hỏi này ngay bây giờ?</p>
+            <div class="confirm-actions">
+                <button class="btn-secondary" id="cancelEndBtn">Hủy</button>
+                <button class="btn-start" style="padding: 10px 20px; font-size: 16px;" id="confirmEndBtn">Đồng ý</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <!-- ===== SCREEN 3: FINAL RESULTS ===== -->
 <div id="screen-results" class="game-screen">
-    <div class="lights-strip lights-strip--top"></div>
     <div class="results-wrapper">
         <div class="results-logo-area">
             <h1 class="results-title">🏆 Kết Quả Chung Cuộc</h1>
@@ -165,7 +198,6 @@
             <button id="backToLobbyBtn" class="btn-secondary">🏠 Về màn hình chủ</button>
         </div>
     </div>
-    <div class="lights-strip lights-strip--bottom"></div>
 </div>
 
 <script src="game.js"></script>

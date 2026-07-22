@@ -53,42 +53,22 @@ html, body {
     display: flex;
     flex-direction: column;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
     background: radial-gradient(ellipse at 50% -10%, #280060 0%, var(--bg-deep) 65%);
     overflow: hidden;
+    z-index: -1;
 }
-.game-screen.active { opacity: 1; pointer-events: all; }
+.game-screen.active { opacity: 1; visibility: visible; pointer-events: all; z-index: 10; }
 
 #screen-lobby {
-    background: linear-gradient(rgba(6, 0, 30, 0.75), rgba(6, 0, 30, 0.9)), url('img/game/981553-1920x1080-desktop-full-hd-family-feud-tv-series-wallpaper-image.jpg');
+    background: url('img/game/981553-1920x1080-desktop-full-hd-family-feud-tv-series-wallpaper-image.jpg');
     background-size: cover;
     background-position: center;
 }
 
-/* ---------- LIGHT BULBS ---------- */
-.lights-strip {
-    flex-shrink: 0;
-    height: 26px;
-    position: relative;
-    overflow: hidden;
-    background: rgba(0,0,0,0.3);
-}
-.lights-strip::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-        radial-gradient(circle at center, #fde68a 3px, rgba(253,230,138,0.2) 5px, transparent 7px);
-    background-size: 30px 100%;
-    animation: bulbPulse 2s ease-in-out infinite alternate;
-}
-.lights-strip--bottom::before { animation-delay: 1s; }
-
-@keyframes bulbPulse {
-    0%  { opacity: 0.65; filter: brightness(0.8); }
-    100%{ opacity: 1;    filter: brightness(1.2); }
-}
+/* ---------- LIGHT BULBS REMOVED ---------- */
 
 /* =============================================
    SCREEN 1: LOBBY
@@ -99,7 +79,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding: 20px 24px 100px;
+    padding: 20px 24px 10px;
     gap: 24px;
     overflow-y: auto;
 }
@@ -493,6 +473,34 @@ html, body {
     letter-spacing: 3px;
 }
 
+/* Header left area */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    max-width: 320px;
+}
+.lost-turn-ticker {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.lost-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(220, 38, 38, 0.15);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    border-radius: 20px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fca5a5;
+    text-decoration: line-through;
+}
+
 /* Timer ring */
 .timer-area { display: flex; align-items: center; justify-content: center; }
 .timer-ring-wrapper {
@@ -541,6 +549,7 @@ html, body {
     align-items: flex-end;
     gap: 4px;
     max-width: 320px;
+    padding-right: 140px; /* Prevent overlap with global audio controls */
 }
 .question-progress {
     font-family: var(--font-head);
@@ -645,6 +654,132 @@ html, body {
 @keyframes bulbFlicker {
     0%   { opacity: 0.75; filter: brightness(0.85); }
     100% { opacity: 1;    filter: brightness(1.15); }
+}
+
+/* ==== STAGE LAYOUT (3 columns) ==== */
+.stage-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+.side-panel {
+    width: 260px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(11, 10, 36, 0.75);
+    border: 2px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    align-self: stretch; /* Match height of ff-board */
+}
+
+.side-panel-left {
+    border-color: rgba(220, 38, 38, 0.4);
+    box-shadow: inset 0 0 15px rgba(220, 38, 38, 0.05), 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.side-panel-right {
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: inset 0 0 15px rgba(245, 158, 11, 0.05), 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.side-panel-title {
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.side-panel-left .side-panel-title {
+    color: #ef4444;
+}
+
+.side-panel-right .side-panel-title {
+    color: var(--gold);
+}
+
+.lost-list, .score-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* Custom scrollbars for side lists */
+.lost-list::-webkit-scrollbar, .score-list::-webkit-scrollbar {
+    width: 4px;
+}
+.lost-list::-webkit-scrollbar-thumb, .score-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+}
+
+/* Redefined score chip & lost chip for lists */
+.side-panel .score-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(124, 58, 237, 0.12);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    border-radius: 8px;
+    padding: 6px 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.side-panel .chip-avatar {
+    width: 18px;
+    height: 18px;
+    font-size: 8px;
+    flex-shrink: 0;
+}
+
+.side-panel .chip-name {
+    font-size: 11px;
+    font-weight: 700;
+    flex-grow: 1;
+    max-width: none;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.side-panel .chip-score {
+    font-size: 12px;
+}
+
+.side-panel .lost-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(220, 38, 38, 0.12);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fca5a5;
+    text-decoration: line-through;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* ==== THE BOARD CASING ==== */
@@ -787,17 +922,17 @@ html, body {
     flex: 1;
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    padding-left: 15px;
+    padding-right: 10px;
     font-family: var(--font-head);
-    font-size: clamp(11px, 1.6vw, 15px);
+    font-size: clamp(10px, 1.3vw, 13px);
     font-weight: 900;
     color: #ffffff;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.2;
 }
 
 .ff-slot-sep {
@@ -1377,5 +1512,119 @@ html, body {
 
 .hidden {
     display: none !important;
+}
+
+/* ---------- CONFIRM MODAL ---------- */
+.confirm-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--t), visibility var(--t);
+}
+.confirm-modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.confirm-modal-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform: translateY(0);
+    transition: transform var(--t) var(--ease);
+}
+.confirm-modal-overlay.hidden .confirm-modal-card {
+    transform: translateY(20px);
+}
+.confirm-title {
+    font-family: var(--font-head);
+    font-size: 24px;
+    color: var(--gold-bright);
+    margin-bottom: 10px;
+}
+.confirm-desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+.confirm-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+.confirm-actions .btn-secondary,
+.confirm-actions .btn-start {
+    flex: 1;
+    padding: 12px;
+    font-size: 15px;
+}
+
+/* ---------- PASSWORD OVERLAY ---------- */
+.password-overlay {
+    position: fixed;
+    inset: 0;
+    background: #05011a;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(15px);
+}
+.password-overlay.hidden {
+    display: none !important;
+}
+.password-card {
+    background: var(--bg-card);
+    border: 2px solid rgba(245, 158, 11, 0.3);
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+.password-card h2 {
+    font-family: var(--font-head);
+    color: var(--gold-bright);
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+.password-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+.password-card input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 15px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+.password-card input:focus {
+    border-color: var(--gold);
+}
+.password-error {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 12px;
 }
 

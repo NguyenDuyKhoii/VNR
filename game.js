@@ -1,3 +1,4 @@
+(function() {
 /**
  * VNR – Game Chung Sức
  * Family Feud style – Câu hỏi tuần tự, chủ trì nhập tên + keyword
@@ -233,6 +234,11 @@ const betweenQLeaders     = document.getElementById('betweenQLeaders');
 const nextQuestionBtn     = document.getElementById('nextQuestionBtn');
 const closeBQBtn          = document.getElementById('closeBQBtn');
 
+// Confirm Modal
+const confirmModal        = document.getElementById('confirmModal');
+const confirmEndBtn       = document.getElementById('confirmEndBtn');
+const cancelEndBtn        = document.getElementById('cancelEndBtn');
+
 // Results
 const totalQCount         = document.getElementById('totalQCount');
 const resultsScoreboard   = document.getElementById('resultsScoreboard');
@@ -311,13 +317,53 @@ function playBackgroundMusic(name) {
 
 // User gesture trigger to play theme (bypasses browser autoplay policy)
 function tryPlayLobbyTheme() {
-  if (screens.lobby.classList.contains('active') && audio.theme.paused && !isMuted) {
+  const pwOverlay = document.getElementById('passwordOverlay');
+  const isUnlocked = !pwOverlay || pwOverlay.classList.contains('hidden');
+  if (isUnlocked && screens.lobby.classList.contains('active') && audio.theme.paused && !isMuted) {
     playBackgroundMusic('theme');
   }
 }
 ['click', 'keydown', 'pointerdown', 'touchstart'].forEach(evt => {
-  document.addEventListener(evt, tryPlayLobbyTheme, { once: true });
+  document.addEventListener(evt, tryPlayLobbyTheme);
 });
+// Try to play immediately (browser may block, but interaction will catch it)
+setTimeout(tryPlayLobbyTheme, 500);
+
+function startDevToolsProtection() {
+  // Disable right click
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Disable key combinations
+  document.addEventListener('keydown', e => {
+    if (e.key === 'F12') {
+      e.preventDefault();
+      return false;
+    }
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+      e.preventDefault();
+      return false;
+    }
+    if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // real-time debugger loop to pause execution
+  setInterval(() => {
+    const startTime = performance.now();
+    debugger;
+    const endTime = performance.now();
+    if (endTime - startTime > 100) {
+      document.body.innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;background:#05011a;color:#ef4444;font-family:sans-serif;text-align:center;padding:20px;box-sizing:border-box;z-index:999999;">
+          <h2 style="font-size:24px;margin-bottom:10px;">🚨 PHÁT HIỆN CAN THIỆP HỆ THỐNG</h2>
+          <p style="color:#a1a1aa;font-size:14px;max-width:400px;line-height:1.5;">Vui lòng đóng Console/DevTools và tải lại trang để tiếp tục trò chơi.</p>
+        </div>
+      `;
+    }
+  }, 500);
+}
 
 // =============================================
 // SCREEN MANAGEMENT
@@ -444,6 +490,7 @@ function loadCurrentQuestion() {
 
   state.currentQuestion = q;
   state.foundKeywords   = [];
+  state.lostTurnPlayers = [];
   state.gameActive      = true;
   showScoresBtn.classList.add('hidden');
 
@@ -457,6 +504,7 @@ function loadCurrentQuestion() {
   // Render board & score
   renderAnswerBoard();
   renderScoreTicker();
+  renderLostTurns();
   updateFoundCounter();
 
   // Reset host inputs
@@ -464,9 +512,18 @@ function loadCurrentQuestion() {
   hostAnswerInput.value = '';
   setFeedback('', '');
 
+  // Determine dynamic time limit
+  let baseTime = 45;
+  if (state.currentQIdx >= 6) {
+    baseTime = 60; // Câu 7 trở đi
+  } else if (state.currentQIdx >= 3) {
+    baseTime = 50; // Câu 4, 5, 6
+  }
+  
   // Start timer
-  state.timeLeft  = q.timeLimit;
-  state.totalTime = q.timeLimit;
+  state.baseTime  = baseTime;
+  state.timeLeft  = baseTime;
+  state.totalTime = baseTime;
   startTimer();
 
   // Focus answer input
@@ -534,6 +591,18 @@ function updateFoundCounter() {
   foundCounter.textContent = `${state.foundKeywords.length} / ${q.keywords.length} từ khóa`;
 }
 
+function renderLostTurns() {
+  const ticker = document.getElementById('lostTurnTicker');
+  if (!ticker) return;
+  if (!state.lostTurnPlayers || state.lostTurnPlayers.length === 0) {
+    ticker.innerHTML = '';
+    return;
+  }
+  ticker.innerHTML = state.lostTurnPlayers.map(p => {
+    return `<div class="lost-chip" title="Mất lượt">❌ ${escapeHtml(p)}</div>`;
+  }).join('');
+}
+
 // =============================================
 // SUBMIT ANSWER (host panel)
 // =============================================
@@ -557,6 +626,14 @@ function submitAnswer() {
     return;
   }
 
+  // Prevent answering if player lost turn
+  if (state.lostTurnPlayers && state.lostTurnPlayers.includes(playerName)) {
+    setFeedback(`⚠️ ${playerName} đã mất lượt ở câu này!`, 'wrong');
+    hostAnswerInput.value = '';
+    hostPlayerNameInput.focus();
+    return;
+  }
+
   const q = state.currentQuestion;
 
   // Check un-found keywords
@@ -574,6 +651,10 @@ function submitAnswer() {
       updateScoreChip(playerName);
       setFeedback(`✅ ${playerName} tìm được: "${kw.value}" (+${pts} điểm)`, 'correct');
       showOverlay('correct');
+
+      // Reset timer on correct answer
+      state.timeLeft = state.baseTime;
+      updateTimerDisplay();
 
       // Clear answer, keep player name for quick re-entry
       hostAnswerInput.value = '';
@@ -599,9 +680,19 @@ function submitAnswer() {
   }
 
   // ❌ WRONG
+  if (!state.lostTurnPlayers) state.lostTurnPlayers = [];
+  if (!state.lostTurnPlayers.includes(playerName)) {
+    state.lostTurnPlayers.push(playerName);
+    renderLostTurns();
+  }
+
   playSound('wrong');
   setFeedback(`❌ "${answer}" không khớp – ${playerName} mất lượt này.`, 'wrong');
   showOverlay('wrong');
+
+  // Reset timer on wrong answer
+  state.timeLeft = state.baseTime;
+  updateTimerDisplay();
   hostAnswerInput.value = '';
   hostAnswerInput.focus();
 }
@@ -737,9 +828,22 @@ function endQuestion(allFound) {
   showScoresBtn.classList.remove('hidden');
 }
 
+let confirmActionCallback = null;
+
+function showConfirm(title, desc, callback) {
+  const cTitle = document.getElementById('confirmTitle');
+  const cDesc = document.getElementById('confirmDesc');
+  if (cTitle) cTitle.textContent = title;
+  if (cDesc) cDesc.textContent = desc;
+  
+  confirmActionCallback = callback;
+  if (confirmModal) confirmModal.classList.remove('hidden');
+}
+
 function revealAll() {
-  if (!confirm('Lộ tất cả đáp án còn lại và kết thúc câu?')) return;
-  endQuestion(false);
+  showConfirm('Lộ tất cả đáp án?', 'Bạn có chắc chắn muốn lộ tất cả đáp án còn lại và kết thúc câu?', () => {
+    endQuestion(false);
+  });
 }
 
 // =============================================
@@ -867,15 +971,52 @@ function showFinalResults() {
 // EVENT LISTENERS
 // =============================================
 document.addEventListener('DOMContentLoaded', async () => {
-  // Initialize Audio
-  initAudio();
+  // Password Verification Logic
+  const passwordOverlay = document.getElementById('passwordOverlay');
+  const hostPasswordInput = document.getElementById('hostPasswordInput');
+  const submitPasswordBtn = document.getElementById('submitPasswordBtn');
+  const passwordError = document.getElementById('passwordError');
+
+  async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+  }
+
+  async function verifyPassword() {
+    const input = hostPasswordInput.value;
+    const hash = await sha256(input);
+    // Hash of 'vnr2026'
+    if (hash === '17045f0c0ccc75627752c4775b13b9fc709348b9c267b6de896a1fbe9a08d987') {
+      if (passwordOverlay) passwordOverlay.classList.add('hidden');
+      initAudio();
+      setTimeout(tryPlayLobbyTheme, 500);
+      startDevToolsProtection();
+    } else {
+      if (passwordError) passwordError.classList.remove('hidden');
+      hostPasswordInput.value = '';
+      hostPasswordInput.focus();
+    }
+  }
+
+  if (submitPasswordBtn) {
+    submitPasswordBtn.addEventListener('click', verifyPassword);
+  }
+  if (hostPasswordInput) {
+    hostPasswordInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') verifyPassword();
+    });
+  }
+
+  // Preload questions in the background
+  state.allQuestions = await loadQuestions();
 
   const globalMuteBtn = document.getElementById('globalMuteBtn');
   const globalVolumeSlider = document.getElementById('globalVolumeSlider');
   const toggleIntenseBtn = document.getElementById('toggleIntenseBtn');
 
-  // Load questions
-  state.allQuestions = await loadQuestions();
   if (lobbyQCount) {
     lobbyQCount.textContent = `📋 ${state.allQuestions.length} câu hỏi · Chơi theo thứ tự`;
   }
@@ -972,8 +1113,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   revealAllBtn.addEventListener('click', revealAll);
   endQuestionBtn.addEventListener('click', () => {
-    if (confirm('Kết thúc câu hỏi này?')) endQuestion(false);
+    showConfirm('Kết thúc câu hỏi?', 'Bạn có chắc chắn muốn kết thúc câu hỏi này ngay bây giờ?', () => {
+      endQuestion(false);
+    });
   });
+  if (cancelEndBtn) {
+    cancelEndBtn.addEventListener('click', () => {
+      confirmModal.classList.add('hidden');
+      confirmActionCallback = null;
+    });
+  }
+  if (confirmEndBtn) {
+    confirmEndBtn.addEventListener('click', () => {
+      confirmModal.classList.add('hidden');
+      if (confirmActionCallback) {
+        confirmActionCallback();
+        confirmActionCallback = null;
+      }
+    });
+  }
 
   // Toggle/Manage Scoreboard Overlay manually
   showScoresBtn.addEventListener('click', () => {
@@ -1004,3 +1162,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     showScreen('lobby');
   });
 });
+
+})();

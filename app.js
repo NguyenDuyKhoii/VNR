@@ -61,10 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Nav Links Click Listeners
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetSec = link.getAttribute('data-sec');
-            scrollToSection(targetSec);
-            history.pushState(null, null, `#${targetSec}`);
+            if (targetSec) {
+                e.preventDefault();
+                scrollToSection(targetSec);
+                history.pushState(null, null, `#${targetSec}`);
+            }
         });
     });
 
