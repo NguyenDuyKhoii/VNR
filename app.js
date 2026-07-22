@@ -150,63 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 2. INTERACTIVE QUIZ LOGIC
     // ----------------------------------------------------
-    const quizData = [
-        {
-            question: "Đại hội VIII của Đảng (năm 1996) đã đưa ra nhận định mang tính bước ngoặt nào sau đây?",
-            options: [
-                "Cả nước hoàn thành cơ bản công nghiệp hóa, hiện đại hóa.",
-                "Những tiền đề chuẩn bị cho công nghiệp hóa cơ bản đã hoàn thành.",
-                "Nước ta bước vào thời kỳ quá độ lên chủ nghĩa xã hội.",
-                "Kinh tế tri thức chiếm vai trò chủ đạo trong nền kinh tế Việt Nam."
-            ],
-            correct: 1,
-            explanation: "Đại hội VIII nhận định sau 10 năm đổi mới sơ khởi (1986-1996), nước ta đã cơ bản ra khỏi khủng hoảng kinh tế-xã hội, các tiền đề chuẩn bị cho công nghiệp hóa đã hoàn thành, cho phép chuyển sang thời kỳ đẩy mạnh CNH, HĐH đất nước."
-        },
-        {
-            question: "Việt Nam chính thức gia nhập Tổ chức Thương mại Thế giới (WTO) vào thời gian nào và thuộc giai đoạn Đại hội mấy của Đảng?",
-            options: [
-                "Tháng 7/1995 - Đại hội VII",
-                "Tháng 12/2001 - Đại hội IX",
-                "Tháng 1/2007 - Đại hội X",
-                "Tháng 1/2016 - Đại hội XII"
-            ],
-            correct: 2,
-            explanation: "Việt Nam chính thức trở thành thành viên thứ 150 của WTO vào ngày 11/01/2007. Quyết sách này nằm trong lộ trình chủ động hội nhập kinh tế quốc tế sâu rộng được khẳng định mạnh mẽ tại Đại hội X."
-        },
-        {
-            question: "Mô hình kinh tế tổng quát của nước ta: 'Nền kinh tế thị trường định hướng xã hội chủ nghĩa' được xác định chính thức tại kỳ Đại hội nào?",
-            options: [
-                "Đại hội VIII (năm 1996)",
-                "Đại hội IX (năm 2001)",
-                "Đại hội X (năm 2006)",
-                "Đại hội XI (năm 2011)"
-            ],
-            correct: 1,
-            explanation: "Đại hội IX (năm 2001) đã chính thức làm rõ mô hình kinh tế tổng quát của Việt Nam trong thời kỳ quá độ là nền kinh tế thị trường định hướng xã hội chủ nghĩa, vận hành theo quy luật thị trường dưới sự quản lý của Nhà nước."
-        },
-        {
-            question: "Đại hội XI (năm 2011) của Đảng đã xác định bao nhiêu đột phá chiến lược để đẩy mạnh CNH, HĐH đất nước?",
-            options: [
-                "2 đột phá chiến lược",
-                "3 đột phá chiến lược",
-                "4 đột phá chiến lược",
-                "5 đột phá chiến lược"
-            ],
-            correct: 1,
-            explanation: "Ba đột phá chiến lược gồm: (1) Hoàn thiện thể chế kinh tế thị trường định hướng XHCN; (2) Phát triển nhanh nguồn nhân lực, nhất là nguồn nhân lực chất lượng cao; (3) Xây dựng hệ thống kết cấu hạ tầng đồng bộ hiện đại."
-        },
-        {
-            question: "Theo định hướng tầm nhìn phát triển đất nước đến năm 2045 của Đại hội XIII (năm 2021), Việt Nam phấn đấu đạt mục tiêu gì?",
-            options: [
-                "Trở thành nước đang phát triển có công nghiệp hiện đại, thu nhập trung bình cao.",
-                "Trở thành nước phát triển, thu nhập cao.",
-                "Hoàn thành cơ bản sự nghiệp công nghiệp hóa, hiện đại hóa.",
-                "Trở thành quốc gia đứng đầu khối ASEAN về quy mô kinh tế số."
-            ],
-            correct: 1,
-            explanation: "Đại hội XIII đề ra mục tiêu chiến lược: Đến năm 2030 (kỷ niệm 100 năm lập Đảng) trở thành nước đang phát triển có công nghiệp hiện đại, thu nhập trung bình cao; và đến năm 2045 (kỷ niệm 100 năm thành lập nước) trở thành nước phát triển, thu nhập cao."
+    let quizData = [];
+
+    async function loadQuizData() {
+        try {
+            const res = await fetch('./data/quiz.json');
+            if (!res.ok) throw new Error("Mã trạng thái HTTP không hợp lệ");
+            quizData = await res.json();
+            console.log("[VNR Quiz] Tải câu hỏi trắc nghiệm thành công.");
+        } catch (err) {
+            console.error("[VNR Quiz] Lỗi khi tải câu hỏi:", err);
         }
-    ];
+    }
+    loadQuizData();
 
     let currentQuestionIndex = 0;
     let score = 0;
@@ -240,6 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
     restartQuizBtn.addEventListener('click', resetQuiz);
 
     function startQuiz() {
+        if (!quizData || quizData.length === 0) {
+            alert("Đang tải câu hỏi trắc nghiệm, vui lòng đợi trong giây lát hoặc tải lại trang.");
+            return;
+        }
         startScreen.classList.remove('active');
         playScreen.classList.add('active');
         currentQuestionIndex = 0;
