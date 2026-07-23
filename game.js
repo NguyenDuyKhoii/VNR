@@ -310,11 +310,24 @@ window.removePlayer = function(index) {
   updatePlayerDatalist();
 };
 
-function updatePlayerDatalist() {
-  // Update autocomplete suggestions
-  playerSuggestions.innerHTML = state.players
-    .map(p => `<option value="${escapeHtml(p)}">`)
-    .join('');
+function updatePlayerDatalist(filterText = '') {
+  const dropdown = document.getElementById('customPlayerDropdown');
+  if (!dropdown) return;
+
+  const normFilter = normalizeVi(filterText);
+  const matched = state.players.filter(p => !normFilter || normalizeVi(p).includes(normFilter));
+
+  if (matched.length === 0) {
+    if (!filterText) {
+      dropdown.innerHTML = '<div class="dropdown-item empty-state">Chưa có người chơi</div>';
+    } else {
+      dropdown.innerHTML = '<div class="dropdown-item empty-state">Không tìm thấy người chơi</div>';
+    }
+  } else {
+    dropdown.innerHTML = matched.map(p => `
+      <div class="dropdown-item" data-value="${escapeHtml(p)}">${escapeHtml(p)}</div>
+    `).join('');
+  }
 }
 
 function updateStartBtn() {
@@ -337,8 +350,34 @@ function showInputShake(el, placeholder) {
 // =============================================
 // GAME START
 // =============================================
+// =============================================
+// LEVEL SELECTION & QUESTION UTILS
+// =============================================
+function getSelectedQuestions(level) {
+  let count = 7;
+  if (level === 'medium') count = 15;
+  else if (level === 'hard') count = 20;
+
+  if (state.allQuestions.length <= count) {
+    return [...state.allQuestions];
+  }
+
+  // Pick count random questions
+  const shuffled = [...state.allQuestions].sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, count);
+
+  // Sort them by their original ID to maintain chronological flow
+  return selected.sort((a, b) => a.id - b.id);
+}
+
+// =============================================
+// GAME START
+// =============================================
 function startGame() {
   if (state.allQuestions.length === 0) return;
+
+  const selectedLevel = state.selectedLevel || 'easy';
+  state.questionsToPlay = getSelectedQuestions(selectedLevel);
 
   state.currentQIdx  = 0;
   state.globalScores = {};
@@ -354,7 +393,7 @@ function startGame() {
 // LOAD CURRENT QUESTION (sequential)
 // =============================================
 function loadCurrentQuestion() {
-  const q = state.allQuestions[state.currentQIdx];
+  const q = state.questionsToPlay[state.currentQIdx];
   if (!q) return;
 
   state.currentQuestion = q;
@@ -367,7 +406,7 @@ function loadCurrentQuestion() {
   playBackgroundMusic('intense');
 
   // Update header
-  questionProgress.textContent = `Câu ${state.currentQIdx + 1} / ${state.allQuestions.length}`;
+  questionProgress.textContent = `Câu ${state.currentQIdx + 1} / ${state.questionsToPlay.length}`;
   questionText.textContent = q.question;
 
   // Render board & score
@@ -723,7 +762,7 @@ function showBetweenQuestion(allFound) {
   const q         = state.currentQuestion;
   const foundCnt  = state.foundKeywords.length;
   const totalCnt  = q.keywords.length;
-  const isLast    = state.currentQIdx + 1 >= state.allQuestions.length;
+  const isLast    = state.currentQIdx + 1 >= state.questionsToPlay.length;
 
   betweenQIcon.textContent  = allFound ? '🎉' : (foundCnt > totalCnt / 2 ? '👍' : '⏱️');
   betweenQTitle.textContent = allFound
@@ -780,7 +819,7 @@ function showFinalResults() {
   betweenQOverlay.classList.add('hidden');
 
   // Total count
-  if (totalQCount) totalQCount.textContent = state.allQuestions.length;
+  if (totalQCount) totalQCount.textContent = state.questionsToPlay.length;
 
   // Scoreboard
   const allPlayers = Object.keys(state.globalScores);
@@ -848,6 +887,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const hostPasswordInput = document.getElementById('hostPasswordInput');
   const submitPasswordBtn = document.getElementById('submitPasswordBtn');
   const passwordError = document.getElementById('passwordError');
+  const globalMuteBtn = document.getElementById('globalMuteBtn');
+  const globalVolumeSlider = document.getElementById('globalVolumeSlider');
+  const toggleIntenseBtn = document.getElementById('toggleIntenseBtn');
 
   async function sha256(message) {
     const msgBuffer = new TextEncoder().encode(message);
@@ -884,14 +926,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Preload questions in the background
   state.allQuestions = await loadQuestions();
+  state.selectedLevel = 'easy'; // Default level
 
-  const globalMuteBtn = document.getElementById('globalMuteBtn');
-  const globalVolumeSlider = document.getElementById('globalVolumeSlider');
-  const toggleIntenseBtn = document.getElementById('toggleIntenseBtn');
-
-  if (lobbyQCount) {
-    lobbyQCount.textContent = `📋 ${state.allQuestions.length} câu hỏi · Chơi theo thứ tự`;
+  function updateLobbyQCount() {
+    if (!lobbyQCount) return;
+    const level = state.selectedLevel || 'easy';
+    let count = 7;
+    if (level === 'medium') count = 15;
+    else if (level === 'hard') count = 20;
+    
+    lobbyQCount.innerHTML = `📋 Cấp độ: <strong style="color: var(--gold-bright); text-transform: uppercase;">${level === 'easy' ? 'Dễ' : (level === 'medium' ? 'Trung bình' : 'Khó')}</strong> · Sẽ chơi <strong>${count} câu hỏi</strong>`;
   }
+
+  // Level selector buttons listeners
+  const levelButtons = document.querySelectorAll('.btn-level');
+  levelButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      levelButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.selectedLevel = btn.dataset.level;
+      updateLobbyQCount();
+    });
+  });
+
+  updateLobbyQCount();
 
   // Start button always enabled (no pre-registration needed)
   if (startGameBtn) startGameBtn.disabled = false;
@@ -964,6 +1022,53 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
+  // Custom dropdown event handlers for player name suggestions
+  const customDropdown = document.getElementById('customPlayerDropdown');
+  const togglePlayerDropdownBtn = document.getElementById('togglePlayerDropdownBtn');
+
+  if (hostPlayerNameInput && customDropdown) {
+    hostPlayerNameInput.addEventListener('focus', () => {
+      updatePlayerDatalist('');
+      customDropdown.classList.remove('hidden');
+      hostPlayerNameInput.select();
+    });
+
+    hostPlayerNameInput.addEventListener('input', () => {
+      updatePlayerDatalist(hostPlayerNameInput.value);
+      customDropdown.classList.remove('hidden');
+    });
+
+    customDropdown.addEventListener('click', e => {
+      const item = e.target.closest('.dropdown-item');
+      if (item && !item.classList.contains('empty-state')) {
+        const val = item.getAttribute('data-value');
+        hostPlayerNameInput.value = val;
+        customDropdown.classList.add('hidden');
+        hostAnswerInput.focus();
+      }
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.custom-select-wrapper')) {
+        customDropdown.classList.add('hidden');
+      }
+    });
+  }
+
+  if (togglePlayerDropdownBtn && customDropdown) {
+    togglePlayerDropdownBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const isHidden = customDropdown.classList.contains('hidden');
+      if (isHidden) {
+        updatePlayerDatalist('');
+        customDropdown.classList.remove('hidden');
+        hostPlayerNameInput.focus();
+      } else {
+        customDropdown.classList.add('hidden');
+      }
+    });
+  }
+
   hostAnswerInput.addEventListener('input', () => {
     if (intenseMusicActive && audio.intense.paused && state.gameActive) {
       playBackgroundMusic('intense');
@@ -1023,6 +1128,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     state.globalScores = {};
     state.roundLogs    = [];
     state.players.forEach(p => state.globalScores[p] = 0);
+    
+    // Select a fresh set of questions for the active level
+    const selectedLevel = state.selectedLevel || 'easy';
+    state.questionsToPlay = getSelectedQuestions(selectedLevel);
+
     showScreen('play');
     loadCurrentQuestion();
   });

@@ -1,4 +1,4 @@
-﻿{
+{
   "gameTitle": "Chung Sức – Lịch Sử Đảng & Tiến Trình Đổi Mới",
   "subtitle": "Tiến Trình CNH-HĐH & Hội Nhập Quốc Tế (1996 – Nay)",
   "questions": [
@@ -6,14 +6,14 @@
       "id": 1,
       "question": "Kể tên các tỉnh, thành phố tập trung nhiều khu công nghiệp, khu chế xuất lớn nhất nước ta hiện nay?",
       "keywords": [
-        { "id": 1, "value": "Tỉnh Bình Dương", "aliases": ["binh duong", "tinh binh duong", "bd", "binhduong"], "points": 50 },
-        { "id": 2, "value": "Tỉnh Đồng Nai", "aliases": ["dong nai", "tinh dong nai", "dn", "dongnai"], "points": 38 },
-        { "id": 3, "value": "Thành phố Hồ Chí Minh", "aliases": ["tp hcm", "sai gon", "ho chi minh", "hcm", "tphcm", "tp ho chi minh", "thanh pho ho chi minh"], "points": 25 },
-        { "id": 4, "value": "Tỉnh Bắc Ninh", "aliases": ["bac ninh", "tinh bac ninh", "bn", "bacninh"], "points": 18 },
-        { "id": 5, "value": "Thành phố Hải Phòng", "aliases": ["hai phong", "thanh pho hai phong", "hp", "haiphong"], "points": 12 },
-        { "id": 6, "value": "Thủ đô Hà Nội", "aliases": ["ha noi", "thu do ha noi", "hn", "hanoi"], "points": 8 },
-        { "id": 7, "value": "Tỉnh Long An", "aliases": ["long an", "tinh long an", "la", "longan"], "points": 5 },
-        { "id": 8, "value": "Tỉnh Bà Rịa Vũng Tàu", "aliases": ["ba ria vung tau", "vung tau", "brvt", "ba ria", "baria vungtau", "tinh ba ria vung tau"], "points": 3 }
+        { "id": 1, "value": "Tỉnh Bình Dương", "aliases": ["binh duong", "tinh binh duong", "bd", "binhduong", "tinh bd"], "points": 50 },
+        { "id": 2, "value": "Tỉnh Đồng Nai", "aliases": ["dong nai", "tinh dong nai", "dn", "dongnai", "tinh dn"], "points": 38 },
+        { "id": 3, "value": "Thành phố Hồ Chí Minh", "aliases": ["tp hcm", "sai gon", "ho chi minh", "hcm", "tphcm", "tp ho chi minh", "thanh pho ho chi minh", "sg", "saigon"], "points": 25 },
+        { "id": 4, "value": "Tỉnh Bắc Ninh", "aliases": ["bac ninh", "tinh bac ninh", "bn", "bacninh", "tinh bn"], "points": 18 },
+        { "id": 5, "value": "Thành phố Hải Phòng", "aliases": ["hai phong", "thanh pho hai phong", "hp", "haiphong", "tp hai phong", "dat cang", "datcang"], "points": 12 },
+        { "id": 6, "value": "Thủ đô Hà Nội", "aliases": ["ha noi", "thu do ha noi", "hn", "hanoi", "tp ha noi", "thu do", "thudo"], "points": 8 },
+        { "id": 7, "value": "Tỉnh Long An", "aliases": ["long an", "tinh long an", "la", "longan", "tinh la"], "points": 5 },
+        { "id": 8, "value": "Tỉnh Bà Rịa Vũng Tàu", "aliases": ["ba ria vung tau", "vung tau", "brvt", "ba ria", "baria vungtau", "tinh ba ria vung tau", "br-vt", "baria", "vungtau"], "points": 3 }
       ],
       "timeLimit": 90,
       "bonusPoint": 30
@@ -22,115 +22,245 @@
       "id": 2,
       "question": "Kể tên các mặt hàng nông sản và sản phẩm xuất khẩu chủ lực có giá trị kinh tế cao của Việt Nam khi hội nhập?",
       "keywords": [
-        { "id": 1, "value": "Lúa gạo", "aliases": ["gao", "lua gao", "lua", "rice", "xuat khau gao"], "points": 48 },
-        { "id": 2, "value": "Cà phê", "aliases": ["ca phe", "coffee", "caphe", "xuat khau ca phe"], "points": 36 },
-        { "id": 3, "value": "Hạt điều", "aliases": ["dieu", "hat dieu", "cashew", "xuat khau hat dieu"], "points": 24 },
-        { "id": 4, "value": "Thủy hải sản", "aliases": ["thuy san", "hai san", "tom", "ca", "muc", "seafood", "thuy hai san", "tom ca", "ca tra", "tom dong lanh"], "points": 15 },
-        { "id": 5, "value": "Trái cây nhiệt đới", "aliases": ["hoa qua", "trai cay", "sau rieng", "thanh long", "nhan", "vai", "trai cay nhiet doi", "nong san trai cay"], "points": 8 },
-        { "id": 6, "value": "Hạt tiêu", "aliases": ["tieu", "hat tieu", "pepper"], "points": 4 }
+        { "id": 1, "value": "Lúa gạo", "aliases": ["gao", "lua gao", "lua", "rice", "xuat khau gao", "hat gao", "nong san gao"], "points": 48 },
+        { "id": 2, "value": "Cà phê", "aliases": ["ca phe", "coffee", "caphe", "xuat khau ca phe", "cafe", "hat ca phe"], "points": 36 },
+        { "id": 3, "value": "Hạt điều", "aliases": ["dieu", "hat dieu", "cashew", "xuat khau hat dieu", "nhan dieu"], "points": 24 },
+        { "id": 4, "value": "Thủy hải sản", "aliases": ["thuy san", "hai san", "tom", "ca", "muc", "seafood", "thuy hai san", "tom ca", "ca tra", "tom dong lanh", "ca ba sa", "tom muc", "hai san dong lanh"], "points": 15 },
+        { "id": 5, "value": "Trái cây nhiệt đới", "aliases": ["hoa qua", "trai cay", "sau rieng", "thanh long", "nhan", "vai", "trai cay nhiet doi", "nong san trai cay", "man", "xoai", "trai cay xuat khau", "qua", "trai cay tuoi"], "points": 8 },
+        { "id": 6, "value": "Hạt tiêu", "aliases": ["tieu", "hat tieu", "pepper", "xuat khau tieu", "tieu den"], "points": 4 }
       ],
       "timeLimit": 100,
       "bonusPoint": 30
     },
     {
       "id": 3,
+      "question": "Thực hiện Công nghiệp hóa, bên cạnh nông sản, những mặt hàng công nghiệp nào đang là sản phẩm xuất khẩu 'tỷ đô' chủ lực của Việt Nam?",
+      "keywords": [
+        { "id": 1, "value": "Điện thoại và linh kiện", "aliases": ["dien thoai", "linh kien dien thoai", "smartphone", "smart phone", "điện thoại", "linh kien", "phone", "mobile", "dien thoai thong minh", "linh kien dt"], "points": 48 },
+        { "id": 2, "value": "Máy vi tính và linh kiện điện tử", "aliases": ["may vi tinh", "linh kien dien tu", "dien tu", "laptop", "điện tử", "máy tính", "pc", "may tinh", "computer", "linh kien may tinh", "thiet bi dien tu"], "points": 38 },
+        { "id": 3, "value": "Hàng dệt may", "aliases": ["det may", "quan ao", "may mac", "thoi trang", "dệt may", "quần áo", "trang phuc", "hang det may", "quan ao may mac", "vai voc", "soi chi"], "points": 28 },
+        { "id": 4, "value": "Giày dép các loại", "aliases": ["giay dep", "giay", "da giay", "giày dép", "giày", "sneaker", "giay dep cac loai", "dep", "da giay xuat khau"], "points": 18 },
+        { "id": 5, "value": "Máy móc, thiết bị và phụ tùng", "aliases": ["may moc", "thiet bi", "phu tung", "máy móc", "cơ khí", "may moc thiet bi", "phu tung may", "thiet bi may moc"], "points": 12 },
+        { "id": 6, "value": "Gỗ và nội thất bằng gỗ", "aliases": ["go", "san pham go", "do go", "nội thất gỗ", "gỗ", "do noi that", "go va lam lam", "noi that go", "go xuat khau"], "points": 6 }
+      ],
+      "timeLimit": 100,
+      "bonusPoint": 35
+    },
+    {
+      "id": 4,
       "question": "Đại hội VIII (1996) đã xác định những động lực và nguồn lực cốt lõi nào để đẩy mạnh công nghiệp hóa, hiện đại hóa đất nước?",
       "keywords": [
-        { "id": 1, "value": "Phát huy nguồn lực con người", "aliases": ["nguon luc con nguoi", "con nguoi", "nhan luc", "nhan su", "yeu to con nguoi", "nguon nhan luc", "con nguoi la trung toan", "con nguoi la trung tam", "phat huy con nguoi"], "points": 45 },
-        { "id": 2, "value": "Khoa học và Công nghệ", "aliases": ["khoa hoc cong nghe", "khoa hoc va cong nghe", "khcn", "khoa hoc", "cong nghe", "kh cn", "khoa hoc ky thuat", "khkt", "khoa hoc va cong nghe la dong luc"], "points": 32 },
-        { "id": 3, "value": "Giáo dục và Đào tạo", "aliases": ["giao duc", "dao tao", "giao duc dao tao", "giao duc va dao tao", "gd dt", "gddt", "truong hoc", "hoc tap", "gd va dt"], "points": 18 },
-        { "id": 4, "value": "Xây dựng cơ sở hạ tầng đồng bộ", "aliases": ["ha tang", "co so ha tang", "duong sa", "cau cong", "he thong ha tang", "xay dung ha tang", "ha tang dong bo", "ket cau ha tang"], "points": 8 }
+        { "id": 1, "value": "Phát huy nguồn lực con người", "aliases": ["nguon luc con nguoi", "con nguoi", "nhan luc", "nhan su", "yeu to con nguoi", "nguon nhan luc", "con nguoi la trung toan", "con nguoi la trung tam", "phat huy con nguoi", "nhan luc chat luong", "nguon luc nguoi"], "points": 45 },
+        { "id": 2, "value": "Khoa học và Công nghệ", "aliases": ["khoa hoc cong nghe", "khoa hoc va cong nghe", "khcn", "khoa hoc", "cong nghe", "kh cn", "khoa hoc ky thuat", "khkt", "khoa hoc va cong nghe la dong luc", "cong nghe moi", "khcn la dong luc"], "points": 32 },
+        { "id": 3, "value": "Giáo dục và Đào tạo", "aliases": ["giao duc", "dao tao", "giao duc dao tao", "giao duc va dao tao", "gd dt", "gddt", "truong hoc", "hoc tap", "gd va dt", "nang cao dan tri", "dao tao nhan luc"], "points": 18 },
+        { "id": 4, "value": "Xây dựng cơ sở hạ tầng đồng bộ", "aliases": ["ha tang", "co so ha tang", "duong sa", "cau cong", "he thong ha tang", "xay dung ha tang", "ha tang giao thong", "ket cau ha tang", "ha tang dong bo"], "points": 8 }
       ],
       "timeLimit": 100,
       "bonusPoint": 30
     },
     {
-      "id": 4,
+      "id": 5,
       "question": "Đại hội IX (2001) đã đưa ra những bước đột phá lý luận và chủ trương chiến lược mới nào cho nền kinh tế nước ta?",
       "keywords": [
-        { "id": 1, "value": "Kinh tế thị trường định hướng xã hội chủ nghĩa", "aliases": ["kinh te thi truong", "dinh huong xa hoi chu nghia", "kttt", "kinh te thi truong dinh huong xhcn", "kinh te thi truong dinh huong xa hoi chu nghia", "kinh te dinh huong xhcn"], "points": 52 },
-        { "id": 2, "value": "Kinh tế tri thức", "aliases": ["kinh te tri thuc", "tri thuc", "phat trien kinh te tri thuc"], "points": 35 },
-        { "id": 3, "value": "Công nghiệp hóa rút ngắn", "aliases": ["cnh rut ngan", "rut ngan", "cong nghiep hoa rut ngan", "di tat don dau rut ngan"], "points": 22 },
-        { "id": 4, "value": "Chủ động và tích cực hội nhập kinh tế quốc tế", "aliases": ["chu dong va tich cuc hoi nhap", "hoi nhap kinh te", "hoi nhap quoc te", "hoi nhap kinh te quoc te", "chu dong hoi nhap"], "points": 12 },
-        { "id": 5, "value": "Thực hiện đi tắt đón đầu", "aliases": ["di tat don dau", "di tat", "don dau"], "points": 5 }
-      ],
-      "timeLimit": 120,
-      "bonusPoint": 40
-    },
-    {
-      "id": 5,
-      "question": "Đại hội X (2006) đã đề ra những quyết sách lịch sử nào giúp giải phóng nguồn lực kinh tế tư nhân và đưa đất nước thoát nghèo?",
-      "keywords": [
-        { "id": 1, "value": "Cho phép Đảng viên làm kinh tế tư nhân", "aliases": ["dang vien lam kinh te tu nhan", "kinh te tu nhan", "dang vien lam kinh te", "cho phep dang vien lam kinh te", "dang vien lam tu nhan"], "points": 48 },
-        { "id": 2, "value": "Đưa nước ta thoát khỏi nhóm nước nghèo", "aliases": ["thoat khoi nhom nuoc ngheo", "thoat ngheo", "dua nuoc ta thoat ngheo", "ra khoi nuoc ngheo", "thoat khoi kem phat trien"], "points": 35 },
-        { "id": 3, "value": "Gia nhập Tổ chức Thương mại Thế giới", "aliases": ["gia nhap wto", "wto", "to chuc thuong mai the gioi", "vao wto", "thanh vien wto"], "points": 24 },
-        { "id": 4, "value": "Tinh gọn bộ máy hành chính nhà nước", "aliases": ["tinh gon bo may", "bo may hanh chinh", "sap xep bo may", "giam bo may", "tinh gon bo may hanh chinh"], "points": 14 },
-        { "id": 5, "value": "Thu hút mạnh mẽ dòng vốn đầu tư trực tiếp nước ngoài", "aliases": ["fdi", "thu hut fdi", "dau tu nuoc ngoai", "dong von fdi", "thu hut dau tu nuoc ngoai"], "points": 6 }
+        { "id": 1, "value": "Kinh tế thị trường định hướng xã hội chủ nghĩa", "aliases": ["kinh te thi truong", "dinh huong xa hoi chu nghia", "kttt", "kinh te thi truong dinh huong xhcn", "kinh te thi truong dinh huong xa hoi chu nghia", "kinh te dinh huong xhcn", "kttt dinh huong xhcn", "kttt xhcn"], "points": 52 },
+        { "id": 2, "value": "Kinh tế tri thức", "aliases": ["kinh te tri thuc", "tri thuc", "phat trien kinh te tri thuc", "nen kinh te tri thuc", "kttt", "tri thuc khoa hoc"], "points": 35 },
+        { "id": 3, "value": "Công nghiệp hóa rút ngắn", "aliases": ["cnh rut ngan", "rut ngan", "cong nghiep hoa rut ngan", "di tat don dau rut ngan", "công nghiệp hóa rút ngắn", "rut ngan thoi gian CNH"], "points": 22 },
+        { "id": 4, "value": "Chủ động và tích cực hội nhập kinh tế quốc tế", "aliases": ["chu dong va tich cuc hoi nhap", "hoi nhap kinh te", "hoi nhap quoc te", "hoi nhap kinh te quoc te", "chu dong hoi nhap", "tich cuc hoi nhap", "hoi nhap"], "points": 12 },
+        { "id": 5, "value": "Thực hiện đi tắt đón đầu", "aliases": ["di tat don dau", "di tat", "don dau", "di tat don dau cong nghe", "di tat don dau kinh te", "don dau thoi dai"], "points": 5 }
       ],
       "timeLimit": 120,
       "bonusPoint": 40
     },
     {
       "id": 6,
-      "question": "Ba đột phá chiến lược được xác định tại Đại hội XI (2011) nhằm đưa nước ta vượt qua bẫy thu nhập trung bình là gì?",
+      "question": "Cương lĩnh năm 2011 đã đặt ra mục tiêu: 'Dân giàu, nước mạnh...'. Hãy kể tên 3 đặc trưng tiếp theo trong câu nói này?",
       "keywords": [
-        { "id": 1, "value": "Hoàn thiện thể chế kinh tế thị trường", "aliases": ["the che", "the che kinh te thi truong", "hoan thien the che", "hoan thien the chettt", "the che kinh te"], "points": 55 },
-        { "id": 2, "value": "Phát triển nguồn nhân lực chất lượng cao", "aliases": ["nhan luc", "nguon nhan luc", "nhan luc chat luong cao", "phat trien nhan luc", "nhan luc chat luong"], "points": 38 },
-        { "id": 3, "value": "Xây dựng hệ thống kết cấu hạ tầng đồng bộ", "aliases": ["ha tang", "ket cau ha tang", "ha tang dong bo", "xay dung ha tang", "ha tang giao thong"], "points": 22 }
+        { "id": 1, "value": "Dân chủ", "aliases": ["dan chu", "dân chủ", "quyen dan chu", "dan chu hon"], "points": 40 },
+        { "id": 2, "value": "Công bằng", "aliases": ["cong bang", "công bằng", "xa hoi cong bang", "cong bang hon"], "points": 35 },
+        { "id": 3, "value": "Văn minh", "aliases": ["van minh", "văn minh", "xa hoi van minh", "van minh hon"], "points": 25 }
       ],
       "timeLimit": 90,
       "bonusPoint": 30
     },
     {
       "id": 7,
-      "question": "Theo số liệu cập nhật thực tiễn, Việt Nam hiện đang giữ những vị trí, thứ hạng kinh tế nổi bật nào trên bản đồ thế giới?",
+      "question": "Đại hội XII công nhận 'Kinh tế tư nhân là động lực quan trọng'. Hãy kể tên các 'ông lớn' tập đoàn tư nhân cực kỳ quen mặt với giới trẻ hiện nay?",
       "keywords": [
-        { "id": 1, "value": "Xếp thứ ba mươi hai thế giới về quy mô GDP", "aliases": ["xep thu 32", "32 the gioi", "quy mo gdp", "gdp dung thu 32", "gdp xep thu ba muoi hai", "gdp 32"], "points": 48 },
-        { "id": 2, "value": "Top hai mươi nền kinh tế hàng đầu về thương mại quốc tế", "aliases": ["top 20 thuong mai", "top 20", "thuong mai quoc te", "thuong mai dung top 20", "top hai muoi thuong mai"], "points": 35 },
-        { "id": 3, "value": "Top mười lăm toàn cầu về thu hút đầu tư trực tiếp nước ngoài", "aliases": ["top 15 fdi", "top 15", "dau tu truc tiep nuoc ngoai", "thu hut fdi top 15", "top muoi lam fdi"], "points": 22 },
-        { "id": 4, "value": "Tốc độ tăng trưởng GDP đạt tám phẩy không hai phần trăm", "aliases": ["tang truong 8.02%", "8.02%", "tam phay khong hai phan tram", "gdp tang 8.02", "tang truong gdp tam phay khong hai"], "points": 12 },
-        { "id": 5, "value": "Quy mô GDP đạt năm trăm mười bốn tỷ USD", "aliases": ["514 ty usd", "514 ty", "514", "nam tram muoi bon ty usd", "gdp dat nam tram muoi bon ty"], "points": 5 }
+        { "id": 1, "value": "Vingroup / VinFast", "aliases": ["vingroup", "vinfast", "vin", "vinhomes", "tập đoàn vin", "tap doan vingroup", "xe vinfast", "vin group", "vin fast"], "points": 45 },
+        { "id": 2, "value": "Tập đoàn FPT", "aliases": ["fpt", "tap doan fpt", "fptu", "đại học fpt", "cong ty fpt", "fpt software", "fpt telecom", "fpt retail"], "points": 35 },
+        { "id": 3, "value": "Tập đoàn Viettel", "aliases": ["viettel", "mang viettel", "viettel telecom", "tap doan viettel", "tong cong ty viettel", "viettel post", "mang di dong viettel"], "points": 25 },
+        { "id": 4, "value": "Masan Group (WinMart, Chin-su)", "aliases": ["masan", "winmart", "chinsu", "masan group", "vinmart", "nuoc mam chinsu", "tap doan masan", "win mart"], "points": 15 },
+        { "id": 5, "value": "Vietjet Air", "aliases": ["vietjet", "vietjet air", "máy bay vietjet", "vj", "hang bay vietjet", "vietjetair", "hang hang khong vietjet"], "points": 10 },
+        { "id": 6, "value": "Tập đoàn Hòa Phát", "aliases": ["hoa phat", "thep hoa phat", "hòa phát", "tap doan hoa phat", "ton hoa phat"], "points": 5 },
+        { "id": 7, "value": "Sun Group", "aliases": ["sun group", "sungroup", "bà nà hills", "sun world", "tap doan mat troi", "ba na hills", "fansipan", "sunworld"], "points": 5 }
       ],
-      "timeLimit": 120,
-      "bonusPoint": 50
+      "timeLimit": 100,
+      "bonusPoint": 40
     },
     {
       "id": 8,
-      "question": "Đại hội XII (2016) đã xác định những chủ trương và nhiệm vụ then chốt nào trong công tác xây dựng Đảng và hội nhập toàn diện?",
+      "question": "Nhờ chủ trương 'đột phá hạ tầng', những siêu công trình giao thông nào đang mọc lên khắp cả nước giúp chúng ta đi lại tiện lợi hơn?",
       "keywords": [
-        { "id": 1, "value": "Đẩy mạnh phòng chống tham nhũng lãng phí", "aliases": ["phong chong tham nhung", "chong tham nhung", "quan lieu lang phi", "phong va chong tham nhung", "lo thi nong", "lo thi nong len"], "points": 46 },
-        { "id": 2, "value": "Kinh tế tư nhân là một động lực quan trọng", "aliases": ["kinh te tu nhan", "dong luc quan trong", "kinh te tu nhan la dong luc", "phat trien kinh te tu nhan"], "points": 32 },
-        { "id": 3, "value": "Hội nhập quốc tế toàn diện sâu rộng", "aliases": ["hoi nhap toan dien", "hoi nhap quoc te", "hoi nhap toan dien sau rong", "chu dong hoi nhap"], "points": 20 },
-        { "id": 4, "value": "Ngăn chặn tự diễn biến tự chuyển hóa", "aliases": ["tu dien bien", "tu chuyen hoa", "ngan chan tu dien bien tu chuyen hoa", "chong tu dien bien"], "points": 12 },
-        { "id": 5, "value": "Cử lực lượng tham gia hoạt động gìn giữ hòa bình Liên Hợp Quốc", "aliases": ["gin giu hoa binh", "lien hop quoc", "gin giu hoa binh lhq", "tham gia gin giu hoa binh"], "points": 4 }
+        { "id": 1, "value": "Đường cao tốc (Cao tốc Bắc - Nam)", "aliases": ["cao toc", "cao toc bac nam", "duong cao toc", "cao tốc", "đường cao tốc", "cao tốc bắc nam", "mở cao tốc", "lam cao toc", "duong cao toc bac nam", "cao toc bac nam phia dong"], "points": 45 },
+        { "id": 2, "value": "Tàu điện / Metro (Cát Linh - Hà Đông, Suối Tiên)", "aliases": ["metro", "tau dien", "tau dien ngam", "cat linh ha dong", "ben thanh suoi tien", "tàu điện", "đường sắt trên cao", "tau dien tren cao", "me tro", "metro cat linh", "metro ben thanh", "duong sat do thi"], "points": 35 },
+        { "id": 3, "value": "Sân bay Quốc tế cỡ lớn (Sân bay Long Thành)", "aliases": ["san bay long thanh", "long thanh", "san bay", "sân bay long thành", "sân bay quốc tế", "cảng hàng không", "san bay moi", "cang hang khong quoc te long thanh", "cang hang khong long thanh"], "points": 25 },
+        { "id": 4, "value": "Đường sắt tốc độ cao Bắc - Nam", "aliases": ["duong sat toc do cao", "tau cao toc", "duong sat bac nam", "đường sắt", "đường sắt cao tốc", "tàu viên đạn", "tau nhanh", "duong sat cao toc bac nam", "shinkansen viet nam", "duong sat toc do cao bac nam"], "points": 15 },
+        { "id": 5, "value": "Cầu dây văng / Cầu vượt biển / Cầu vượt sông", "aliases": ["cau day vang", "cau vuot bien", "cau vuot song", "xay cau", "cầu dây văng", "cầu vượt", "cầu vượt biển", "cây cầu", "cau vuot", "cau bac qua song", "cau day vang hien dai"], "points": 10 }
+      ],
+      "timeLimit": 90,
+      "bonusPoint": 30
+    },
+    {
+      "id": 9,
+      "question": "Đại hội X (2006) đã đề ra những quyết sách lịch sử nào giúp giải phóng nguồn lực kinh tế tư nhân và đưa đất nước thoát nghèo?",
+      "keywords": [
+        { "id": 1, "value": "Cho phép Đảng viên làm kinh tế tư nhân", "aliases": ["dang vien lam kinh te tu nhan", "kinh te tu nhan", "dang vien lam kinh te", "cho phep dang vien lam kinh te", "dang vien lam tu nhan", "dang vien lam kinh te tu nhan la buoc dot pha", "cho phep lam kinh te tu nhan"], "points": 48 },
+        { "id": 2, "value": "Đưa nước ta thoát khỏi nhóm nước nghèo", "aliases": ["thoat khoi nhom nuoc ngheo", "thoat ngheo", "dua nuoc ta thoat ngheo", "ra khoi nuoc ngheo", "thoat khoi kem phat trien", "thoat khoi nuoc ngheo kem phat trien", "thoat ngheo kem phat trien"], "points": 35 },
+        { "id": 3, "value": "Gia nhập Tổ chức Thương mại Thế giới", "aliases": ["gia nhap wto", "wto", "to chuc thuong mai the gioi", "vao wto", "thanh vien wto", "hoi nhap wto", "gia nhap to chuc thuong mai the gioi"], "points": 24 },
+        { "id": 4, "value": "Tinh gọn bộ máy hành chính nhà nước", "aliases": ["tinh gon bo may", "bo may hanh chinh", "sap xep bo may", "giam bo may", "tinh gon bo may hanh chinh", "tinh gon hanh chinh", "cai cach hanh chinh"], "points": 14 },
+        { "id": 5, "value": "Thu hút mạnh mẽ dòng vốn đầu tư trực tiếp nước ngoài", "aliases": ["fdi", "thu hut fdi", "dau tu nuoc ngoai", "dong von fdi", "thu hut dau tu nuoc ngoai", "von fdi", "dau tu truc tiep nuoc ngoai"], "points": 6 }
+      ],
+      "timeLimit": 120,
+      "bonusPoint": 40
+    },
+    {
+      "id": 10,
+      "question": "Ba đột phá chiến lược được xác định tại Đại hội XI (2011) nhằm đưa nước ta vượt qua bẫy thu nhập trung bình là gì?",
+      "keywords": [
+        { "id": 1, "value": "Hoàn thiện thể chế kinh tế thị trường", "aliases": ["the che", "the che kinh te thi truong", "hoan thien the che", "hoan thien the chettt", "the che kinh te", "cai cach the che", "the che kttt"], "points": 55 },
+        { "id": 2, "value": "Phát triển nguồn nhân lực chất lượng cao", "aliases": ["nhan luc", "nguon nhan luc", "nhan luc chat luong cao", "phat trien nhan luc", "nhan luc chat luong", "nguon nhan luc chat luong cao", "dao tao nhan luc chat luong cao"], "points": 38 },
+        { "id": 3, "value": "Xây dựng hệ thống kết cấu hạ tầng đồng bộ", "aliases": ["ha tang", "ket cau ha tang", "ha tang giao thong", "xay dung ha tang", "co so ha tang", "ha tang dong bo", "ket cau ha tang dong bo"], "points": 22 }
+      ],
+      "timeLimit": 90,
+      "bonusPoint": 30
+    },
+    {
+      "id": 11,
+      "question": "Nghị quyết Trung ương 4 khóa XII đẩy mạnh công cuộc 'Đốt lò'. Những thói hư tật xấu (red flag) nào bị Đảng ta kiên quyết 'say no'?",
+      "keywords": [
+        { "id": 1, "value": "Tham nhũng / Hối lộ", "aliases": ["tham nhung", "hoi lo", "an hoi lo", "nhan hoi lo", "tham nhũng", "hối lộ", "tham ô", "tham o", "an dut lot", "dut lot"], "points": 45 },
+        { "id": 2, "value": "Tự diễn biến / Tự chuyển hóa", "aliases": ["tu dien bien", "tu chuyen hoa", "chong tu dien bien", "tự diễn biến", "tự chuyển hóa", "tu dien bien tu chuyen hoa", "ngan chan tu dien bien"], "points": 35 },
+        { "id": 3, "value": "Lãng phí / Thất thoát của công", "aliases": ["lang phi", "that thoat", "lang phi cua cong", "lãng phí", "thất thoát", "lang phi tai san cong", "that thoat ngan sach", "that thoat cua cong"], "points": 25 },
+        { "id": 4, "value": "Quan liêu / Xa rời nhân dân", "aliases": ["quan lieu", "xa roi nhan dan", "quan liêu", "hách dịch", "cửa quyền", "xa roi dan", "quan lieu cua quyen"], "points": 15 },
+        { "id": 5, "value": "Lợi ích nhóm / Tư duy nhiệm kỳ", "aliases": ["loi ich nhom", "tu duy nhiem ky", "bao che", "lợi ích nhóm", "sân sau", "loi ich nhom san sau", "tu duy nhiem ky loi ich nhom"], "points": 10 }
+      ],
+      "timeLimit": 90,
+      "bonusPoint": 30
+    },
+    {
+      "id": 12,
+      "question": "Hưởng ứng công cuộc 'Chính phủ số' và 'Xã hội số', những chiếc 'App quốc dân' nào đang nằm chễm chệ trên điện thoại của hầu hết người Việt?",
+      "keywords": [
+        { "id": 1, "value": "VNeID (Định danh điện tử)", "aliases": ["vneid", "dinh danh dien tu", "dinh danh", "app cong an", "app vneid", "vn eid", "vne id", "dinh danh cong dan"], "points": 50 },
+        { "id": 2, "value": "Mobile Banking / App Ngân hàng", "aliases": ["ngan hang", "ngân hàng", "bank", "mobile banking", "app ngan hang", "ngan hang so", "internet banking", "app ngân hàng", "chuyển khoản", "app bank", "ngan hang dien tu", "chuyen tien", "banking"], "points": 35 },
+        { "id": 3, "value": "Ví điện tử (Momo, ZaloPay, VNPay)", "aliases": ["vi dien tu", "momo", "zalo pay", "zalopay", "vnpay", "ví điện tử", "vi momo", "vnpay qr", "zalopay vi"], "points": 25 },
+        { "id": 4, "value": "VssID (Bảo hiểm xã hội số)", "aliases": ["bhyt", "bao hiem y te", "vssid", "bao hiem xa hoi", "bhxh", "app bao hiem", "vss id", "bao hiem xa hoi so", "bhxh so", "vss id bao hiem"], "points": 15 },
+        { "id": 5, "value": "Cổng Dịch vụ công Quốc gia", "aliases": ["dich vu cong", "cong dich vu cong", "dich vu cong quoc gia", "dịch vụ công", "cong dich vu cong quoc gia", "lam thu tuc online"], "points": 10 }
+      ],
+      "timeLimit": 90,
+      "bonusPoint": 30
+    },
+    {
+      "id": 13,
+      "question": "Không chỉ làm kinh tế giỏi, Việt Nam còn 'flex' uy tín cực mạnh trên trường quốc tế (Hội nhập toàn diện) qua các sự kiện hoặc lĩnh vực nào?",
+      "keywords": [
+        { "id": 1, "value": "Đăng cai các Hội nghị Quốc tế (APEC, ASEAN, Mỹ-Triều)", "aliases": ["apec", "asean", "thuong dinh my trieu", "dang cai apec", "hội nghị quốc tế", "to chuc hoi nghi", "dang cai thuong dinh", "apec viet nam"], "points": 35 },
+        { "id": 2, "value": "Thể thao Quốc tế (Vô địch SEA Games, AFF Cup)", "aliases": ["the thao", "sea games", "aff cup", "bong da", "thể thao", "vo dich aff cup", "sea games vo dich", "huy chuong vang", "the thao quoc te"], "points": 25 },
+        { "id": 3, "value": "Du lịch toàn cầu (Vịnh Hạ Long, Sơn Đoòng)", "aliases": ["du lich", "son doong", "vinh ha long", "du lịch", "hang son doong", "kham pha du lich", "diem den toan cau", "vinh ha long son doong"], "points": 15 },
+        { "id": 4, "value": "Xuất khẩu Văn hóa / Giải trí (Vpop, Phim ảnh)", "aliases": ["van hoa", "vpop", "giai tri", "phim anh", "âm nhạc", "văn hóa", "nhac tre viet nam", "phim viet nam", "xuat khau van hoa"], "points": 10 },
+        { "id": 5, "value": "Hỗ trợ cứu nạn quốc tế (như tại Thổ Nhĩ Kỳ)", "aliases": ["cuu nan", "cuu ho quoc te", "ho tro quoc te", "cứu nạn", "cuu ho tai tho nhi ky", "cuu nan quoc te", "ho tro tham hoa"], "points": 5 }
+      ],
+      "timeLimit": 100,
+      "bonusPoint": 40
+    },
+    {
+      "id": 14,
+      "question": "Theo số liệu cập nhật thực tiễn, Việt Nam hiện đang giữ những vị trí, thứ hạng kinh tế nổi bật nào trên bản đồ thế giới?",
+      "keywords": [
+        { "id": 1, "value": "Xếp thứ ba mươi hai thế giới về quy mô GDP", "aliases": ["xep thu 32", "32 the gioi", "quy mo gdp", "gdp dung thu 32", "gdp xep thu ba muoi hai", "gdp 32", "xep thu 32 gdp", "gdp dung top 32", "thứ 32"], "points": 48 },
+        { "id": 2, "value": "Top hai mươi nền kinh tế hàng đầu về thương mại quốc tế", "aliases": ["top 20 thuong mai", "top 20", "thuong mai quoc te", "thuong mai dung top 20", "top hai muoi thuong mai", "top 20 quoc te", "thuong mai top 20"], "points": 35 },
+        { "id": 3, "value": "Top mười lăm toàn cầu về thu hút đầu tư trực tiếp nước ngoài", "aliases": ["top 15 fdi", "top 15", "dau tu truc tiep nuoc ngoai", "thu hut fdi top 15", "top muoi lam fdi", "thu hut dau tu top 15", "fdi top 15"], "points": 22 },
+        { "id": 4, "value": "Tốc độ tăng trưởng GDP đạt tám phẩy không hai phần trăm", "aliases": ["tang truong 8.02%", "8.02%", "tam phay khong hai phan tram", "gdp tang 8.02", "tang truong gdp tam phay khong hai", "tang truong tam phay khong hai", "gdp 8.02%"], "points": 12 },
+        { "id": 5, "value": "Quy mô GDP đạt năm trăm mười bốn tỷ USD", "aliases": ["514 ty usd", "514 ty", "514", "nam tram muoi bon ty usd", "gdp dat nam tram muoi bon ty", "gdp 514 ty", "gdp dat 514"], "points": 5 }
       ],
       "timeLimit": 120,
       "bonusPoint": 50
     },
     {
-      "id": 9,
+      "id": 15,
+      "question": "Đại hội XII (2016) đã xác định những chủ trương và nhiệm vụ then chốt nào trong công tác xây dựng Đảng và hội nhập toàn diện?",
+      "keywords": [
+        { "id": 1, "value": "Đẩy mạnh phòng chống tham nhũng lãng phí", "aliases": ["phong chong tham nhung", "chong tham nhung", "quan lieu lang phi", "phong va chong tham nhung", "lo thi nong", "lo thi nong len", "day manh chong tham nhung", "chong lang phi"], "points": 46 },
+        { "id": 2, "value": "Kinh tế tư nhân là một động lực quan trọng", "aliases": ["kinh te tu nhan", "dong luc quan trong", "kinh te tu nhan la dong luc", "phat trien kinh te tu nhan", "tư nhân là động lực", "kinh te tu nhan dong luc"], "points": 32 },
+        { "id": 3, "value": "Hội nhập quốc tế toàn diện sâu rộng", "aliases": ["hoi nhap quoc te", "hoi nhap toan dien", "hoi nhap toan dien sau rong", "chu dong hoi nhap", "ngoai giao sau rong", "tich cuc hoi nhap"], "points": 20 },
+        { "id": 4, "value": "Ngăn chặn tự diễn biến tự chuyển hóa", "aliases": ["tu dien bien", "tu chuyen hoa", "ngan chan tu dien bien tu chuyen hoa", "chong tu dien bien", "chong tu chuyen hoa"], "points": 12 },
+        { "id": 5, "value": "Cử lực lượng tham gia hoạt động gìn giữ hòa bình Liên Hợp Quốc", "aliases": ["gin giu hoa binh", "lien hop quoc", "gin giu hoa binh lhq", "tham gia gin giu hoa binh", "lhq gin giu hoa binh", "mu noi ban xanh lhq"], "points": 4 }
+      ],
+      "timeLimit": 120,
+      "bonusPoint": 50
+    },
+    {
+      "id": 16,
+      "question": "Công nghiệp hóa mở đường cho kinh tế số. Với dân IT hiện nay, những 'bến đỗ' (nơi làm việc) mang phong cách nào đang được khao khát nhất?",
+      "keywords": [
+        { "id": 1, "value": "Tập đoàn Big Tech Việt Nam (FPT, Viettel, VNG)", "aliases": ["tap doan cong nghe", "fpt", "viettel", "vng", "vng corporation", "big tech viet nam", "tập đoàn", "big tech viet", "viettel fpt vng", "tap doan cong nghe lon"], "points": 40 },
+        { "id": 2, "value": "Công ty Đa quốc gia (MNCs / Nước ngoài)", "aliases": ["cong ty da quoc gia", "mnc", "big tech", "google", "microsoft", "công ty nước ngoài", "mncs", "da quoc gia", "ngoai quoc", "singapore"], "points": 35 },
+        { "id": 3, "value": "Khởi nghiệp công nghệ (Tech Startup)", "aliases": ["startup", "khoi nghiep", "tech startup", "start up", "khởi nghiệp", "stác ập", "cong ty khoi nghiep", "khoi nghiep cong nghe"], "points": 25 },
+        { "id": 4, "value": "Công ty Gia công phần mềm (Outsourcing)", "aliases": ["outsourcing", "gia cong phan mem", "cong ty outsource", "outsource", "gia công", "gia cong", "dev outsource"], "points": 15 },
+        { "id": 5, "value": "Làm tự do / Làm từ xa (Freelancer / Remote)", "aliases": ["freelancer", "remote", "lam tu do", "lam remote", "làm tự do", "phi len xơ", "freelance", "work from home", "lam tu xa"], "points": 10 }
+      ],
+      "timeLimit": 100,
+      "bonusPoint": 40
+    },
+    {
+      "id": 17,
+      "question": "Đại hội XII (2016) chủ trương 'hội nhập toàn diện', nghĩa là không chỉ mảng Kinh tế, chúng ta còn bắt tay with quốc tế ở những lĩnh vực nào nữa?",
+      "keywords": [
+        { "id": 1, "value": "Quốc phòng", "aliases": ["quoc phong", "quân sự", "bo quoc phong", "an ninh quoc phong", "quan su"], "points": 40 },
+        { "id": 2, "value": "An ninh", "aliases": ["an ninh", "cong an", "an toan", "an toan quoc gia", "tinh bao"], "points": 30 },
+        { "id": 3, "value": "Chính trị", "aliases": ["chinh tri", "ngoai giao", "chính trị", "chinh tri quoc te", "quan he ngoai giao"], "points": 20 },
+        { "id": 4, "value": "Văn hóa", "aliases": ["van hoa", "nghe thuat", "văn hóa", "van hoa quoc te", "giao luu van hoa"], "points": 15 },
+        { "id": 5, "value": "Xã hội", "aliases": ["xa hoi", "xã hội", "hop tac xa hoi", "chinh sach xa hoi"], "points": 10 }
+      ],
+      "timeLimit": 100,
+      "bonusPoint": 40
+    },
+    {
+      "id": 18,
+      "question": "Những lĩnh vực công nghệ số trọng điểm và định hướng nghề nghiệp mũi nhọn được luật hóa làm chiến lược quốc gia của Việt Nam hiện nay?",
+      "keywords": [
+        { "id": 1, "value": "Công nghiệp bán dẫn và thiết kế vi mạch", "aliases": ["ban dan", "thiet ke vi mach", "chip ban dan", "ic design", "vi mach ban dan", "thiet ke chip", "nganh ban dan", "vi mach", "cong nghiep ban dan"], "points": 48 },
+        { "id": 2, "value": "Trí tuệ nhân tạo", "aliases": ["ai", "tri tue nhan tao", "cong nghe ai", "tri tue nhan tao ai", "machine learning", "deep learning"], "points": 35 },
+        { "id": 3, "value": "Sản xuất thử nghiệm và làm chủ chip bán dẫn", "aliases": ["san xuat thu chip", "lam chu chip ban dan", "che tao chip", "thu nghiem chip", "tu san xuat chip", "san xuat chip viet nam"], "points": 22 },
+        { "id": 4, "value": "Đào tạo kỹ sư thiết kế vi mạch", "aliases": ["dao tao ky su", "dao tao can bo", "dao tao nhan luc ban dan", "dao tao thiet ke vi mach", "dao tao ky su ban dan", "ky su thiet ke vi mach"], "points": 12 },
+        { "id": 5, "value": "Ứng dụng điện toán đám mây và an ninh mạng", "aliases": ["an ninh mang", "dien toan dam may", "cloud", "cloud computing", "cyber security", "bao mat", "bao mat thong tin"], "points": 5 }
+      ],
+      "timeLimit": 120,
+      "bonusPoint": 50
+    },
+    {
+      "id": 19,
       "question": "Ba trụ cột chiến lược cốt lõi tạo nên \"Hệ điều hành\" quốc gia trong tiến trình chuyển đổi số và công nghiệp hóa hiện đại hóa hiện nay?",
       "keywords": [
-        { "id": 1, "value": "Kinh tế số", "aliases": ["kinh te so", "kinh tes o"], "points": 50 },
-        { "id": 2, "value": "Chính phủ số", "aliases": ["chinh phu so", "chinh phuso"], "points": 35 },
-        { "id": 3, "value": "Xã hội số", "aliases": ["xa hoi so", "xa hoiso"], "points": 22 },
-        { "id": 4, "value": "Dữ liệu số liên thông", "aliases": ["du lieu so", "du lieu", "du lieu lien thong", "du lieu so lien thong"], "points": 10 }
+        { "id": 1, "value": "Kinh tế số", "aliases": ["kinh te so", "kinh tes o", "kinh te", "kts", "kinh te so hoa"], "points": 50 },
+        { "id": 2, "value": "Chính phủ số", "aliases": ["chinh phu so", "chinh phuso", "chinh phu", "cps", "dich vu cong truc tuyen"], "points": 35 },
+        { "id": 3, "value": "Xã hội số", "aliases": ["xa hoi so", "xa hoiso", "xa hoi", "xhs", "cong dan so"], "points": 22 },
+        { "id": 4, "value": "Dữ liệu số liên thông", "aliases": ["du lieu so", "du lieu", "du lieu lien thong", "du lieu so lien thong", "big data", "kho du lieu", "du lieu quoc gia"], "points": 10 }
       ],
       "timeLimit": 100,
       "bonusPoint": 30
     },
     {
-      "id": 10,
-      "question": "Những lĩnh vực công nghệ số trọng điểm và định hướng nghề nghiệp mũi nhọn được luật hóa làm chiến lược quốc gia của Việt Nam hiện nay?",
+      "id": 20,
+      "question": "Tại Đại hội XI (2011), để chống lạm phát và dọn dẹp các 'điểm nghẽn', Đảng đã yêu cầu 'tái cơ cấu' (thanh lọc/cải tổ) quyết liệt những khối nào?",
       "keywords": [
-        { "id": 1, "value": "Công nghiệp bán dẫn và thiết kế vi mạch", "aliases": ["ban dan", "thiet ke vi mach", "chip ban dan", "ic design", "vi mach ban dan", "thiet ke chip"], "points": 48 },
-        { "id": 2, "value": "Trí tuệ nhân tạo", "aliases": ["ai", "tri tue nhan tao", "cong nghe ai"], "points": 35 },
-        { "id": 3, "value": "Sản xuất thử nghiệm và làm chủ chip bán dẫn", "aliases": ["san xuat thu chip", "lam chu chip ban dan", "che tao chip", "thu nghiem chip"], "points": 22 },
-        { "id": 4, "value": "Đào tạo kỹ sư thiết kế vi mạch", "aliases": ["dao tao ky su", "dao tao can bo", "dao tao nhan luc ban dan", "dao tao thiet ke vi mach"], "points": 12 },
-        { "id": 5, "value": "Ứng dụng điện toán đám mây và an ninh mạng", "aliases": ["an ninh mang", "dien toan dam may", "cloud", "cloud computing", "cyber security"], "points": 5 }
+        { "id": 1, "value": "Doanh nghiệp / Tập đoàn Nhà nước", "aliases": ["doanh nghiep nha nuoc", "tap doan nha nuoc", "tong cong ty nha nuoc", "rut von ngoai nganh", "công ty nhà nước", "doanh nghiệp nhà nước", "dnnc", "doanh nghiep trung uong"], "points": 45 },
+        { "id": 2, "value": "Hệ thống Ngân hàng / Tổ chức tín dụng", "aliases": ["ngan hang", "to chuc tin dung", "xu ly no xau", "ngân hàng", "tín dụng", "hệ thống ngân hàng", "ngan hang thuong mai", "to chuc tin dung hop tac"], "points": 35 },
+        { "id": 3, "value": "Đầu tư công", "aliases": ["dau tu cong", "ngan sach nha nuoc", "đầu tư công", "đầu tư nhà nước", "von ngan sach", "dau tu cong dong bo"], "points": 25 },
+        { "id": 4, "value": "Tái cơ cấu thị trường Tài chính / Chứng khoán / Bất động sản", "aliases": ["chung khoan", "bat dong san", "thị trường chứng khoán", "nhà đất", "tai chinh", "thit truong tai chinh", "bds", "thi truong bds"], "points": 15 }
       ],
-      "timeLimit": 120,
-      "bonusPoint": 50
+      "timeLimit": 90,
+      "bonusPoint": 30
     }
   ]
 }

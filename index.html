@@ -15,6 +15,7 @@
         rel="stylesheet">
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="style.css?v=36">
+    <link rel="stylesheet" href="mindmap.css?v=2">
 </head>
 
 <body>
@@ -36,6 +37,7 @@
             <nav class="nav-menu" id="navMenu">
                 <a href="#home" class="nav-link active" data-sec="home">Mở Đầu</a>
                 <a href="#capnhat" class="nav-link" data-sec="capnhat">Cập Nhật Thực Tiễn</a>
+                <a href="#so-do-tu-duy" class="nav-link" data-sec="so-do-tu-duy">Sơ Đồ & Infographics</a>
                 <a href="#ai-usage" class="nav-link" data-sec="ai-usage">Minh Bạch AI</a>
                 <a href="game.html" class="nav-link">Game</a>
             </nav>
@@ -54,6 +56,7 @@
         <span class="dot" data-target="intro-video" title="Video"></span>
         <span class="dot" data-target="daihoi-viii" title="Đại hội"></span>
         <span class="dot" data-target="capnhat" title="Cập nhật"></span>
+        <span class="dot" data-target="so-do-tu-duy" title="Sơ đồ tư duy"></span>
     </nav>
 
     <aside class="micro-nav" aria-label="Liên kết nhanh">
@@ -602,6 +605,8 @@
             </div>
         </section>
 
+
+
         <!-- ============================================ -->
         <!-- MỤC 4 SLIDE 1: BỨC TRANH KINH TẾ VĨ MÔ & ĐÒN BẨY FTA -->
         <!-- ============================================ -->
@@ -970,6 +975,304 @@
             </div>
         </section>
 
+        <!-- ============================================ -->
+        <!-- SƠ ĐỒ TƯ DUY & INFOGRAPHICS TƯƠNG TÁC         -->
+        <!-- ============================================ -->
+        <section id="so-do-tu-duy" class="section congress-section">
+            <div class="flow-connector flow-connector--short" aria-hidden="true">
+                <div class="flow-line"></div>
+                <div class="flow-node"></div>
+            </div>
+            
+            <div class="slide-container" style="min-height: auto; height: auto;">
+                <!-- Section Title -->
+                <div class="section-header" style="margin-bottom: 24px; text-align: center;">
+                    <span class="section-tag">Học Tập Tương Tác</span>
+                    <h2 class="section-title">Hệ Thống Tư Duy & Học Tập Lịch Sử</h2>
+                    <p class="section-desc">Khám phá toàn bộ tiến trình Lịch sử Đảng qua Sơ đồ tư duy tương tác hoặc hình ảnh Infographic chi tiết bên dưới.</p>
+                </div>
+
+                <!-- Tabs Container -->
+                <div class="mindmap-tabs-container">
+                    <div class="mindmap-tabs">
+                        <button class="mindmap-tab-btn active" data-tab="sodohoc-tab">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                            Sơ đồ tư duy tương tác
+                        </button>
+                        <button class="mindmap-tab-btn" data-tab="infographic-tab">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <polyline points="21 15 16 10 5 21" />
+                            </svg>
+                            Infographic trực quan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT 1: SƠ ĐỒ TƯ DUY -->
+                <div id="sodohoc-tab" class="mindmap-tab-panel active">
+                    <!-- Controls Toolbar -->
+                    <div class="mindmap-header-controls reveal-item">
+                        <!-- Search Box -->
+                        <div class="mindmap-search-wrapper">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="mindmapSearch" class="mindmap-search-input" placeholder="Tìm kiếm từ khóa (ví dụ: WTO, FDI, CPTPP, Đổi mới)..." autocomplete="off">
+                        </div>
+
+                        <!-- Category Badges -->
+                        <div class="mindmap-filter-tags">
+                            <button class="filter-tag active" data-category="all">Tất cả</button>
+                            <button class="filter-tag" data-category="general">Chủ đề chính</button>
+                            <button class="filter-tag" data-category="timeline">Phân kỳ Lịch sử</button>
+                            <button class="filter-tag" data-category="congress">Kỳ Đại hội</button>
+                            <button class="filter-tag" data-category="general">Tổng kết bài học</button>
+                        </div>
+                    </div>
+
+                    <!-- Viewport containing Zoom and Mindmap -->
+                    <div class="mindmap-viewport reveal-item" id="mindmapViewport">
+                        <!-- Floating Zoom buttons -->
+                        <div class="mindmap-zoom-bar">
+                            <button class="zoom-btn" id="zoomIn" title="Phóng to">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </button>
+                            <button class="zoom-btn" id="zoomOut" title="Thu nhỏ">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            </button>
+                            <div class="zoom-divider"></div>
+                            <button class="zoom-btn" id="zoomReset" title="Về mặc định">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            </button>
+                            <button class="zoom-btn" id="zoomFullscreen" title="Toàn màn hình">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                            </button>
+                        </div>
+
+                        <!-- Canvas Workspace -->
+                        <div class="mindmap-container" id="mindmapContainer">
+                            <!-- SVG lines will be rendered here -->
+                            <svg class="mindmap-svg" id="mindmapSvg"></svg>
+                            
+                            <!-- Hierarchy Tree Nodes -->
+                            <div class="mindmap-tree">
+                                <!-- Root Node -->
+                                <div class="mindmap-node mindmap-root" id="node-root" data-category="general">
+                                    <div class="node-content">
+                                        <div class="node-title-group">
+                                            <span class="node-tag">Chương 3</span>
+                                            <h4 class="node-title">Đổi Mới Lịch Sử</h4>
+                                            <span class="node-desc">Đại hội VIII - XIII</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Branches Column -->
+                                <div class="mindmap-branches">
+                                    
+                                    <!-- Branch 1: Khoi xuong -->
+                                    <div class="mindmap-branch-group">
+                                        <div class="mindmap-node mindmap-branch" id="node-branch1" data-category="timeline">
+                                            <div class="node-content">
+                                                <div class="node-title-group">
+                                                    <span class="node-tag">1986 - 1995</span>
+                                                    <h4 class="node-title">Khởi Xướng & Đột Phá</h4>
+                                                </div>
+                                                <button class="node-toggle" aria-label="Toggle children">▼</button>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-leaves">
+                                            <div class="mindmap-node mindmap-leaf" id="node-dh6" data-category="congress">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Đại hội VI (1986)</span>
+                                                        <h4 class="node-title">Khởi Xướng Đổi Mới</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mindmap-node mindmap-leaf" id="node-dh7" data-category="congress">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Đại hội VII (1991)</span>
+                                                        <h4 class="node-title">Cương Lĩnh 1991</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Branch 2: Day manh CNH-HDH -->
+                                    <div class="mindmap-branch-group">
+                                        <div class="mindmap-node mindmap-branch" id="node-branch2" data-category="timeline">
+                                            <div class="node-content">
+                                                <div class="node-title-group">
+                                                    <span class="node-tag">1996 - 2010</span>
+                                                    <h4 class="node-title">Đẩy Mạnh CNH-HĐH</h4>
+                                                </div>
+                                                <button class="node-toggle" aria-label="Toggle children">▼</button>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-leaves">
+                                            <div class="mindmap-node mindmap-leaf" id="node-dh8" data-category="congress">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Đại hội VIII (1996)</span>
+                                                        <h4 class="node-title">Đẩy Mạnh CNH-HĐH</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mindmap-node mindmap-leaf" id="node-dh9" data-category="congress">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Đại hội IX (2001)</span>
+                                                        <h4 class="node-title">Lý Luận KTTT</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mindmap-node mindmap-leaf" id="node-dh10" data-category="congress">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Đại hội X (2006)</span>
+                                                        <h4 class="node-title">Đột Phá Tư Duy</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Branch 3: Hoi nhap sau rong -->
+                                    <div class="mindmap-branch-group">
+                                        <div class="mindmap-node mindmap-branch" id="node-branch3" data-category="timeline">
+                                            <div class="node-content">
+                                                <div class="node-title-group">
+                                                    <span class="node-tag">2011 - 2020</span>
+                                                    <h4 class="node-title">Bền Vững & Hội Nhập</h4>
+                                                </div>
+                                                <button class="node-toggle" aria-label="Toggle children">▼</button>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-leaves">
+                                            <div class="mindmap-node mindmap-leaf" id="node-dh11" data-category="congress">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Đại hội XI (2011)</span>
+                                                        <h4 class="node-title">3 Đột Phá Chiến Lược</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mindmap-node mindmap-leaf" id="node-dh12" data-category="congress">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Đại hội XII (2016)</span>
+                                                        <h4 class="node-title">Động Lực Khối Tư Nhân</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Branch 4: Khat vong -->
+                                    <div class="mindmap-branch-group">
+                                        <div class="mindmap-node mindmap-branch" id="node-branch4" data-category="timeline">
+                                            <div class="node-content">
+                                                <div class="node-title-group">
+                                                    <span class="node-tag">2021 - 2045</span>
+                                                    <h4 class="node-title">Khát Vọng Tương Lai</h4>
+                                                </div>
+                                                <button class="node-toggle" aria-label="Toggle children">▼</button>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-leaves">
+                                            <div class="mindmap-node mindmap-leaf" id="node-dh13" data-category="congress">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Đại hội XIII (2021)</span>
+                                                        <h4 class="node-title">Khát Vọng Phát Triển</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Branch 5: Tong ket -->
+                                    <div class="mindmap-branch-group">
+                                        <div class="mindmap-node mindmap-branch" id="node-branch5" data-category="general">
+                                            <div class="node-content">
+                                                <div class="node-title-group">
+                                                    <span class="node-tag">Tổng Kết</span>
+                                                    <h4 class="node-title">Thành Tựu & Bài Học</h4>
+                                                </div>
+                                                <button class="node-toggle" aria-label="Toggle children">▼</button>
+                                            </div>
+                                        </div>
+                                        <div class="mindmap-leaves">
+                                            <div class="mindmap-node mindmap-leaf" id="node-thanhtuu" data-category="general">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Thành quả</span>
+                                                        <h4 class="node-title">Thành Tựu Đổi Mới</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mindmap-node mindmap-leaf" id="node-baihoc" data-category="general">
+                                                <div class="node-content">
+                                                    <div class="node-title-group">
+                                                        <span class="node-tag">Kinh nghiệm</span>
+                                                        <h4 class="node-title">5 Bài Học Lịch Sử</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT 2: INFOGRAPHIC -->
+                <div id="infographic-tab" class="mindmap-tab-panel">
+                    <div class="infographic-viewer reveal-item">
+                        <div class="infographic-toolbar">
+                            <span style="font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: var(--text-primary);">Bộ điều khiển Infographic</span>
+                            <div class="infographic-actions">
+                                <button class="info-btn" id="infoZoomIn" title="Phóng to">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    Phóng to
+                                </button>
+                                <button class="info-btn" id="infoZoomOut" title="Thu nhỏ">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    Thu nhỏ
+                                </button>
+                                <button class="info-btn" id="infoReset" title="Về kích thước mặc định">
+                                    Đặt lại
+                                </button>
+                                <button class="info-btn" id="infoFullscreen" title="Mở lightbox toàn màn hình">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                                    Xem toàn màn hình
+                                </button>
+                                <a href="img/inforgraphic.png" download="VNR_Tien_trinh_Doi_moi_Infographic.png" class="info-btn info-btn-primary" title="Tải về ảnh độ phân giải cao">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                                    Tải ảnh gốc (2.6MB)
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Drag container -->
+                        <div class="infographic-drag-container" id="infographicDragContainer">
+                            <img src="img/inforgraphic.png" alt="Tiến trình Đổi mới Infographic" id="infographicImage" class="infographic-image" draggable="false" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
 
 
         <!-- ============================================ -->
@@ -1234,9 +1537,67 @@
         <span class="ai-tooltip">Hỏi đáp AI</span>
     </button>
 
+    <!-- SLIDE-IN DETAILED SIDE PANEL FOR MINDMAP -->
+    <div id="nodeDetailPanel" class="node-detail-panel" aria-label="Chi tiết nội dung sơ đồ">
+        <div class="panel-header-bg"></div>
+        <button id="panelClose" class="panel-close-btn" title="Đóng bảng chi tiết">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="panel-body">
+            <span id="panelCategory" class="panel-category-badge">Chủ đề</span>
+            <h3 id="panelTitle" class="panel-title">Tiêu đề nội dung</h3>
+            <span id="panelSubtitle" class="panel-subtitle">Phân đề</span>
+            
+            <div class="panel-divider"></div>
+            
+            <div class="panel-section">
+                <h4 class="panel-section-title">Bối cảnh & Tổng quan</h4>
+                <p id="panelDesc" class="panel-detail-text">Nội dung tóm tắt sơ lược...</p>
+            </div>
+            
+            <div class="panel-section">
+                <h4 class="panel-section-title">Quyết sách & Điểm cốt lõi</h4>
+                <ul id="panelBullets" class="panel-bullets">
+                    <!-- Dynamic bullet items will be appended here -->
+                </ul>
+            </div>
+            
+            <div class="panel-section">
+                <div class="panel-stat-card">
+                    <span id="panelStatLabel" class="panel-stat-label">Số liệu minh chứng</span>
+                    <span id="panelStatValue" class="panel-stat-value">Tỷ lệ %</span>
+                    <p id="panelStatDesc" class="panel-stat-desc">Mô tả chi tiết về số liệu thực tế liên quan...</p>
+                </div>
+            </div>
+            
+            <div id="panelImageWrapper" class="panel-image-wrapper">
+                <img id="panelImage" src="img/VN_buoc_chuyen_minh.jpg" alt="Hình ảnh tư liệu lịch sử" />
+                <div id="panelImageCaption" class="panel-image-caption">Chú thích hình ảnh tư liệu</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN LIGHTBOX MODAL FOR INFOGRAPHIC -->
+    <div id="infographicLightbox" class="infographic-lightbox" aria-label="Xem ảnh toàn màn hình">
+        <button id="lightboxClose" class="lightbox-close-btn" title="Đóng chế độ toàn màn hình">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="lightbox-img-wrapper" id="lightboxImgWrapper">
+            <img id="lightboxImage" src="img/inforgraphic.png" alt="Infographic gốc" class="lightbox-image" draggable="false" />
+        </div>
+        <div class="lightbox-hint">Cuộn chuột để Phóng to/Thu nhỏ · Giữ chuột và Kéo để Di chuyển</div>
+    </div>
+
     <!-- App JavaScript -->
     <script src="ai-chat.js"></script>
     <script src="app.js"></script>
+    <script src="mindmap.js?v=2"></script>
 </body>
 
 </html>

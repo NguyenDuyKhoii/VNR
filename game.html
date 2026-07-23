@@ -32,6 +32,16 @@
 <!-- ===== SCREEN 1: LOBBY ===== -->
 <div id="screen-lobby" class="game-screen active">
     <div class="lobby-wrapper">
+        <!-- Level Selection directly above the start button -->
+        <div class="level-select-group">
+            <div class="level-buttons">
+                <button class="btn-level active" data-level="easy">DỄ</button>
+                <button class="btn-level" data-level="medium">TRUNG BÌNH</button>
+                <button class="btn-level" data-level="hard">KHÓ</button>
+            </div>
+            <div id="lobbyQCount" class="lobby-qcount">📋 Đang tải danh sách câu hỏi...</div>
+        </div>
+
         <button id="startGameBtn" class="btn-start">🎮 Bắt Đầu Game</button>
     </div>
 </div>
@@ -108,19 +118,20 @@
                 <div class="host-input-row">
 
                     <!-- Player name: TEXT INPUT with datalist autocomplete -->
-                    <div class="host-field">
+                     <div class="host-field">
                         <label class="host-label">Người trả lời</label>
-                        <input
-                            type="text"
-                            id="hostPlayerNameInput"
-                            class="host-input"
-                            list="playerSuggestions"
-                            placeholder="Gõ tên người chơi..."
-                            autocomplete="off"
-                            spellcheck="false"
-                        >
-                        <!-- Datalist populated from registered players -->
-                        <datalist id="playerSuggestions"></datalist>
+                        <div class="custom-select-wrapper">
+                            <input
+                                type="text"
+                                id="hostPlayerNameInput"
+                                class="host-input"
+                                placeholder="Gõ tên người chơi..."
+                                autocomplete="off"
+                                spellcheck="false"
+                            >
+                            <button type="button" id="togglePlayerDropdownBtn" class="dropdown-arrow-btn">▼</button>
+                            <div id="customPlayerDropdown" class="custom-dropdown hidden"></div>
+                        </div>
                     </div>
 
                     <div class="host-field host-field--wide">
