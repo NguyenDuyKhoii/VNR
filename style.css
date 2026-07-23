@@ -470,6 +470,7 @@ svg {
     margin-bottom: var(--space-md);
     background: linear-gradient(135deg, var(--text-primary) 30%, var(--color-charcoal-600) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.5px;
 }
@@ -760,6 +761,7 @@ svg {
     letter-spacing: -0.01em;
     background: linear-gradient(135deg, var(--color-charcoal-900) 65%, var(--color-gold-600) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
 }
@@ -767,6 +769,7 @@ svg {
 .text-accent {
     background: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-gold-600) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
 }
@@ -2480,10 +2483,6 @@ svg {
 }
 
 
-    flex-wrap: wrap;
-}
-
-
 
 /* Universal badge stylings */
 .tech-badge {
@@ -2952,7 +2951,7 @@ svg {
 
 .agenda-grid {
     display: grid;
-    grid-template-cols: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: var(--space-xl);
 }
 
@@ -3308,7 +3307,7 @@ svg {
 
 .footer-container {
     display: grid;
-    grid-template-cols: 1.2fr 0.8fr;
+    grid-template-columns: 1.2fr 0.8fr;
     gap: var(--space-3xl);
     align-items: center;
 }
@@ -3474,7 +3473,7 @@ svg {
 
 
     .footer-container {
-        grid-template-cols: 1fr;
+        grid-template-columns: 1fr;
         gap: var(--space-2xl);
     }
 

@@ -921,16 +921,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function verifyPassword() {
     const input = hostPasswordInput.value;
     const hash = await sha256(input);
-    // Hash of 'vnr2026'
-    if (hash === '17045f0c0ccc75627752c4775b13b9fc709348b9c267b6de896a1fbe9a08d987') {
-      if (passwordOverlay) passwordOverlay.classList.add('hidden');
-      initAudio();
-      setTimeout(tryPlayLobbyTheme, 500);
-      // startDevToolsProtection(); // Đã chạy từ lúc load trang
-    } else {
-      if (passwordError) passwordError.classList.remove('hidden');
-      hostPasswordInput.value = '';
-      hostPasswordInput.focus();
+    
+    try {
+      const response = await fetch('data/config.json');
+      const config = await response.json();
+      
+      if (hash === config.hostPasswordHash) {
+        if (passwordOverlay) passwordOverlay.classList.add('hidden');
+        initAudio();
+        setTimeout(tryPlayLobbyTheme, 500);
+        // startDevToolsProtection(); // Đã chạy từ lúc load trang
+      } else {
+        if (passwordError) passwordError.classList.remove('hidden');
+        hostPasswordInput.value = '';
+        hostPasswordInput.focus();
+      }
+    } catch (error) {
+      console.error('Lỗi khi tải cấu hình:', error);
+      alert('Không thể xác minh mật khẩu, vui lòng kiểm tra lại kết nối!');
     }
   }
 
