@@ -9,7 +9,7 @@
 
 const GEMINI_CONFIG = {
     apiKey: "", // Loaded dynamically
-    // Danh sách model chuẩn của Google Gemini
+    // CẬP NHẬT: Danh sách Model chuẩn xác 100% của Google Gemini
     models: ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"],
     baseUrl: "https://generativelanguage.googleapis.com/v1beta/models",
     maxOutputTokens: 2048,
@@ -17,41 +17,50 @@ const GEMINI_CONFIG = {
 };
 
 let loadedApiKey = "";
+let isApiKeyLoading = false;
 
 // Tải API Key linh hoạt từ env.json hoặc .env
 async function initApiKey() {
+    if (loadedApiKey) return loadedApiKey;
+    isApiKeyLoading = true;
     try {
-        // 1. Thử đọc từ env.json (Ưu tiên trên GitHub Pages)
+        // 1. Thử đọc từ env.json (GitHub Pages)
         let response = await fetch('env.json');
         if (response.ok) {
             const data = await response.json();
-            if (data.GEMINI_API_KEY) {
+            if (data.GEMINI_API_KEY && data.GEMINI_API_KEY !== "null") {
                 loadedApiKey = data.GEMINI_API_KEY.trim();
                 console.log("[VNR AI] Loaded API key from env.json");
-                return;
+                isApiKeyLoading = false;
+                return loadedApiKey;
             }
         }
 
-        // 2. Fallback đọc từ .env (cho môi trường local)
+        // 2. Fallback đọc từ .env
         response = await fetch('.env');
         if (response.ok) {
             const text = await response.text();
             const match = text.match(/GEMINI_API_KEY\s*=\s*(.*)/);
-            if (match && match[1]) {
+            if (match && match[1] && match[1].trim() !== "null") {
                 loadedApiKey = match[1].trim();
                 console.log("[VNR AI] Loaded API key from .env");
             }
         }
     } catch (e) {
-        console.warn("[VNR AI] Could not load API key file, using fallback if available.");
+        console.warn("[VNR AI] Could not load API key file.");
+    } finally {
+        isApiKeyLoading = false;
     }
+    return loadedApiKey;
 }
 
-// Call initApiKey immediately
+// Gọi load key ngay lập tức
 initApiKey();
 
 function getApiKey() {
-    return (localStorage.getItem("VNR_GEMINI_API_KEY") || loadedApiKey || GEMINI_CONFIG.apiKey).trim();
+    const localKey = localStorage.getItem("VNR_GEMINI_API_KEY");
+    const key = (localKey && localKey !== "null") ? localKey : (loadedApiKey || GEMINI_CONFIG.apiKey);
+    return key ? key.trim() : "";
 }
 
 function getEndpointUrl(model) {
@@ -171,15 +180,11 @@ const REFERENCE_DOCUMENT = `# CHƯƠNG 3: ĐẢNG LÃNH ĐẠO CẢ NƯỚC QUÁ
 - Quyết tâm chính trị cao, hành động quyết liệt, nghiên cứu dự báo đúng, ưu tiên đồng bộ thể chế.`;
 
 // ═══════════════════════════════════════════════
-// 4. CHAT STATE
+// 4. CHAT STATE & INITIALIZATION
 // ═══════════════════════════════════════════════
 
 let chatHistory = [];
 let isGenerating = false;
-
-// ═══════════════════════════════════════════════
-// 5. KHỞI TẠO UI & EVENT LISTENERS
-// ═══════════════════════════════════════════════
 
 document.addEventListener("DOMContentLoaded", () => {
     initAIChatUI();
@@ -283,7 +288,7 @@ function initAIChatUI() {
 }
 
 // ═══════════════════════════════════════════════
-// 6. XỬ LÝ GỬI TIN NHẮN
+// 5. XỬ LÝ GỬI TIN NHẮN
 // ═══════════════════════════════════════════════
 
 async function handleUserSendMessage() {
@@ -316,7 +321,7 @@ async function handleUserSendMessage() {
         let errDesc = error.message || "Lỗi kết nối API";
         appendMessageUI(
             "bot",
-            `⚠️ **Lỗi**: ${errDesc}\n\n💡 Bạn có thể bấm nút ⚙️ ở góc trên cửa sổ chat để thay đổi API Key nếu cần.`
+            `⚠️ **Lỗi**: ${errDesc}\n\n💡 Bấm nút ⚙️ ở góc trên cửa sổ chat để nhập API Key từ Google AI Studio nếu cần.`
         );
     } finally {
         isGenerating = false;
@@ -324,13 +329,18 @@ async function handleUserSendMessage() {
 }
 
 // ═══════════════════════════════════════════════
-// 7. GỌI GEMINI API
+// 6. GỌI GEMINI API
 // ═══════════════════════════════════════════════
 
 async function callGeminiAPI(userQuery) {
+    // Đảm bảo đã load API Key xong
+    if (!loadedApiKey) {
+        await initApiKey();
+    }
+
     const apiKey = getApiKey();
     if (!apiKey) {
-        throw new Error("Chưa tìm thấy Gemini API Key! Hãy kiểm tra cài đặt trong GitHub Secrets hoặc nhập thủ công qua nút ⚙️.");
+        throw new Error("Chưa tìm thấy API Key! Hãy kiểm tra lại GitHub Secrets hoặc bấm ⚙️ để nhập thủ công API Key từ Google AI Studio.");
     }
 
     const contents = [];
@@ -370,6 +380,7 @@ async function callGeminiAPI(userQuery) {
         try {
             console.log(`[VNR AI] Đang thử model: ${model}...`);
 
+            // Sử dụng Header x-goog-api-key an toàn & chuẩn quy cách Google REST API
             const response = await fetch(getEndpointUrl(model), {
                 method: "POST",
                 headers: { 
@@ -385,7 +396,9 @@ async function callGeminiAPI(userQuery) {
                 const errMsg = data.error?.message || `HTTP ${response.status}`;
                 console.warn(`[VNR AI] Model ${model} lỗi: ${errMsg}`);
 
-                if (response.status === 429 || response.status === 404 || response.status === 503 || errMsg.toLowerCase().includes("quota") || errMsg.toLowerCase().includes("rate") || errMsg.toLowerCase().includes("not found")) {
+                if (response.status === 429 || response.status === 404 || response.status === 503 || 
+                    errMsg.toLowerCase().includes("quota") || errMsg.toLowerCase().includes("rate") || 
+                    errMsg.toLowerCase().includes("not found")) {
                     lastError = new Error(`${model}: ${errMsg}`);
                     continue;
                 }
@@ -417,7 +430,7 @@ async function callGeminiAPI(userQuery) {
 }
 
 // ═══════════════════════════════════════════════
-// 8. UI HELPERS
+// 7. UI HELPERS & MARKDOWN
 // ═══════════════════════════════════════════════
 
 function appendMessageUI(sender, text) {
@@ -472,10 +485,6 @@ function removeTypingIndicatorUI(id) {
     const elem = document.getElementById(id);
     if (elem) elem.remove();
 }
-
-// ═══════════════════════════════════════════════
-// 9. MARKDOWN RENDERER
-// ═══════════════════════════════════════════════
 
 function formatMarkdown(text) {
     let html = escapeHTML(text);
