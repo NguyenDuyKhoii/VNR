@@ -1,33 +1,24 @@
 /**
- * VNR AI Assistant - Gemini API Engine
+ * VNR AI Assistant - Gemini API Engine (qua Cloudflare Worker Proxy)
  * Reference: md/Chuong_3_Lich_su_Dang.md
+ *
+ * QUAN TRỌNG: File này KHÔNG còn chứa API key.
+ * Mọi request được gửi tới Cloudflare Worker (worker.js), Worker mới là nơi
+ * giữ key thật và gọi Gemini API. Xem HUONG_DAN_DEPLOY.md để deploy Worker.
  */
 
 // ═══════════════════════════════════════════════
 // 1. CẤU HÌNH & CONSTANTS
 // ═══════════════════════════════════════════════
 
+// Đổi URL này thành URL Worker của bạn sau khi deploy (bước 2 trong hướng dẫn)
+// Ví dụ: "https://vnr-ai-proxy.tenban.workers.dev"
+const PROXY_URL = "https://bitter-snowflake-7c90.khoind1235.workers.dev";
+
 const GEMINI_CONFIG = {
-    // Đọc trực tiếp API Key
-    apiKey: "AQ.Ab8RN6JL4RP3GoDbyxKS-RBotub_4yKHdLBiuQQ4TMwwq48vuA",
-    models: ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"],
-    baseUrl: "https://generativelanguage.googleapis.com/v1beta/models",
     maxOutputTokens: 2048,
     temperature: 0.3
 };
-
-// Hàm lấy Key: Ưu tiên Key tùy chỉnh trong localStorage (nếu có), mặc định lấy Key trực tiếp
-function getApiKey() {
-    const localKey = localStorage.getItem("VNR_GEMINI_API_KEY");
-    if (localKey && localKey.trim() !== "" && localKey !== "null") {
-        return localKey.trim();
-    }
-    return GEMINI_CONFIG.apiKey;
-}
-
-function getEndpointUrl(model) {
-    return `${GEMINI_CONFIG.baseUrl}/${model}:generateContent`;
-}
 
 // ═══════════════════════════════════════════════
 // 2. SYSTEM INSTRUCTION
@@ -160,41 +151,12 @@ function initAIChatUI() {
     const sendBtn = document.getElementById("aiChatSend");
     const inputField = document.getElementById("aiChatInput");
     const clearBtn = document.getElementById("aiChatClear");
-    const settingsBtn = document.getElementById("aiChatSettings");
-    const saveKeyBtn = document.getElementById("aiSaveKeyBtn");
-    const apiKeyInput = document.getElementById("aiApiKeyInput");
-    const keySettingsPanel = document.getElementById("aiKeySettingsPanel");
     const suggestionChips = document.querySelectorAll(".suggestion-chip");
 
     if (!triggerBtn || !chatContainer) return;
 
-    if (apiKeyInput) {
-        apiKeyInput.value = getApiKey();
-    }
-
-    if (settingsBtn && keySettingsPanel) {
-        settingsBtn.addEventListener("click", () => {
-            keySettingsPanel.style.display = (keySettingsPanel.style.display === "none") ? "block" : "none";
-        });
-    }
-
-    if (saveKeyBtn && apiKeyInput) {
-        saveKeyBtn.addEventListener("click", () => {
-            const newKey = apiKeyInput.value.trim();
-            if (newKey) {
-                localStorage.setItem("VNR_GEMINI_API_KEY", newKey);
-                const statusMsg = document.getElementById("aiKeyStatusMsg");
-                if (statusMsg) {
-                    statusMsg.style.color = "#00ff88";
-                    statusMsg.innerText = "✅ Đã lưu API Key thành công!";
-                    setTimeout(() => {
-                        keySettingsPanel.style.display = "none";
-                        statusMsg.innerText = "";
-                    }, 1500);
-                }
-            }
-        });
-    }
+    // Lưu ý: đã bỏ toàn bộ phần "settings / nhập API key thủ công" vì
+    // frontend không còn cần biết API key nữa - Worker lo việc đó.
 
     triggerBtn.addEventListener("click", () => {
         chatContainer.classList.toggle("active");
@@ -277,13 +239,13 @@ async function handleUserSendMessage() {
             chatHistory = chatHistory.slice(-12);
         }
     } catch (error) {
-        console.error("Gemini API Error:", error);
+        console.error("Gemini Proxy Error:", error);
         removeTypingIndicatorUI(typingId);
 
         let errDesc = error.message || "Lỗi kết nối API";
         appendMessageUI(
             "bot",
-            `⚠️ **Lỗi**: ${errDesc}\n\n💡 Bấm nút ⚙️ ở góc trên cửa sổ chat để kiểm tra API Key nếu cần.`
+            `⚠️ **Lỗi**: ${errDesc}\n\n💡 Nếu lỗi lặp lại, có thể Worker proxy đang gặp sự cố, vui lòng thử lại sau ít phút.`
         );
     } finally {
         isGenerating = false;
@@ -291,15 +253,10 @@ async function handleUserSendMessage() {
 }
 
 // ═══════════════════════════════════════════════
-// 6. GỌI GEMINI API
+// 6. GỌI GEMINI API QUA CLOUDFLARE WORKER PROXY
 // ═══════════════════════════════════════════════
 
 async function callGeminiAPI(userQuery) {
-    const apiKey = getApiKey();
-    if (!apiKey) {
-        throw new Error("Chưa tìm thấy API Key! Vui lòng bấm ⚙️ để nhập API Key từ Google AI Studio.");
-    }
-
     const contents = [];
 
     contents.push({
@@ -331,58 +288,28 @@ async function callGeminiAPI(userQuery) {
         }
     };
 
-    let lastError = null;
+    const response = await fetch(PROXY_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody)
+    });
 
-    for (const model of GEMINI_CONFIG.models) {
-        try {
-            console.log(`[VNR AI] Đang thử model: ${model}...`);
+    const data = await response.json();
 
-            const response = await fetch(getEndpointUrl(model), {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": apiKey
-                },
-                body: JSON.stringify(requestBody)
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                const errMsg = data.error?.message || `HTTP ${response.status}`;
-                console.warn(`[VNR AI] Model ${model} lỗi: ${errMsg}`);
-
-                if (response.status === 429 || response.status === 404 || response.status === 503 || 
-                    errMsg.toLowerCase().includes("quota") || errMsg.toLowerCase().includes("rate") || 
-                    errMsg.toLowerCase().includes("not found")) {
-                    lastError = new Error(`${model}: ${errMsg}`);
-                    continue;
-                }
-                throw new Error(errMsg);
-            }
-
-            const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-            if (!resultText) {
-                const finishReason = data.candidates?.[0]?.finishReason;
-                if (finishReason === "SAFETY") {
-                    throw new Error("Phản hồi bị chặn bởi bộ lọc an toàn. Vui lòng thử lại với câu hỏi khác.");
-                }
-                throw new Error("Không nhận được nội dung trả lời từ Gemini.");
-            }
-
-            console.log(`[VNR AI] ✅ Thành công với model: ${model}`);
-            return resultText;
-
-        } catch (err) {
-            lastError = err;
-            if (err.message && (err.message.toLowerCase().includes("quota") || err.message.toLowerCase().includes("rate") || err.message.toLowerCase().includes("not found"))) {
-                continue;
-            }
-            throw err;
-        }
+    if (!response.ok) {
+        throw new Error(data.error || `HTTP ${response.status}`);
     }
 
-    throw lastError || new Error("Tất cả model Gemini đều thất bại. Vui lòng thử lại sau.");
+    const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!resultText) {
+        const finishReason = data.candidates?.[0]?.finishReason;
+        if (finishReason === "SAFETY") {
+            throw new Error("Phản hồi bị chặn bởi bộ lọc an toàn. Vui lòng thử lại với câu hỏi khác.");
+        }
+        throw new Error("Không nhận được nội dung trả lời từ Gemini.");
+    }
+
+    return resultText;
 }
 
 // ═══════════════════════════════════════════════
