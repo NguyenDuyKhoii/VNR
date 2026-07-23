@@ -1,5 +1,61 @@
 /* 
 ========================================================================
+   SCROLL REVEAL ANIMATIONS
+========================================================================
+*/
+.reveal-item {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform, filter;
+}
+
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Staggered delay for children inside a reveal-group */
+.reveal-group .reveal-item:nth-child(1) { transition-delay: 0s; }
+.reveal-group .reveal-item:nth-child(2) { transition-delay: 0.12s; }
+.reveal-group .reveal-item:nth-child(3) { transition-delay: 0.24s; }
+.reveal-group .reveal-item:nth-child(4) { transition-delay: 0.36s; }
+.reveal-group .reveal-item:nth-child(5) { transition-delay: 0.48s; }
+
+/* Section-level reveal (for whole sections / headers) */
+.reveal-section {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform, filter;
+}
+
+.reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-item,
+    .reveal-section {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+    }
+}
+
+/* 
+========================================================================
    DESIGN SYSTEM & CUSTOM VARIABLES (LIGHT GENTLE YELLOW THEME)
 ========================================================================
 */
@@ -390,7 +446,7 @@ svg {
 
 .section-header {
     text-align: center;
-    max-width: 700px;
+    max-width: 950px;
     margin: 0 auto var(--space-2xl) auto;
 }
 
@@ -1266,6 +1322,18 @@ svg {
     justify-content: center;
 }
 
+#daihoi-xi .slide-container {
+    min-height: 900px;
+    height: auto;
+    overflow: visible;
+}
+
+#daihoi-xii .slide-container {
+    min-height: 800px;
+    height: auto;
+    overflow: visible;
+}
+
 /* --- 1. Bố cục 2 cột: VIII, IX, X --- */
 .congress-row {
     display: grid;
@@ -1453,8 +1521,9 @@ svg {
     flex-direction: column;
     gap: 12px;
     width: 100%;
-    height: 580px;
-    justify-content: space-between;
+    min-height: 580px;
+    height: auto;
+    justify-content: flex-start;
     box-sizing: border-box;
     padding-bottom: 0;
 }
@@ -1516,8 +1585,9 @@ svg {
     background: #F8F9FA;
     padding: 12px 16px;
     border-radius: 8px;
-    height: 170px;
-    overflow: hidden;
+    min-height: 190px;
+    height: auto;
+    overflow: visible;
     box-sizing: border-box;
 }
 
@@ -1556,16 +1626,17 @@ svg {
 
 .breakthrough-footer-images {
     width: 100%;
-    height: 230px;
+    min-height: 280px;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
-    margin-top: 12px;
+    margin-top: 18px;
     flex-shrink: 0;
 }
 
 .breakthrough-footer-images .congress-photo {
-    height: 100%;
+    height: 280px;
     flex: none;
     min-height: 0;
     border-radius: 8px;
@@ -1582,10 +1653,11 @@ svg {
     gap: 28px;
     align-items: stretch;
     width: 100%;
-    height: 580px;
+    min-height: 580px;
+    height: auto;
     box-sizing: border-box;
     padding-bottom: 40px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .editorial-col {
@@ -1594,7 +1666,7 @@ svg {
     gap: 12px;
     height: 100%;
     min-height: 0;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Override XII font sizes for larger, clearer text */
@@ -1623,9 +1695,8 @@ svg {
 }
 
 .editorial-col--center .congress-photo {
-    flex: none;
-    height: 250px;
-    min-height: 250px;
+    flex: 1 1 auto;
+    min-height: 220px;
     border-radius: 12px;
 }
 
@@ -2028,9 +2099,9 @@ svg {
 }
 .saas-badge {
     font-family: var(--font-heading, 'Inter', sans-serif);
-    font-size: 10.5px;
+    font-size: 12px;
     font-weight: 600;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 9999px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -2039,8 +2110,8 @@ svg {
     white-space: nowrap;
 }
 .saas-badge--sm {
-    font-size: 9.5px;
-    padding: 2px 8px;
+    font-size: 11px;
+    padding: 3px 10px;
 }
 .saas-badge--blue {
     background: #eff6ff;
@@ -2066,7 +2137,7 @@ svg {
 /* ── Card Typography ── */
 .saas-card__title {
     font-family: var(--font-heading, 'Inter', sans-serif);
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     color: #0f172a;
     margin: 0 0 16px;
@@ -2074,7 +2145,7 @@ svg {
     letter-spacing: -0.01em;
 }
 .saas-card__subtitle {
-    font-size: 14px;
+    font-size: 16px;
     color: #64748b;
     line-height: 1.6;
     margin: 0 0 20px;
@@ -2089,7 +2160,7 @@ svg {
 /* ── Code Tag ── */
 .saas-code-tag {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    font-size: 12px;
+    font-size: 13.5px;
     background: #f1f5f9;
     color: #475569;
     padding: 2px 8px;
@@ -2151,13 +2222,13 @@ svg {
 }
 .saas-vision-block__body h4 {
     font-family: var(--font-heading, 'Inter', sans-serif);
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 700;
     color: #1e293b;
     margin: 0 0 8px;
 }
 .saas-vision-block__body p {
-    font-size: 13.5px;
+    font-size: 15.5px;
     line-height: 1.65;
     color: #64748b;
     margin: 0;
@@ -2201,12 +2272,12 @@ svg {
 }
 .saas-stack__label {
     font-family: var(--font-heading, 'Inter', sans-serif);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     color: #1e293b;
 }
 .saas-stack__desc {
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.6;
     color: #64748b;
     margin: 0;
@@ -2222,7 +2293,7 @@ svg {
     margin-bottom: 24px;
 }
 .saas-evidence-intro p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.65;
     color: #78350f;
     margin: 0;
@@ -2254,7 +2325,7 @@ svg {
     margin-top: 1px;
 }
 .saas-checklist__item p {
-    font-size: 13.5px;
+    font-size: 15.5px;
     line-height: 1.6;
     color: #78350f;
     margin: 0;
@@ -2292,7 +2363,7 @@ svg {
     border: 2px solid #99f6e4;
     color: #0d9488;
     font-family: var(--font-heading, 'Inter', sans-serif);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     flex-shrink: 0;
 }
@@ -2313,13 +2384,13 @@ svg {
 }
 .saas-timeline__content h5 {
     font-family: var(--font-heading, 'Inter', sans-serif);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     color: #1e293b;
     margin: 4px 0 6px;
 }
 .saas-timeline__content p {
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.6;
     color: #64748b;
     margin: 0;
@@ -2353,7 +2424,7 @@ svg {
 }
 .saas-career-card h5 {
     font-family: var(--font-heading, 'Inter', sans-serif);
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     color: #1e293b;
     margin: 0;
@@ -2361,15 +2432,15 @@ svg {
     letter-spacing: 0.03em;
 }
 .saas-career-card__label {
-    font-size: 12.5px;
+    font-size: 14.5px;
     font-weight: 600;
     color: #475569;
     display: block;
 }
 .saas-career-card p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.5;
-    color: #94a3b8;
+    color: #64748b;
     margin: 0;
 }
 
@@ -2535,6 +2606,16 @@ svg {
 
 .video-section .section-header {
     margin-bottom: var(--space-2xl);
+}
+
+.video-section .section-title {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .video-section .section-title {
+        white-space: normal;
+    }
 }
 
 .video-wrapper {
@@ -4052,4 +4133,253 @@ svg {
     display: flex;
     justify-content: flex-start;
     margin-top: 12px;
+}
+
+/* ========================================================================
+   AI USAGE TRACKER
+   ======================================================================== */
+.ai-tracker-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.ai-tracker-card {
+    background: var(--bg-card);
+    border: 1px solid hsla(42, 80%, 55%, 0.18);
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ai-tracker-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.ai-tracker-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, hsla(42, 90%, 50%, 0.08) 0%, hsla(354, 70%, 50%, 0.05) 100%);
+    border-bottom: 1px solid hsla(42, 80%, 55%, 0.12);
+}
+
+.ai-tracker-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    box-shadow: 0 3px 12px rgba(66, 133, 244, 0.3);
+}
+
+.ai-tracker-avatar--gemini {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    box-shadow: 0 3px 12px rgba(139, 92, 246, 0.3);
+}
+
+.ai-tracker-avatar--flash {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    box-shadow: 0 3px 12px rgba(245, 158, 11, 0.3);
+}
+
+.ai-tracker-avatar--search {
+    background: linear-gradient(135deg, #10b981, #0ea5e9);
+    box-shadow: 0 3px 12px rgba(16, 185, 129, 0.3);
+}
+
+.ai-tracker-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ai-tracker-tool {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.ai-tracker-provider {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.ai-tracker-member {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.ai-tracker-member strong {
+    color: var(--color-red-500);
+    font-weight: 700;
+}
+
+.ai-tracker-body {
+    padding: 20px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.ai-tracker-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ai-tracker-label {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-gold-600);
+    padding-bottom: 4px;
+    border-bottom: 2px solid hsla(42, 90%, 50%, 0.15);
+    display: inline-block;
+    width: fit-content;
+}
+
+.ai-tracker-field p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.ai-tracker-prompt {
+    background: hsla(224, 25%, 15%, 0.04);
+    border: 1px solid hsla(224, 15%, 80%, 0.4);
+    border-radius: 10px;
+    padding: 16px;
+    border-left: 3px solid var(--color-gold-500);
+}
+
+.ai-tracker-prompt code {
+    font-family: 'Be Vietnam Pro', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+    word-break: break-word;
+    display: block;
+}
+
+/* ========================================================================
+   REFERENCES / PHỤ LỤC
+   ======================================================================== */
+.references-section {
+    background: var(--bg-card);
+    border: 1px solid hsla(42, 80%, 55%, 0.15);
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+}
+
+.references-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid hsla(42, 90%, 50%, 0.2);
+}
+
+.references-title svg {
+    color: var(--color-gold-500);
+    flex-shrink: 0;
+}
+
+.references-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.references-list li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    padding-left: 22px;
+    position: relative;
+}
+
+.references-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-red-500), var(--color-gold-500));
+}
+
+.references-list li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Responsive for AI Tracker */
+@media (max-width: 768px) {
+    .ai-tracker-header {
+        padding: 16px 18px;
+        gap: 12px;
+    }
+
+    .ai-tracker-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+    }
+
+    .ai-tracker-avatar svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .ai-tracker-tool {
+        font-size: 15px;
+    }
+
+    .ai-tracker-body {
+        padding: 16px 18px 20px;
+    }
+
+    .ai-tracker-prompt {
+        padding: 12px;
+    }
+
+    .ai-tracker-prompt code {
+        font-size: 12px;
+    }
+
+    .references-section {
+        padding: 20px;
+    }
+
+    .references-title {
+        font-size: 16px;
+    }
 }

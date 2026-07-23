@@ -308,3 +308,58 @@ document.addEventListener('DOMContentLoaded', () => {
         startScreen.classList.add('active');
     }
 });
+
+// ============================================================
+// SCROLL REVEAL ANIMATION (IntersectionObserver)
+// ============================================================
+(function () {
+    'use strict';
+
+    // Auto-tag key elements that should reveal on scroll
+    // (only elements NOT already inside a .reveal-group)
+    const autoRevealSelectors = [
+        '.section-header',
+        '.congress-section .slide-container',
+        '.congress-photo',
+        '.congress-analysis-group',
+        '.congress-video-wrapper',
+        '.analysis-result-bar',
+        '.breakthrough-card',
+        '.editorial-card',
+        '.editorial-result',
+        '.ai-tracker-card',
+        '.references-section',
+        '.saas-card',
+        '.saas-career-card',
+        '.macro-chart-col',
+        '.fta-sidebar-col',
+    ];
+
+    autoRevealSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+            // Don't double-tag if already a reveal-item
+            if (!el.classList.contains('reveal-item') && !el.classList.contains('reveal-section')) {
+                el.classList.add('reveal-section');
+            }
+        });
+    });
+
+    // Collect all revealable elements
+    const revealElements = document.querySelectorAll('.reveal-item, .reveal-section');
+
+    if (!revealElements.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Animate only once
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+})();
