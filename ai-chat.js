@@ -24,113 +24,63 @@ const GEMINI_CONFIG = {
 // 2. SYSTEM INSTRUCTION
 // ═══════════════════════════════════════════════
 
-const SYSTEM_INSTRUCTION = `Bạn là "Trợ lý VNR AI" - trợ lý AI chuyên môn giải đáp thắc mắc về Lịch sử Đảng Cộng sản Việt Nam, cụ thể là Chương 3: "Đảng lãnh đạo cả nước quá độ lên CNXH và tiến hành công công cuộc đổi mới (từ 1975 đến nay)".
+const SYSTEM_INSTRUCTION = `Bạn là "Trợ lý VNR AI" - trợ lý AI chuyên môn chuyên sâu về Lịch sử Đảng Cộng sản Việt Nam, cụ thể là Chương 3: "Đảng lãnh đạo cả nước quá độ lên chủ nghĩa xã hội và tiến hành công cuộc đổi mới (từ 1975 đến nay)".
 
-## QUY TẮC BẮT BUỘC:
-1. BẮT BUỘC CHỈ trả lời dựa trên [TÀI LIỆU THAM KHẢO] được cung cấp bên dưới.
-2. TUYỆT ĐỐI KHÔNG tự chế, bịa đặt, hoặc đưa thông tin ngoài tài liệu.
-3. Nếu câu hỏi KHÔNG có trong tài liệu → trả lời: "Dựa trên tài liệu Chương 3 Lịch sử Đảng được cung cấp, không có thông tin đề cập đến vấn đề này."
-4. Trả lời bằng tiếng Việt, trình bày Markdown rõ ràng (bôi đậm, gạch đầu dòng, tiêu đề).
-5. Trích dẫn số liệu chính xác từ tài liệu (năm, %, con số).`;
+Bạn được cung cấp HAI TÀI LIỆU THAM KHẢO:
+- [TÀI LIỆU 1]: Bản tóm tắt có hệ thống theo từng Đại hội và giai đoạn.
+- [TÀI LIỆU 2]: Bản chi tiết từ giáo trình gốc (Studocu), chứa phân tích chuyên sâu, bối cảnh lịch sử, diễn biến cụ thể, trích dẫn văn kiện Đảng và số liệu bổ sung.
+
+## QUY TRÌNH TRẢ LỜI BẮT BUỘC:
+1. **ĐỌC KỸ CẢ HAI TÀI LIỆU** trước khi trả lời bất kỳ câu hỏi nào.
+2. **ĐỐI CHIẾU CHÉO** thông tin giữa hai tài liệu để đảm bảo câu trả lời đầy đủ và chính xác nhất.
+3. **ƯU TIÊN** nội dung chi tiết từ [TÀI LIỆU 2] khi cần giải thích bối cảnh, nguyên nhân, diễn biến cụ thể. Sử dụng [TÀI LIỆU 1] để xác nhận và bổ sung các điểm chính.
+4. **TRÍCH DẪN** số liệu chính xác (năm, %, con số, tên nhân vật, tên văn kiện) từ tài liệu.
+5. Nếu hai tài liệu có thông tin bổ sung cho nhau → kết hợp để trả lời đầy đủ nhất.
+
+## QUY TẮC NGHIÊM NGẶT:
+- BẮT BUỘC CHỈ trả lời dựa trên nội dung trong hai tài liệu tham khảo.
+- TUYỆT ĐỐI KHÔNG tự bịa đặt, suy diễn hoặc đưa thông tin ngoài hai tài liệu.
+- Nếu câu hỏi KHÔNG có trong cả hai tài liệu → trả lời: "Dựa trên tài liệu Chương 3 Lịch sử Đảng được cung cấp, không có thông tin đề cập đến vấn đề này. Bạn có thể hỏi về các Đại hội Đảng (IV-XIII), đường lối đổi mới, thành tựu kinh tế-xã hội, hoặc bài học kinh nghiệm."
+- Khi trả lời câu hỏi so sánh (ví dụ: so sánh hai Đại hội) → lập bảng hoặc liệt kê song song.
+- Khi trả lời câu hỏi phân tích → nêu bối cảnh, nội dung chính, kết quả/thành tựu, và ý nghĩa.
+
+## ĐỊNH DẠNG TRẢ LỜI:
+- Trả lời bằng tiếng Việt, trình bày Markdown rõ ràng.
+- Sử dụng tiêu đề (##, ###), **bôi đậm** cho khái niệm quan trọng, gạch đầu dòng cho liệt kê.
+- Với câu hỏi dài → chia thành các phần: Bối cảnh → Nội dung chính → Kết quả → Ý nghĩa/Bài học.
+- Nêu rõ nguồn khi trích dẫn (ví dụ: "Theo Cương lĩnh 1991...", "Nghị quyết Đại hội VI xác định...").`;
 
 // ═══════════════════════════════════════════════
-// 3. TÀI LIỆU THAM KHẢO
+// 3. TÀI LIỆU THAM KHẢO (đọc từ file .md)
 // ═══════════════════════════════════════════════
 
-const REFERENCE_DOCUMENT = `# CHƯƠNG 3: ĐẢNG LÃNH ĐẠO CẢ NƯỚC QUÁ ĐỘ LÊN CNXH VÀ TIẾN HÀNH CÔNG CUỘC ĐỔI MỚI (TỪ 1975 ĐẾN NAY)
+const REFERENCE_FILES = [
+    { label: "TÀI LIỆU 1 - Bản tóm tắt Chương 3 Lịch sử Đảng CSVN", path: "./md/Chuong_3_Lich_su_Dang.md" },
+    { label: "TÀI LIỆU 2 - Giáo trình chi tiết Chương 3 (Studocu)", path: "./md/Chương 3_VNR202 - Studocu (1).md" }
+];
 
-## I. LÃNH ĐẠO CẢ NƯỚC XÂY DỰNG CNXH VÀ BẢO VỆ TỔ QUỐC (1975-1986)
-### 1. Xây dựng CNXH và bảo vệ Tổ quốc (1975-1981)
-- Bối cảnh quốc tế: Mâu thuẫn Xô-Trung, TQ xa rời khối XHCN, âm mưu bá quyền, phong trào cộng sản khủng hoảng.
-- Chính trị-tổ chức: Thống nhất đất nước về mặt nhà nước. Thống nhất các tổ chức: Mặt trận Tổ quốc VN, Đoàn TNLĐ HCM, Tổng Công đoàn VN, Hội LHPN VN.
-- Đại hội IV (14-20/12/1976, Hà Nội): Đổi tên Đảng Lao động VN thành Đảng Cộng sản VN.
+let _cachedDocuments = null; // cache sau lần fetch đầu tiên
 
-### 2. Đại hội V (1982) và các bước đột phá kinh tế (1982-1986)
-- Bối cảnh: 27-31/3/1982, Hà Nội, TBT Lê Duẩn. Đất nước bị bao vây cấm vận, "Kế hoạch hậu chiến của Mỹ", khủng hoảng kinh tế, hàng hóa khan hiếm.
-- Mục tiêu: Giữ ổn định, cải thiện đời sống nhân dân.
-- Đường lối:
-  + Chính trị: Giữ tinh thần ĐH IV, cơ cấu công tư, không thừa nhận kinh tế nhiều thành phần, tăng cường tính giai cấp công nhân.
-  + Kinh tế: Coi nông nghiệp là mặt trận hàng đầu. "Chương trình ba mục tiêu": lương thực-thực phẩm, hàng tiêu dùng, hàng xuất khẩu.
-  + Đối ngoại: Quan hệ Liên Xô = hòn đá tảng, VN-Lào-Campuchia = sống còn, kêu gọi ASEAN đối thoại.
+async function loadReferenceDocuments() {
+    if (_cachedDocuments) return _cachedDocuments;
 
-## II. LÃNH ĐẠO CÔNG CUỘC ĐỔI MỚI, ĐẨY MẠNH CNH-HĐH VÀ HỘI NHẬP QUỐC TẾ (TỪ 1986 ĐẾN NAY)
-### 1. Đại hội VI (12/1986) - Đổi mới toàn diện
-- Bối cảnh: CMKHKT, xu thế đối đầu→đối thoại, Liên Xô cải tổ. Trong nước: khan hiếm lương thực, lạm phát 774% (1986), vi phạm pháp luật, vượt biên gia tăng.
-- Mục đích: Nhìn thẳng sự thật, đánh giá đúng sự thật, nói rõ sự thật. Nguyên nhân sai lầm: từ tư tưởng, tổ chức, công tác cán bộ của Đảng.
-- Bài học kinh nghiệm: "Lấy dân làm gốc", xuất phát từ thực tế, tôn trọng quy luật khách quan, kết hợp sức mạnh dân tộc + thời đại, xây dựng Đảng ngang tầm nhiệm vụ.
-- Đổi mới lãnh đạo: Đổi mới tư duy (trước hết tư duy kinh tế), đổi mới công tác cán bộ, "Dân biết, dân bàn, dân làm, dân kiểm tra".
-- Đối ngoại: Đảm bảo lợi ích quốc gia, chống bao vây cấm vận, vì hòa bình, độc lập dân tộc và CNXH.
-- Kết quả: 1988 thiếu ăn → 1989 đủ ăn, có dự trữ và xuất khẩu gạo. Hình thành cơ chế thị trường dưới quản lý Nhà nước.
+    const results = await Promise.all(
+        REFERENCE_FILES.map(async (file) => {
+            try {
+                const res = await fetch(file.path);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const text = await res.text();
+                return { label: file.label, content: text };
+            } catch (err) {
+                console.warn(`Không đọc được file ${file.path}:`, err);
+                return { label: file.label, content: "(Không tải được tài liệu này)" };
+            }
+        })
+    );
 
-### 2. Đại hội VII (6/1991) và Cương lĩnh 1991
-- Bối cảnh: 24-27/6/1991, Hà Nội, TBT Đỗ Mười.
-- Nội dung: Thông qua Cương lĩnh 1991 và Chiến lược phát triển KTXH đến 2000 (GDP 2000 gấp 2 lần 1990).
-- 5 bài học Cương lĩnh 1991:
-  1. Nắm vững ngọn cờ độc lập dân tộc và CNXH.
-  2. Sự nghiệp cách mạng là của dân, do dân, vì dân.
-  3. Tăng cường, củng cố 4 đoàn kết.
-  4. Kết hợp sức mạnh dân tộc với sức mạnh thời đại.
-  5. Sự lãnh đạo đúng đắn của Đảng đảm bảo thắng lợi.
-- Đặc trưng CNXH: Nhân dân lao động làm chủ; kinh tế dựa trên LLSX hiện đại và công hữu TLSX; văn hóa đậm đà bản sắc; con người được giải phóng, tự do; dân tộc bình đẳng; quan hệ hữu nghị quốc tế.
-- 7 phương hướng: CNH gắn nông nghiệp toàn diện; kinh tế hàng hóa nhiều thành phần theo cơ chế thị trường; quan hệ SX XHCN đa dạng hình thức sở hữu.
-- HN TW 5 (6/1993): Nông nghiệp = mặt trận hàng đầu, xây dựng nông thôn mới.
-- HN đại biểu giữa nhiệm kỳ (1/1994): 4 nguy cơ: Tụt hậu xa hơn về kinh tế; Chệch hướng XHCN; Tham nhũng/quan liêu; "Diễn biến hòa bình". Lần đầu khẳng định xây dựng Nhà nước pháp quyền của dân, do dân, vì dân.
-- HN TW 7 (7/1994): Phát triển CN và CN, xây dựng giai cấp công nhân bản lĩnh, tay nghề cao.
-- Thành tựu: GDP bình quân 1991-1995 = 8.2%, lạm phát giảm 67.1% (1991)→12.7% (1995). Bình thường hóa quan hệ TQ (11/1991), Hoa Kỳ (11/7/1995), gia nhập ASEAN (28/7/1995).
-
-### 3. Đại hội VIII (1996) và Đại hội IX (2001)
-- Quan điểm CNH-HĐH: Giữ vững độc lập tự chủ; nội lực là chính; sự nghiệp toàn dân (KTNN chủ đạo); nguồn lực con người = yếu tố cơ bản; hiệu quả KTXH = tiêu chuẩn.
-- HN TW 2 & TW 3 khóa VIII (1996-1998): Chiến lược giáo dục đào tạo, KHCN; văn hóa tiên tiến đậm đà bản sắc.
-- Đại hội IX (2001): Tiếp tục CNH-HĐH. HN TW 5, TW 7 khóa IX: KT tư nhân = bộ phận cấu thành quan trọng; đất đai = hàng hóa đặc biệt, sở hữu toàn dân.
-
-### 4. Đại hội X (4/2006)
-- Bối cảnh: 18-25/4/2006, Hà Nội.
-- Nhiệm vụ then chốt: Xây dựng, chỉnh đốn Đảng (cho phép Đảng viên làm KT tư nhân, phân phối theo lao động và cổ phần). CNH-HĐH gắn kinh tế tri thức.
-- 5 bài học: Đổi mới toàn diện đồng bộ có kế thừa; vì lợi ích nhân dân; kiên định độc lập dân tộc & CNXH; phát huy nội lực + ngoại lực; nâng cao năng lực Đảng.
-- HN TW 6 (2008): Cải cách tiền lương, BHXH. HN TW 7 (2008): Xây dựng đội ngũ tri thức.
-- Kết quả: GDP bình quân 7% (2006-2010), thu nhập 2010 = 1.168 USD, ra khỏi nhóm nước nghèo từ 2008.
-
-### 5. Đại hội XI (1/2011)
-- Cương lĩnh 2011 (bổ sung Cương lĩnh 1991).
-- 8 phương hướng: CNH-HĐH gắn KT tri thức; KTTT định hướng XHCN; văn hóa, đời sống; an ninh quốc phòng; đối ngoại hội nhập; dân chủ; Nhà nước pháp quyền; xây dựng Đảng.
-- Con người là trung tâm; giáo dục = quốc sách.
-- HN TW 6 khóa XI (2012): Cơ cấu lại DNNN, tập trung lĩnh vực then chốt, mở rộng tự chủ.
-
-### 6. Đại hội XII (1/2016)
-- TBT Nguyễn Phú Trọng. Đẩy mạnh toàn diện, đồng bộ, chủ động hội nhập quốc tế.
-- 6 nhiệm vụ trọng tâm: KT-xây dựng Đảng-văn hóa-quốc phòng AN.
-- NQ 10-NQ/TW (2017): KT tư nhân = động lực quan trọng KTTT định hướng XHCN, xóa bỏ định kiến.
-- NQ 12-NQ/TW (2017): DNNN cạnh tranh bình đẳng, hiệu quả KT = tiêu chí chủ yếu.
-- NQ 05-NQ/TW (2016): Đổi mới mô hình tăng trưởng, năng suất lao động + sức cạnh tranh.
-- NQ 04-NQ/TW (2016): Ngăn chặn "tự diễn biến", "tự chuyển hóa", nêu gương người đứng đầu.
-- HN TW 6 (2017): Sức khỏe, dân số = đầu tư phát triển.
-
-### 7. Đại hội XIII (2021)
-- Chủ đề: Khơi dậy khát vọng phát triển đất nước phồn vinh, hạnh phúc.
-- Mục tiêu:
-  + 2025 (50 năm giải phóng miền Nam): Nước đang phát triển, CN hướng hiện đại, vượt thu nhập trung bình thấp.
-  + 2030 (100 năm thành lập Đảng): Nước đang phát triển, CN hiện đại, thu nhập trung bình cao.
-  + 2045 (100 năm Quốc khánh): Nước phát triển, thu nhập cao.
-- Quan điểm: Kiên định Mác-Lênin & TT HCM; lợi ích quốc gia-dân tộc trên cơ sở luật pháp quốc tế; nội lực + ngoại lực; hệ thống chính trị tinh gọn hiệu quả.
-- 6 nhiệm vụ trọng tâm: Chỉnh đốn Đảng; chống tham nhũng, lợi ích nhóm; văn hóa, đồng bào DTTS; nâng cao chỉ số hạnh phúc; hoàn thiện pháp luật; quản lý tài nguyên, BĐKH.
-
-## III. THÀNH TỰU, HẠN CHẾ VÀ KINH NGHIỆM ĐỔI MỚI
-### 1. Thành tựu
-- Kinh tế: Chấm dứt khủng hoảng KTXH. Tăng trưởng bình quân 6%/năm. GDP 2020 = 271.2 tỷ USD, tăng 2.91% (top cao nhất thế giới trong đại dịch), thu nhập bình quân = 2.779 USD.
-- Văn hóa-XH: Giáo dục = quốc sách, nhân lực chất lượng cao tăng. Hoàn thành mục tiêu Thiên niên kỷ LHQ, BHYT > 90%, nghèo đa chiều < 3%.
-
-### 2. Hạn chế và Nguyên nhân
-- Hạn chế: Đổi mới mô hình tăng trưởng chưa căn bản. Giáo dục chưa là động lực then chốt. Quản lý tài nguyên, BVMT, Nhà nước pháp quyền, chỉnh đốn Đảng còn bất cập.
-- Nguyên nhân khách quan: Đổi mới phức tạp, tác động thế giới, thế lực thù địch chống phá.
-- Nguyên nhân chủ quan (chủ yếu): Nghiên cứu lý luận chậm, quản lý-giáo dục-rèn luyện đảng viên chưa đáp ứng.
-
-### 3. Tham nhũng
-- Nguyên nhân: Chính sách pháp luật chưa hoàn thiện, đối tượng khó tiếp cận cần bôi trơn; hạn chế quản lý điều hành; yếu kém phát hiện/xử lý; hạn chế nhận thức, bổ nhiệm, tuyên truyền.
-
-### 4. Bài học kinh nghiệm
-- "Lấy dân làm gốc".
-- Xây dựng, chỉnh đốn Đảng quyết liệt, toàn diện, thường xuyên.
-- Quyết tâm chính trị cao, hành động quyết liệt, nghiên cứu dự báo đúng, ưu tiên đồng bộ thể chế.`;
+    _cachedDocuments = results;
+    return results;
+}
 
 // ═══════════════════════════════════════════════
 // 4. CHAT STATE & INITIALIZATION
@@ -259,14 +209,20 @@ async function handleUserSendMessage() {
 async function callGeminiAPI(userQuery) {
     const contents = [];
 
-    contents.push({
-        role: "user",
-        parts: [{ text: `[TÀI LIỆU THAM KHẢO - Chương 3 Lịch sử Đảng CSVN]:\n${REFERENCE_DOCUMENT}` }]
-    });
-    contents.push({
-        role: "model",
-        parts: [{ text: "Đã nhận tài liệu tham khảo Chương 3. Tôi sẽ chỉ trả lời dựa trên nội dung này. Bạn hãy đặt câu hỏi." }]
-    });
+    // Đọc 2 file .md tài liệu tham khảo
+    const docs = await loadReferenceDocuments();
+
+    // Gửi từng tài liệu vào context
+    for (let i = 0; i < docs.length; i++) {
+        contents.push({
+            role: "user",
+            parts: [{ text: `[${docs[i].label}]:\n${docs[i].content}` }]
+        });
+        contents.push({
+            role: "model",
+            parts: [{ text: `Đã nhận ${docs[i].label}. Tôi sẽ đọc kỹ và sử dụng làm tài liệu tham khảo.${i < docs.length - 1 ? " Vui lòng gửi tiếp tài liệu tiếp theo." : " Tôi đã đọc kỹ CẢ HAI tài liệu và sẵn sàng đối chiếu chéo để trả lời chính xác nhất. Bạn hãy đặt câu hỏi."}` }]
+        });
+    }
 
     for (const msg of chatHistory) {
         contents.push(msg);
