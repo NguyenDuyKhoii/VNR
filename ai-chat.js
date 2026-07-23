@@ -1,7 +1,6 @@
 /**
  * VNR AI Assistant - Gemini API Engine
  * Reference: md/Chuong_3_Lich_su_Dang.md
- * Model: gemini-3.6-flash
  */
 
 // ═══════════════════════════════════════════════
@@ -9,9 +8,9 @@
 // ═══════════════════════════════════════════════
 
 const GEMINI_CONFIG = {
-    apiKey: "", // Loaded dynamically from .env to prevent leakage
-    // Danh sách model fallback: thử lần lượt khi bị quota/404/503
-    models: ["gemini-3.6-flash", "gemini-3.5-flash", "gemini-2.5-flash"],
+    apiKey: "", // Loaded dynamically
+    // Danh sách model chuẩn của Google Gemini
+    models: ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"],
     baseUrl: "https://generativelanguage.googleapis.com/v1beta/models",
     maxOutputTokens: 2048,
     temperature: 0.3
@@ -19,10 +18,22 @@ const GEMINI_CONFIG = {
 
 let loadedApiKey = "";
 
-// Asynchronously load the key from .env file
+// Tải API Key linh hoạt từ env.json hoặc .env
 async function initApiKey() {
     try {
-        const response = await fetch('.env');
+        // 1. Thử đọc từ env.json (Ưu tiên trên GitHub Pages)
+        let response = await fetch('env.json');
+        if (response.ok) {
+            const data = await response.json();
+            if (data.GEMINI_API_KEY) {
+                loadedApiKey = data.GEMINI_API_KEY.trim();
+                console.log("[VNR AI] Loaded API key from env.json");
+                return;
+            }
+        }
+
+        // 2. Fallback đọc từ .env (cho môi trường local)
+        response = await fetch('.env');
         if (response.ok) {
             const text = await response.text();
             const match = text.match(/GEMINI_API_KEY\s*=\s*(.*)/);
@@ -32,7 +43,7 @@ async function initApiKey() {
             }
         }
     } catch (e) {
-        console.warn("[VNR AI] Could not load .env file, using fallback key if available.");
+        console.warn("[VNR AI] Could not load API key file, using fallback if available.");
     }
 }
 
@@ -40,15 +51,15 @@ async function initApiKey() {
 initApiKey();
 
 function getApiKey() {
-    return localStorage.getItem("VNR_GEMINI_API_KEY") || loadedApiKey || GEMINI_CONFIG.apiKey;
+    return (localStorage.getItem("VNR_GEMINI_API_KEY") || loadedApiKey || GEMINI_CONFIG.apiKey).trim();
 }
 
 function getEndpointUrl(model) {
-    return `${GEMINI_CONFIG.baseUrl}/${model}:generateContent?key=${getApiKey()}`;
+    return `${GEMINI_CONFIG.baseUrl}/${model}:generateContent`;
 }
 
 // ═══════════════════════════════════════════════
-// 2. SYSTEM INSTRUCTION (tách riêng, không nhúng vào user message)
+// 2. SYSTEM INSTRUCTION
 // ═══════════════════════════════════════════════
 
 const SYSTEM_INSTRUCTION = `Bạn là "Trợ lý VNR AI" - trợ lý AI chuyên môn giải đáp thắc mắc về Lịch sử Đảng Cộng sản Việt Nam, cụ thể là Chương 3: "Đảng lãnh đạo cả nước quá độ lên CNXH và tiến hành công cuộc đổi mới (từ 1975 đến nay)".
@@ -61,14 +72,12 @@ const SYSTEM_INSTRUCTION = `Bạn là "Trợ lý VNR AI" - trợ lý AI chuyên 
 5. Trích dẫn số liệu chính xác từ tài liệu (năm, %, con số).`;
 
 // ═══════════════════════════════════════════════
-// 3. TÀI LIỆU THAM KHẢO (Chương 3 Lịch sử Đảng)
-//    Nội dung tóm tắt có cấu trúc để giảm token count
+// 3. TÀI LIỆU THAM KHẢO
 // ═══════════════════════════════════════════════
 
 const REFERENCE_DOCUMENT = `# CHƯƠNG 3: ĐẢNG LÃNH ĐẠO CẢ NƯỚC QUÁ ĐỘ LÊN CNXH VÀ TIẾN HÀNH CÔNG CUỘC ĐỔI MỚI (TỪ 1975 ĐẾN NAY)
 
 ## I. LÃNH ĐẠO CẢ NƯỚC XÂY DỰNG CNXH VÀ BẢO VỆ TỔ QUỐC (1975-1986)
-
 ### 1. Xây dựng CNXH và bảo vệ Tổ quốc (1975-1981)
 - Bối cảnh quốc tế: Mâu thuẫn Xô-Trung, TQ xa rời khối XHCN, âm mưu bá quyền, phong trào cộng sản khủng hoảng.
 - Chính trị-tổ chức: Thống nhất đất nước về mặt nhà nước. Thống nhất các tổ chức: Mặt trận Tổ quốc VN, Đoàn TNLĐ HCM, Tổng Công đoàn VN, Hội LHPN VN.
@@ -83,7 +92,6 @@ const REFERENCE_DOCUMENT = `# CHƯƠNG 3: ĐẢNG LÃNH ĐẠO CẢ NƯỚC QUÁ
   + Đối ngoại: Quan hệ Liên Xô = hòn đá tảng, VN-Lào-Campuchia = sống còn, kêu gọi ASEAN đối thoại.
 
 ## II. LÃNH ĐẠO CÔNG CUỘC ĐỔI MỚI, ĐẨY MẠNH CNH-HĐH VÀ HỘI NHẬP QUỐC TẾ (TỪ 1986 ĐẾN NAY)
-
 ### 1. Đại hội VI (12/1986) - Đổi mới toàn diện
 - Bối cảnh: CMKHKT, xu thế đối đầu→đối thoại, Liên Xô cải tổ. Trong nước: khan hiếm lương thực, lạm phát 774% (1986), vi phạm pháp luật, vượt biên gia tăng.
 - Mục đích: Nhìn thẳng sự thật, đánh giá đúng sự thật, nói rõ sự thật. Nguyên nhân sai lầm: từ tư tưởng, tổ chức, công tác cán bộ của Đảng.
@@ -145,7 +153,6 @@ const REFERENCE_DOCUMENT = `# CHƯƠNG 3: ĐẢNG LÃNH ĐẠO CẢ NƯỚC QUÁ
 - 6 nhiệm vụ trọng tâm: Chỉnh đốn Đảng; chống tham nhũng, lợi ích nhóm; văn hóa, đồng bào DTTS; nâng cao chỉ số hạnh phúc; hoàn thiện pháp luật; quản lý tài nguyên, BĐKH.
 
 ## III. THÀNH TỰU, HẠN CHẾ VÀ KINH NGHIỆM ĐỔI MỚI
-
 ### 1. Thành tựu
 - Kinh tế: Chấm dứt khủng hoảng KTXH. Tăng trưởng bình quân 6%/năm. GDP 2020 = 271.2 tỷ USD, tăng 2.91% (top cao nhất thế giới trong đại dịch), thu nhập bình quân = 2.779 USD.
 - Văn hóa-XH: Giáo dục = quốc sách, nhân lực chất lượng cao tăng. Hoàn thành mục tiêu Thiên niên kỷ LHQ, BHYT > 90%, nghèo đa chiều < 3%.
@@ -194,19 +201,16 @@ function initAIChatUI() {
 
     if (!triggerBtn || !chatContainer) return;
 
-    // Load API key hiện tại
     if (apiKeyInput) {
         apiKeyInput.value = getApiKey();
     }
 
-    // Toggle Settings Panel
     if (settingsBtn && keySettingsPanel) {
         settingsBtn.addEventListener("click", () => {
             keySettingsPanel.style.display = (keySettingsPanel.style.display === "none") ? "block" : "none";
         });
     }
 
-    // Lưu API Key mới
     if (saveKeyBtn && apiKeyInput) {
         saveKeyBtn.addEventListener("click", () => {
             const newKey = apiKeyInput.value.trim();
@@ -225,7 +229,6 @@ function initAIChatUI() {
         });
     }
 
-    // Toggle Chat Window
     triggerBtn.addEventListener("click", () => {
         chatContainer.classList.toggle("active");
         if (chatContainer.classList.contains("active")) {
@@ -241,7 +244,6 @@ function initAIChatUI() {
         chatContainer.classList.toggle("minimized");
     });
 
-    // Send Message
     sendBtn.addEventListener("click", () => {
         handleUserSendMessage();
     });
@@ -253,7 +255,6 @@ function initAIChatUI() {
         }
     });
 
-    // Clear Chat
     if (clearBtn) {
         clearBtn.addEventListener("click", () => {
             chatHistory = [];
@@ -272,7 +273,6 @@ function initAIChatUI() {
         });
     }
 
-    // Quick suggestion chips
     suggestionChips.forEach(chip => {
         chip.addEventListener("click", () => {
             const text = chip.getAttribute("data-query") || chip.innerText;
@@ -294,10 +294,7 @@ async function handleUserSendMessage() {
     inputField.value = "";
     isGenerating = true;
 
-    // Hiển thị tin nhắn người dùng
     appendMessageUI("user", userQuery);
-
-    // Hiển thị Typing Indicator
     const typingId = appendTypingIndicatorUI();
 
     try {
@@ -306,11 +303,9 @@ async function handleUserSendMessage() {
         removeTypingIndicatorUI(typingId);
         appendMessageUI("bot", responseText);
 
-        // Lưu vào history cho multi-turn (giới hạn 6 lượt gần nhất để tiết kiệm token)
         chatHistory.push({ role: "user", parts: [{ text: userQuery }] });
         chatHistory.push({ role: "model", parts: [{ text: responseText }] });
 
-        // Giữ tối đa 6 cặp tin nhắn gần nhất (12 entries) để tránh vượt token limit
         if (chatHistory.length > 12) {
             chatHistory = chatHistory.slice(-12);
         }
@@ -330,16 +325,16 @@ async function handleUserSendMessage() {
 
 // ═══════════════════════════════════════════════
 // 7. GỌI GEMINI API
-//    - Sử dụng systemInstruction riêng biệt
-//    - Context tài liệu gửi 1 lần trong tin nhắn đầu tiên
-//    - Hỗ trợ multi-turn conversation
 // ═══════════════════════════════════════════════
 
 async function callGeminiAPI(userQuery) {
-    // Xây dựng contents array cho multi-turn
+    const apiKey = getApiKey();
+    if (!apiKey) {
+        throw new Error("Chưa tìm thấy Gemini API Key! Hãy kiểm tra cài đặt trong GitHub Secrets hoặc nhập thủ công qua nút ⚙️.");
+    }
+
     const contents = [];
 
-    // Tin nhắn đầu tiên luôn chứa context tài liệu
     contents.push({
         role: "user",
         parts: [{ text: `[TÀI LIỆU THAM KHẢO - Chương 3 Lịch sử Đảng CSVN]:\n${REFERENCE_DOCUMENT}` }]
@@ -349,12 +344,10 @@ async function callGeminiAPI(userQuery) {
         parts: [{ text: "Đã nhận tài liệu tham khảo Chương 3. Tôi sẽ chỉ trả lời dựa trên nội dung này. Bạn hãy đặt câu hỏi." }]
     });
 
-    // Thêm chat history (các lượt hội thoại trước)
     for (const msg of chatHistory) {
         contents.push(msg);
     }
 
-    // Câu hỏi hiện tại
     contents.push({
         role: "user",
         parts: [{ text: userQuery }]
@@ -371,7 +364,6 @@ async function callGeminiAPI(userQuery) {
         }
     };
 
-    // Thử lần lượt từng model trong danh sách fallback
     let lastError = null;
 
     for (const model of GEMINI_CONFIG.models) {
@@ -380,20 +372,22 @@ async function callGeminiAPI(userQuery) {
 
             const response = await fetch(getEndpointUrl(model), {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "x-goog-api-key": apiKey
+                },
                 body: JSON.stringify(requestBody)
             });
 
             const data = await response.json();
 
-            // Nếu bị quota/rate limit → thử model tiếp theo
             if (!response.ok) {
                 const errMsg = data.error?.message || `HTTP ${response.status}`;
                 console.warn(`[VNR AI] Model ${model} lỗi: ${errMsg}`);
 
-                if (response.status === 429 || response.status === 404 || response.status === 503 || errMsg.toLowerCase().includes("quota") || errMsg.toLowerCase().includes("rate") || errMsg.toLowerCase().includes("not found") || errMsg.toLowerCase().includes("no longer available") || errMsg.toLowerCase().includes("high demand") || errMsg.toLowerCase().includes("unavailable")) {
+                if (response.status === 429 || response.status === 404 || response.status === 503 || errMsg.toLowerCase().includes("quota") || errMsg.toLowerCase().includes("rate") || errMsg.toLowerCase().includes("not found")) {
                     lastError = new Error(`${model}: ${errMsg}`);
-                    continue; // Thử model tiếp theo
+                    continue;
                 }
                 throw new Error(errMsg);
             }
@@ -412,17 +406,14 @@ async function callGeminiAPI(userQuery) {
 
         } catch (err) {
             lastError = err;
-            // Nếu là lỗi quota → tiếp tục vòng lặp
-            if (err.message && (err.message.toLowerCase().includes("quota") || err.message.toLowerCase().includes("rate") || err.message.toLowerCase().includes("not found") || err.message.toLowerCase().includes("no longer available") || err.message.toLowerCase().includes("high demand") || err.message.toLowerCase().includes("unavailable"))) {
+            if (err.message && (err.message.toLowerCase().includes("quota") || err.message.toLowerCase().includes("rate") || err.message.toLowerCase().includes("not found"))) {
                 continue;
             }
-            // Lỗi khác (network, safety, etc.) → throw ngay
             throw err;
         }
     }
 
-    // Tất cả model đều thất bại
-    throw lastError || new Error("Tất cả model Gemini đều hết quota. Vui lòng thử lại sau hoặc thay đổi API Key.");
+    throw lastError || new Error("Tất cả model Gemini đều thất bại. Vui lòng thử lại sau.");
 }
 
 // ═══════════════════════════════════════════════
@@ -483,38 +474,21 @@ function removeTypingIndicatorUI(id) {
 }
 
 // ═══════════════════════════════════════════════
-// 9. MARKDOWN RENDERER (improved)
+// 9. MARKDOWN RENDERER
 // ═══════════════════════════════════════════════
 
 function formatMarkdown(text) {
     let html = escapeHTML(text);
 
-    // Headers: ### → h4, ## → h3
     html = html.replace(/^### (.*$)/gim, '<strong style="color:#f6c860; font-size:14px; display:block; margin:8px 0 4px 0;">$1</strong>');
     html = html.replace(/^## (.*$)/gim, '<strong style="color:#ffd700; font-size:15px; display:block; margin:10px 0 4px 0;">$1</strong>');
-
-    // Bold **text**
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ffd700;">$1</strong>');
-
-    // Italic *text*
     html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-
-    // Inline code `text`
     html = html.replace(/`(.*?)`/g, '<code style="background:rgba(255,255,255,0.12); color:#f6c860; padding:2px 6px; border-radius:4px; font-size:12px;">$1</code>');
-
-    // Numbered list: 1. item
     html = html.replace(/^(\d+)\. (.*$)/gim, '<div style="margin-left:12px; padding:2px 0;">$1. $2</div>');
-
-    // Bullet list: - item
     html = html.replace(/^- (.*$)/gim, '<div style="margin-left:12px; padding:2px 0;">• $1</div>');
-
-    // Bullet list: + item (nested)
     html = html.replace(/^  \+ (.*$)/gim, '<div style="margin-left:24px; padding:1px 0; color:#cbd5e1;">→ $1</div>');
-
-    // Line breaks
     html = html.replace(/\n/g, '<br>');
-
-    // Clean up excess <br> after block elements
     html = html.replace(/<\/div><br>/g, '</div>');
 
     return html;
