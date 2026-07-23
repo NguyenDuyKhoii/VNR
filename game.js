@@ -354,6 +354,17 @@ function showInputShake(el, placeholder) {
 // LEVEL SELECTION & QUESTION UTILS
 // =============================================
 function getSelectedQuestions(level) {
+  let targetIds = [];
+  if (level === 'easy') {
+    targetIds = [1, 2, 3, 4, 6, 8, 5];
+  } else if (level === 'medium') {
+    targetIds = [1, 2, 3, 6, 7, 5, 8, 4, 11, 9, 12, 10, 13, 14, 16];
+  } else {
+    // hard
+    targetIds = [1, 2, 3, 6, 7, 8, 11, 4, 12, 5, 13, 9, 16, 10, 17, 14, 18, 15, 19, 20];
+  }
+
+  /* COMMENTED OUT RANDOM SHUFFLE CODE:
   let count = 7;
   if (level === 'medium') count = 15;
   else if (level === 'hard') count = 20;
@@ -368,6 +379,14 @@ function getSelectedQuestions(level) {
 
   // Sort them by their original ID to maintain chronological flow
   return selected.sort((a, b) => a.id - b.id);
+  */
+
+  const selected = [];
+  targetIds.forEach(id => {
+    const q = state.allQuestions.find(item => item.id === id);
+    if (q) selected.push(q);
+  });
+  return selected;
 }
 
 // =============================================
