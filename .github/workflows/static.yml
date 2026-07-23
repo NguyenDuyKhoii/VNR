@@ -32,11 +32,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ==================== BƯỚC ĐƯỢC THÊM MỚI VÀO ĐÂY ====================
-      - name: Create .env file
+      # ==================== CẬP NHẬT MỚI TẠI ĐÂY ====================
+      - name: Create environment files & disable Jekyll
         run: |
+          touch .nojekyll
+          echo '{"GEMINI_API_KEY": "${{ secrets.GEMINI_API_KEY }}"}' > env.json
           echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
-      # ====================================================================
+      # ==============================================================
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
