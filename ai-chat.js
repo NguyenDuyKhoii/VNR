@@ -8,59 +8,21 @@
 // ═══════════════════════════════════════════════
 
 const GEMINI_CONFIG = {
-    apiKey: "", // Loaded dynamically
-    // CẬP NHẬT: Danh sách Model chuẩn xác 100% của Google Gemini
+    // Đọc trực tiếp API Key
+    apiKey: "AQ.Ab8RN6JL4RP3GoDbyxKS-RBotub_4yKHdLBiuQQ4TMwwq48vuA",
     models: ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"],
     baseUrl: "https://generativelanguage.googleapis.com/v1beta/models",
     maxOutputTokens: 2048,
     temperature: 0.3
 };
 
-let loadedApiKey = "";
-let isApiKeyLoading = false;
-
-// Tải API Key linh hoạt từ env.json hoặc .env
-async function initApiKey() {
-    if (loadedApiKey) return loadedApiKey;
-    isApiKeyLoading = true;
-    try {
-        // 1. Thử đọc từ env.json (GitHub Pages)
-        let response = await fetch('env.json');
-        if (response.ok) {
-            const data = await response.json();
-            if (data.GEMINI_API_KEY && data.GEMINI_API_KEY !== "null") {
-                loadedApiKey = data.GEMINI_API_KEY.trim();
-                console.log("[VNR AI] Loaded API key from env.json");
-                isApiKeyLoading = false;
-                return loadedApiKey;
-            }
-        }
-
-        // 2. Fallback đọc từ .env
-        response = await fetch('.env');
-        if (response.ok) {
-            const text = await response.text();
-            const match = text.match(/GEMINI_API_KEY\s*=\s*(.*)/);
-            if (match && match[1] && match[1].trim() !== "null") {
-                loadedApiKey = match[1].trim();
-                console.log("[VNR AI] Loaded API key from .env");
-            }
-        }
-    } catch (e) {
-        console.warn("[VNR AI] Could not load API key file.");
-    } finally {
-        isApiKeyLoading = false;
-    }
-    return loadedApiKey;
-}
-
-// Gọi load key ngay lập tức
-initApiKey();
-
+// Hàm lấy Key: Ưu tiên Key tùy chỉnh trong localStorage (nếu có), mặc định lấy Key trực tiếp
 function getApiKey() {
     const localKey = localStorage.getItem("VNR_GEMINI_API_KEY");
-    const key = (localKey && localKey !== "null") ? localKey : (loadedApiKey || GEMINI_CONFIG.apiKey);
-    return key ? key.trim() : "";
+    if (localKey && localKey.trim() !== "" && localKey !== "null") {
+        return localKey.trim();
+    }
+    return GEMINI_CONFIG.apiKey;
 }
 
 function getEndpointUrl(model) {
@@ -71,7 +33,7 @@ function getEndpointUrl(model) {
 // 2. SYSTEM INSTRUCTION
 // ═══════════════════════════════════════════════
 
-const SYSTEM_INSTRUCTION = `Bạn là "Trợ lý VNR AI" - trợ lý AI chuyên môn giải đáp thắc mắc về Lịch sử Đảng Cộng sản Việt Nam, cụ thể là Chương 3: "Đảng lãnh đạo cả nước quá độ lên CNXH và tiến hành công cuộc đổi mới (từ 1975 đến nay)".
+const SYSTEM_INSTRUCTION = `Bạn là "Trợ lý VNR AI" - trợ lý AI chuyên môn giải đáp thắc mắc về Lịch sử Đảng Cộng sản Việt Nam, cụ thể là Chương 3: "Đảng lãnh đạo cả nước quá độ lên CNXH và tiến hành công công cuộc đổi mới (từ 1975 đến nay)".
 
 ## QUY TẮC BẮT BUỘC:
 1. BẮT BUỘC CHỈ trả lời dựa trên [TÀI LIỆU THAM KHẢO] được cung cấp bên dưới.
@@ -321,7 +283,7 @@ async function handleUserSendMessage() {
         let errDesc = error.message || "Lỗi kết nối API";
         appendMessageUI(
             "bot",
-            `⚠️ **Lỗi**: ${errDesc}\n\n💡 Bấm nút ⚙️ ở góc trên cửa sổ chat để nhập API Key từ Google AI Studio nếu cần.`
+            `⚠️ **Lỗi**: ${errDesc}\n\n💡 Bấm nút ⚙️ ở góc trên cửa sổ chat để kiểm tra API Key nếu cần.`
         );
     } finally {
         isGenerating = false;
@@ -333,14 +295,9 @@ async function handleUserSendMessage() {
 // ═══════════════════════════════════════════════
 
 async function callGeminiAPI(userQuery) {
-    // Đảm bảo đã load API Key xong
-    if (!loadedApiKey) {
-        await initApiKey();
-    }
-
     const apiKey = getApiKey();
     if (!apiKey) {
-        throw new Error("Chưa tìm thấy API Key! Hãy kiểm tra lại GitHub Secrets hoặc bấm ⚙️ để nhập thủ công API Key từ Google AI Studio.");
+        throw new Error("Chưa tìm thấy API Key! Vui lòng bấm ⚙️ để nhập API Key từ Google AI Studio.");
     }
 
     const contents = [];
@@ -380,7 +337,6 @@ async function callGeminiAPI(userQuery) {
         try {
             console.log(`[VNR AI] Đang thử model: ${model}...`);
 
-            // Sử dụng Header x-goog-api-key an toàn & chuẩn quy cách Google REST API
             const response = await fetch(getEndpointUrl(model), {
                 method: "POST",
                 headers: { 
